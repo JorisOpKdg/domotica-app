@@ -1,0 +1,127 @@
+{
+  "floors": [
+    {
+      "id": 1,
+      "name": "Kelder",
+      "rooms": [
+        {
+          "id": 11,
+          "name": "Wijnkelder",
+          "description": "Een beschrijving van de wijnkelder.",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        },
+        {
+          "id": 12,
+          "name": "Nutskamer",
+          "description": "Een beschrijving van de ruimte met boiler, electriciteitsmeter en waterstandmeter.",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Gelijksvloer",
+      "rooms": [
+        {
+          "id": 21,
+          "name": "Woonkamer",
+          "description": "Een beschrijving van de woonkamer",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        },
+        {
+          "id": 22,
+          "name": "Keuken",
+          "description": "Een beschrijving van de keuken",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        },
+        {
+          "id": 23,
+          "name": "Gang",
+          "description": "Een beschrijving van de gang",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        },
+        {
+          "id": 24,
+          "name": "Gasten toilet",
+          "description": "Een beschrijving van de gasten toilet",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "1e verdiep",
+      "rooms": [
+        {
+          "id": 31,
+          "name": "Slaapkamer 1",
+          "description": "Een beschrijving van de woonkamer",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        },
+        {
+          "id": 32,
+          "name": "Slaapkamer 2",
+          "description": "Een beschrijving van de keuken",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        },
+        {
+          "id": 33,
+          "name": "Badkamer",
+          "description": "Een beschrijving van de gang",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        },
+        {
+          "id": 34,
+          "name": "Toilet",
+          "description": "Een beschrijving van de gasten toilet",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Zolder",
+      "rooms": [
+        {
+          "id": 31,
+          "name": "Zolder ruimte",
+          "description": "Een beschrijving van de zolder",
+          "temperature": 20,
+          "lighting": 10,
+          "music": 10,
+          "curtains": false
+        }
+      ]
+    }
+  ]
+}
