@@ -5,7 +5,7 @@ import StartPage from "./components/layout/StartPage";
 import RoomsList from "./components/rooms/RoomsList";
 import RoomsMap from "./components/rooms/RoomsMap";
 import RoomDetail from "./components/rooms/RoomDetail";
-import "./App.css";
+
 
 class App extends Component {
   state = {};
