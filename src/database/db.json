@@ -109,11 +109,11 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "Zolder",
       "rooms": [
         {
-          "id": 31,
+          "id": 41,
           "name": "Zolder ruimte",
           "description": "Een beschrijving van de zolder",
           "temperature": 20,
