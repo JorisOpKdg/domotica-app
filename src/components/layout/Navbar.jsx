@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { ThemeContext } from './../../contexts/ThemeContext';
+import { ThemeContext } from "./../../contexts/ThemeContext";
+import ThemeToggle from "./ThemeToggle";
 
 class Navbar extends Component {
   static contextType = ThemeContext;
- 
+
   state = {
     floors: [],
   };
@@ -20,8 +21,8 @@ class Navbar extends Component {
   }
 
   render() {
-    const {isLightTheme, light, dark} = this.context;
-    const theme = isLightTheme ? light : dark;
+    //const { isLightTheme, light, dark } = this.context;
+    //const theme = isLightTheme ? light : dark;
 
     return (
       <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -36,6 +37,7 @@ class Navbar extends Component {
                 {floor.name}
               </a>
             ))}
+          <ThemeToggle />
         </nav>
       </div>
     );

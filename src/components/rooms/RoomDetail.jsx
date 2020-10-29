@@ -4,15 +4,7 @@ import { DB_URL } from "../../database/db";
 
 class RoomDetail extends Component {
   state = {
-    room: {
-      id: 0,
-      name: "",
-      description: "",
-      temperature: 0,
-      lighting: 0,
-      music: 0,
-      curtains: false,
-    },
+    room: "",
   };
 
   async componentDidMount() {
@@ -21,28 +13,22 @@ class RoomDetail extends Component {
         `${DB_URL}/floors/${this.props.match.params.floorId}`
       );
       const rooms = response.data.rooms;
-      const room = rooms.filter(
+      console.log("rooms voor de filter: " + rooms);
+      const filteredroom = rooms.filter(
         (room) => room.id === this.props.match.params.roomId
       );
-      this.setState({
-        room: {
-          id: room.id,
-          name: room.name,
-          description: room.description,
-          temperature: room.temperature,
-          lighting: room.lighting,
-          music: room.music,
-          curtains: room.curtains,
-        }
-      });
+      const room = filteredroom[0];
+      console.log("Room in cdm: " + room);
+      this.setState({ room: room });
     } catch (error) {
       console.error("Could not load rooms:" + error);
     }
   }
 
   render() {
-    console.log(this.props.match.params.roomId);
-    console.log(this.state.room);
+    console.log("RoomId in render: " + this.props.match.params.roomId);
+    console.log("FloorId in render: " + this.props.match.params.floorId);
+    console.log("room in render" + this.state.room && this.state.room);
     return (
       <div className="container">
         <div className="row">
@@ -65,7 +51,9 @@ class RoomDetail extends Component {
                 <h4 className="my-0 font-weight-normal">Verlichting</h4>
               </div>
               <div className="card-body">
-                <p>Verlichting: {this.state.room && this.state.room.lighting}</p>
+                <p>
+                  Verlichting: {this.state.room && this.state.room.lighting}
+                </p>
               </div>
             </div>
           </div>
