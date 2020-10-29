@@ -4,7 +4,7 @@ import { DB_URL } from "../../database/db";
 
 class RoomDetail extends Component {
   state = {
-    room: "",
+    room: {},
   };
 
   async componentDidMount() {
@@ -14,11 +14,13 @@ class RoomDetail extends Component {
       );
       const rooms = response.data.rooms;
       console.log("rooms voor de filter: " + rooms);
+      
       const filteredroom = rooms.filter(
         (room) => room.id === this.props.match.params.roomId
       );
       const room = filteredroom[0];
       console.log("Room in cdm: " + room);
+    
       this.setState({ room: room });
     } catch (error) {
       console.error("Could not load rooms:" + error);
