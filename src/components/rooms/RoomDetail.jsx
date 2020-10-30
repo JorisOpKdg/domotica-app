@@ -22,7 +22,7 @@ class RoomDetail extends Component {
         (room) => room.id === this.props.match.params.roomId
       );
       
-      const room = filteredroom;
+      const room = filteredroom[0];
       console.log("Rooms na de filter: " + room);
       console.log("number of rooms na de filter: " + filteredroom.length);
 
