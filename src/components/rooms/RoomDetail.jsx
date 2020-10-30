@@ -13,14 +13,19 @@ class RoomDetail extends Component {
         `${DB_URL}/floors/${this.props.match.params.floorId}`
       );
       const rooms = response.data.rooms;
+      console.log("data voor de filter: " + response.data);
       console.log("rooms voor de filter: " + rooms);
-      
+      console.log("number of rooms voor de filter: " + rooms);
+
+      //Hier loopt het toch helemaal mis
       const filteredroom = rooms.filter(
         (room) => room.id === this.props.match.params.roomId
       );
-      const room = filteredroom[0];
-      console.log("Room in cdm: " + room);
-    
+      
+      const room = filteredroom;
+      console.log("Rooms na de filter: " + room);
+      console.log("number of rooms na de filter: " + filteredroom.length);
+
       this.setState({ room: room });
     } catch (error) {
       console.error("Could not load rooms:" + error);
