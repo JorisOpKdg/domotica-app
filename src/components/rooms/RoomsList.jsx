@@ -1,3 +1,50 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { DB_URL } from "../../database/db";
+import RoomSummary from "./RoomSummary";
+import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
+
+const RoomsList = ({
+  match: {
+    params: { floorId },
+  },
+}) => {
+  const [state, setState] = useState({ floorId, rooms: [] });
+
+  useEffect(() => {
+    axios
+      .get(`${DB_URL}/rooms?floorid=${floorId}`)
+      .then((response) => {
+        setState((prevState) => ({ ...prevState, rooms: response.data }));
+      })
+      .then(() => axios.get(`${DB_URL}/floors/${floorId}`))
+      .then((response) => {
+        setState((prevState) => ({
+          ...prevState,
+          floorName: response.data.name,
+        }));
+      });
+  }, [floorId]);
+
+  return (
+    <>
+      <div className="container">
+        <RoomsViewNavbar floorId={state.floorId} floorName={state.floorName} />
+        <div className="row">
+          {state.rooms &&
+            state.floorId &&
+            state.rooms.map((room) => (
+              <RoomSummary floorId={state.floorId} room={room} />
+            ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default RoomsList;
+
+/*
 import React, { Component } from "react";
 import axios from "axios";
 import { DB_URL } from "../../database/db";
@@ -34,8 +81,6 @@ class RoomsList extends Component {
     } catch (error) {
       console.error("Could not load rooms:" + error);
     }
-
-
   }
 
   render() {
@@ -60,3 +105,4 @@ class RoomsList extends Component {
 }
 
 export default RoomsList;
+*/
