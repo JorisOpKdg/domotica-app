@@ -23,15 +23,15 @@ const RoomSummary = ({ room, floorId }) => {
 
   return (
     <div className="col-md-6 col-lg-3">
-      <div className="card bg-warning mb-3 shadow-sm">
+      <div
+        className="card mb-3 shadow-sm"
+        style={{ backgroundColor: "rgba(255, 165, 0, 1" }}
+      >
         <div className="card-body ">
           <h4 className="">{room.name}</h4>
 
           <h3>{room.temperature}°</h3>
-          <img
-            src={+room.music < 1 ? MusicOff : MusicOn}
-            alt="Music icon"
-          ></img>
+          <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
           <Link
             className="btn btn-lg btn-block btn-secondary mt-3"
             to={`/room-detail/${floorId}/${room.id}`}

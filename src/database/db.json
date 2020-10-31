@@ -3,22 +3,37 @@
     {
       "id": 1,
       "name": "Kelder",
-      "rooms": [11, 12]
+      "rooms": [
+        11,
+        12
+      ]
     },
     {
       "id": 2,
       "name": "Gelijksvloer",
-      "rooms": [21, 22, 23, 24]
+      "rooms": [
+        21,
+        22,
+        23,
+        24
+      ]
     },
     {
       "id": 3,
       "name": "1e verdiep",
-      "rooms": [31, 32, 33, 34]
+      "rooms": [
+        31,
+        32,
+        33,
+        34
+      ]
     },
     {
       "id": 4,
       "name": "Zolder",
-      "rooms": [41]
+      "rooms": [
+        41
+      ]
     }
   ],
   "rooms": [
@@ -146,14 +161,6 @@
       "amount": 18,
       "start": "16:00",
       "end": "20:00"
-    },
-    {
-      "id": 3,
-      "roomId": 21,
-      "service": "temperature",
-      "amount": 14,
-      "start": "20:00",
-      "end": "08:00"
     },
     {
       "id": 4,

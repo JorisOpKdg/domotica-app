@@ -4,6 +4,7 @@ import { DB_URL } from "../../database/db";
 import { ThemeContext } from "./../../contexts/ThemeContext";
 import DarkLogo from "./../../assets/images/logo-dark.png";
 import LightLogo from "./../../assets/images/logo-light.png";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   static contextType = ThemeContext;
@@ -30,9 +31,9 @@ class Navbar extends Component {
       <nav
         className={`navbar navbar-expand-lg navbar-${theme.nav} bg-${theme.bg} p-3 mb-3  border-bottom shadow-sm`}
       >
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           <img src={isLightTheme ? DarkLogo : LightLogo} alt="Logo"></img>
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -49,13 +50,13 @@ class Navbar extends Component {
           <ul className="navbar-nav mr-auto">
             {this.state.floors &&
               this.state.floors.map((floor) => (
-                <a className="nav-link" href={`/rooms-list/${floor.id}`}>
+                <Link className="nav-link" to={`/rooms-list/${floor.id}`}>
                   {floor.name}
-                </a>
+                </Link>
               ))}
-            <a className="nav-link" href="/settings/">
+            <Link className="nav-link" to="/settings/">
               Instellingen
-            </a>
+            </Link>
           </ul>
         </div>
       </nav>

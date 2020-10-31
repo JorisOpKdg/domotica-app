@@ -22,7 +22,7 @@ const CurtainsCard = (props) => {
   }, [props.roomId]);
 
   const curtainHandler = (e) => {
-    setRoom({ lighting: !e.target.value });
+    setRoom(previousRoom => ( {...previousRoom, curtains: !previousRoom.curtains }));
   };
 
   return (

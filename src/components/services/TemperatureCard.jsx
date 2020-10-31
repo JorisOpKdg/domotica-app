@@ -8,14 +8,16 @@ const TemperatureCard = (props) => {
   const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
-    const loadData = async () => {
-      setSchemes(await getSchemes(room.id, room.service));
-    };
-    loadData();
-  }, [room.id, room.service]);
+    getSchemes(room.id, "temperature").then((nextSchemes) =>
+      setSchemes(nextSchemes)
+    );
+  }, [room.id]);
 
   const desiredTempHandler = (e) => {
-    setRoom({ desiredTemp: e.target.value });
+    setRoom((previousRoom) => ({
+      ...previousRoom,
+      desiredTemp: e.target.value,
+    }));
 
     const loadData = async () => {
       await postRoom(room.id);
