@@ -5,6 +5,7 @@ import SmartScheme from "./SmartScheme";
 
 const LightingCard = (props) => {
   const [schemes, setSchemes] = useState();
+  const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +21,11 @@ const LightingCard = (props) => {
     fetchData();
   }, [props.roomId]);
 
+  const lightingHandler = (e) => {
+    console.log(e);
+    setRoom({ lighting: e.target.value });
+  };
+
   return (
     <div className="col-lg-6">
       <div className="card mb-3 shadow-sm">
@@ -29,7 +35,7 @@ const LightingCard = (props) => {
               <h2 className="my-0 font-weight-normal">Verlichting:</h2>
             </div>
             <div className="col-4">
-              <h2 className="text-right pr-4 ">{props.room.lighting}</h2>
+              <h2 className="text-right pr-4 ">{room.lighting}</h2>
             </div>
           </div>
         </div>
@@ -37,19 +43,15 @@ const LightingCard = (props) => {
           <ul className="list-group list-group-flush">
             <li className="list-group-item py-2">
               <div className="row">
-                <div className="col-8">
-                  <h5 className="card-title pl-3">Ingesteld op:</h5>
-                </div>
-                <div className="col-4 text-">
-                  <h3 className="text-right pr-2">13</h3>
-                </div>
                 <form className="m-3 col-11">
                   <input
                     type="range"
                     className="custom-range"
                     min="0"
                     max="20"
-                    id="temperatureRange"
+                    onChange={lightingHandler}
+                    value={room.lighting}
+                    id="lightingRange"
                   ></input>
                 </form>
               </div>

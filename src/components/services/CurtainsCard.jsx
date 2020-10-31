@@ -5,6 +5,7 @@ import SmartScheme from "./SmartScheme";
 
 const CurtainsCard = (props) => {
   const [schemes, setSchemes] = useState();
+  const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +21,10 @@ const CurtainsCard = (props) => {
     fetchData();
   }, [props.roomId]);
 
+  const curtainHandler = (e) => {
+    setRoom({ lighting: !e.target.value });
+  };
+
   return (
     <div className="col-lg-6">
       <div className="card mb-3 shadow-sm">
@@ -30,31 +35,27 @@ const CurtainsCard = (props) => {
             </div>
             <div className="col-4">
               <h2 className="text-right pr-4 ">
-                {props.room.curtains ? "Dicht" : "Open"}
+                {room.curtains ? "Open" : "Dicht"}
               </h2>
             </div>
           </div>
         </div>
         <div className="card-body">
           <ul className="list-group list-group-flush">
-            <li className="list-group-item py-2">
-              <div className="row">
-                <div className="col-8">
-                  <h5 className="card-title pl-3">Ingesteld op:</h5>
-                </div>
-                <div className="col-4 text-">
-                  <h3 className="text-right pr-2">20</h3>
-                </div>
-                <form className="m-3 col-11">
+            <li className="list-group-item py-4">
+              <form className="form-right my-2 my-lg-0 col-12">
+                <div className="custom-control custom-switch">
                   <input
-                    type="range"
-                    className="custom-range"
-                    min="0"
-                    max="5"
-                    id="temperatureRange"
-                  ></input>
-                </form>
-              </div>
+                    type="checkbox"
+                    className="custom-control-input"
+                    id="curtainSwitch"
+                    onClick={curtainHandler}
+                  />
+                  <label className="custom-control-label" for="curtainSwitch">
+                    Aan/Uit
+                  </label>
+                </div>
+              </form>
             </li>
             <li className="list-group-item py-4">
               <div className="row">
@@ -62,7 +63,9 @@ const CurtainsCard = (props) => {
                   <h5 className="card-title pl-3 pt-2">Slim schema</h5>
                 </div>
                 <div className="col-4">
-                  <a className="btn btn-primary float-right mr-3">Nieuw</a>
+                  <button className="btn btn-primary float-right mr-3">
+                    Nieuw
+                  </button>
                 </div>
               </div>
             </li>

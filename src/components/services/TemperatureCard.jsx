@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { getSchemes } from "../api/callSchemes";
+import { postRoom } from "../api/callRooms";
 import SmartScheme from "./SmartScheme";
 
 const TemperatureCard = (props) => {
   const [schemes, setSchemes] = useState();
+  const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
     const loadData = async () => {
-      setSchemes(await getSchemes(props.room.roomId, props.room.service));
+      setSchemes(await getSchemes(room.id, room.service));
     };
     loadData();
-  }, [props.room.roomId, props.room.service]);
+  }, [room.id, room.service]);
+
+  const desiredTempHandler = (e) => {
+    setRoom({ desiredTemp: e.target.value });
+
+    const loadData = async () => {
+      await postRoom(room.id);
+    };
+    loadData();
+  };
 
   console.log(schemes);
   return (
@@ -22,7 +33,7 @@ const TemperatureCard = (props) => {
               <h2 className="my-0 font-weight-normal">Temperatuur:</h2>
             </div>
             <div className="col-4">
-              <h2 className="text-right pr-4 ">{props.room.temperature}°</h2>
+              <h2 className="text-right pr-4 ">{room.temperature}°</h2>
             </div>
           </div>
         </div>
@@ -34,7 +45,7 @@ const TemperatureCard = (props) => {
                   <h5 className="card-title pl-3">Ingesteld op:</h5>
                 </div>
                 <div className="col-4 text-">
-                  <h3 className="text-right pr-2">20°</h3>
+                  <h3 className="text-right pr-2">{room.desiredTemp}°</h3>
                 </div>
                 <form className="m-3 col-11">
                   <input
@@ -42,6 +53,8 @@ const TemperatureCard = (props) => {
                     className="custom-range"
                     min="0"
                     max="30"
+                    onChange={desiredTempHandler}
+                    value={room.desiredTemp}
                     id="temperatureRange"
                   ></input>
                 </form>

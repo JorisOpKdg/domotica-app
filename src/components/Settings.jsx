@@ -10,19 +10,21 @@ class Settings extends Component {
     const { toggleTheme } = this.context;
 
     return (
-      <form className="form-right my-2 my-lg-0">
-        <div className="custom-control custom-switch">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="darkSwitch"
-            onClick={toggleTheme}
-          />
-          <label className="custom-control-label" for="darkSwitch">
-            Dark Mode
-          </label>
-        </div>
-      </form>
+      <div className="container">
+        <form className="form-right my-2 my-lg-0">
+          <div className="custom-control custom-switch">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="darkSwitch"
+              onClick={toggleTheme}
+            />
+            <label className="custom-control-label" for="darkSwitch">
+              Dark Mode
+            </label>
+          </div>
+        </form>
+      </div>
     );
   }
 }

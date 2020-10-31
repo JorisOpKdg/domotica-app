@@ -43,9 +43,10 @@
       "name": "Woonkamer",
       "description": "Een beschrijving van de woonkamer",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10,
       "music": 10,
-      "curtains": false
+      "curtains": true
     },
     {
       "id": 22,
@@ -53,9 +54,10 @@
       "name": "Keuken",
       "description": "Een beschrijving van de keuken",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10,
       "music": 10,
-      "curtains": false
+      "curtains": true
     },
     {
       "id": 23,
@@ -63,6 +65,7 @@
       "name": "Gang",
       "description": "Een beschrijving van de gang",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10
     },
     {
@@ -71,6 +74,7 @@
       "name": "Gasten toilet",
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10,
       "music": 10
     },
@@ -80,6 +84,7 @@
       "name": "Slaapkamer 1",
       "description": "Een beschrijving van de woonkamer",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10,
       "music": 10,
       "curtains": false
@@ -90,6 +95,7 @@
       "name": "Slaapkamer 2",
       "description": "Een beschrijving van de keuken",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10,
       "music": 10,
       "curtains": false
@@ -100,6 +106,7 @@
       "name": "Badkamer",
       "description": "Een beschrijving van de gang",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10,
       "music": 10,
       "curtains": false
@@ -110,6 +117,7 @@
       "name": "Toilet",
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
+      "desiredTemp": 17,
       "lighting": 10,
       "music": 10
     },
