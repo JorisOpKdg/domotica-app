@@ -5,6 +5,7 @@ import StartPage from "./components/layout/StartPage";
 import RoomsList from "./components/rooms/RoomsList";
 import RoomsMap from "./components/rooms/RoomsMap";
 import RoomDetail from "./components/rooms/RoomDetail";
+import Settings from "./components/Settings";
 import ThemeContextProvider from "./contexts/ThemeContext";
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           <BrowserRouter>
             <Navbar />
             <Switch>
+              <Route path="/settings" component={Settings} />
               <Route path="/rooms-list/:floorId" component={RoomsList} />
               <Route path="/rooms-map/:floorId" component={RoomsMap} />
               <Route

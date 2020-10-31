@@ -14,17 +14,28 @@ class RoomsList extends Component {
   async componentDidMount() {
     try {
       const response = await axios.get(
-        `${DB_URL}/floors/${this.props.match.params.floorId}`
+        `${DB_URL}/rooms?floorid=${this.props.match.params.floorId}`
       );
-      const data = response.data;
       this.setState({
-        floorName: data.name,
         floorId: this.props.match.params.floorId,
-        rooms: data.rooms,
+        rooms: response.data,
       });
     } catch (error) {
       console.error("Could not load rooms:" + error);
     }
+
+    try {
+      const response = await axios.get(
+        `${DB_URL}/floors/${this.props.match.params.floorId}`
+      );
+      this.setState({
+        floorName: response.data.name,
+      });
+    } catch (error) {
+      console.error("Could not load rooms:" + error);
+    }
+
+
   }
 
   render() {

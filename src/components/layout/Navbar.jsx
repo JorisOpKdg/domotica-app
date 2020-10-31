@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { DB_URL } from "../../database/db";
 import { ThemeContext } from "./../../contexts/ThemeContext";
 import DarkLogo from "./../../assets/images/logo-dark.png";
 import LightLogo from "./../../assets/images/logo-light.png";
@@ -10,27 +12,26 @@ class Navbar extends Component {
     floors: [],
   };
 
-  componentDidMount() {
-    this.setState({
-      floors: [
-        { id: 1, name: "Kelder" },
-        { id: 2, name: "Woonkamer" },
-        { id: 3, name: "1e verdiep" },
-        { id: 4, name: "Zolder" },
-      ],
-    });
+  async componentDidMount() {
+    try {
+      const response = await axios.get(`${DB_URL}/floors`);
+      const floors = response.data;
+      this.setState({ floors: floors });
+    } catch (error) {
+      console.error("Could not load floors:" + error);
+    }
   }
 
   render() {
-    const { isLightTheme, light, dark, toggleTheme } = this.context;
-    const theme = isLightTheme ? dark : light;
+    const { isLightTheme, light, dark } = this.context;
+    const theme = isLightTheme ? light : dark;
 
     return (
       <nav
         className={`navbar navbar-expand-lg navbar-${theme.nav} bg-${theme.bg} p-3 mb-3  border-bottom shadow-sm`}
       >
         <a class="navbar-brand" href="/">
-          <img src={DarkLogo} alt="Logo"></img>
+          <img src={isLightTheme ? DarkLogo : LightLogo} alt="Logo"></img>
         </a>
         <button
           class="navbar-toggler"
@@ -48,27 +49,14 @@ class Navbar extends Component {
           <ul class="navbar-nav mr-auto">
             {this.state.floors &&
               this.state.floors.map((floor) => (
-                <a
-                  className="nav-link p-2 text-dark"
-                  href={`/rooms-list/${floor.id}`}
-                >
+                <a className="nav-link" href={`/rooms-list/${floor.id}`}>
                   {floor.name}
                 </a>
               ))}
+            <a className="nav-link" href="/settings/">
+              Instellingen
+            </a>
           </ul>
-          <form class="form-right my-2 my-lg-0">
-            <div class="custom-control custom-switch">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="darkSwitch"
-                onClick={toggleTheme}
-              />
-              <label class="custom-control-label" for="darkSwitch">
-                Dark Mode
-              </label>
-            </div>
-          </form>
         </div>
       </nav>
     );

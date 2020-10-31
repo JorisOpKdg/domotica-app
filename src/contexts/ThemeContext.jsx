@@ -6,16 +6,16 @@ class ThemeContextProvider extends Component {
   state = {
     isLightTheme: true,
     light: {
-      nav: "dark",
+      nav: "light",
       bg: "white",
       logo: "light",
-      text: "black"
+      text: "black",
     },
     dark: {
-      nav: "light",
+      nav: "dark",
       bg: "dark",
       logo: "dark",
-      text: "white"
+      text: "white",
     },
   };
 
