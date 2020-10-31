@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { ThemeContext } from "./../contexts/ThemeContext";
 
 class Settings extends Component {
-    static contextType = ThemeContext;
+  static contextType = ThemeContext;
 
-    state = {  }
+  state = {};
 
-    render() { 
-        const { toggleTheme } = this.context;
-        
-        return ( <form class="form-right my-2 my-lg-0">
-        <div class="custom-control custom-switch">
+  render() {
+    const { toggleTheme } = this.context;
+
+    return (
+      <form className="form-right my-2 my-lg-0">
+        <div className="custom-control custom-switch">
           <input
             type="checkbox"
-            class="custom-control-input"
+            className="custom-control-input"
             id="darkSwitch"
             onClick={toggleTheme}
           />
-          <label class="custom-control-label" for="darkSwitch">
+          <label className="custom-control-label" for="darkSwitch">
             Dark Mode
           </label>
         </div>
-      </form> );
-    }
+      </form>
+    );
+  }
 }
- 
+
 export default Settings;

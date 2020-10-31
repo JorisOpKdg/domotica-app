@@ -15,7 +15,7 @@ class RoomSummary extends Component {
               <li>Temperatuur: {this.props.room.temperature}</li>
               <li>Verlichting: {this.props.room.lightning}</li>
               <li>Muziek: {this.props.room.music}</li>
-              <li>Gordijnen: {this.props.room.curtains}</li>
+              <li>{this.props.room.curtains && `Gordijnen: ${this.props.room.curtains ? "Open" : "Gesloten"}`}</li>
             </ul>
             <Link
               className="btn btn-lg btn-block btn-outline-primary"

@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { DB_URL } from "../../database/db";
 import SmartScheme from "./SmartScheme";
 
 const MusicCard = (props) => {
+  const [schemes, setSchemes] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${DB_URL}/schemes?roomId=${props.roomId}&service=temperature`
+        );
+        setSchemes(response.data);
+      } catch (error) {
+        console.error("Could not load rooms:" + error);
+      }
+    };
+    fetchData();
+  }, [props.roomId]);
+
   return (
     <div className="col-lg-6">
       <div className="card mb-3 shadow-sm">
@@ -16,8 +34,8 @@ const MusicCard = (props) => {
           </div>
         </div>
         <div className="card-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item py-2">
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item py-2">
               <div className="row">
                 <div className="col-8">
                   <h5 className="card-title pl-3">Ingesteld op:</h5>
@@ -28,7 +46,7 @@ const MusicCard = (props) => {
                 <form className="m-3 col-11">
                   <input
                     type="range"
-                    class="custom-range"
+                    className="custom-range"
                     min="0"
                     max="20"
                     id="temperatureRange"
@@ -36,7 +54,7 @@ const MusicCard = (props) => {
                 </form>
               </div>
             </li>
-            <li class="list-group-item py-4">
+            <li className="list-group-item py-4">
               <div className="row">
                 <div className="col-8">
                   <h5 className="card-title pl-3 pt-2">Slim schema</h5>
@@ -46,7 +64,8 @@ const MusicCard = (props) => {
                 </div>
               </div>
             </li>
-            <SmartScheme roomId={props.room.id}/>
+            {schemes &&
+              schemes.map((scheme) => <SmartScheme scheme={scheme} />)}
           </ul>
         </div>
       </div>

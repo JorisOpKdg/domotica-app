@@ -146,6 +146,14 @@
       "amount": 14,
       "start": "20:00",
       "end": "08:00"
+    },
+    {
+      "id": 4,
+      "roomId": 21,
+      "service": "lighting",
+      "amount": 10,
+      "start": "18:00",
+      "end": "22:00"
     }
   ]
 }

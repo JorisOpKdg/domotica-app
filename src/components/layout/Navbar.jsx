@@ -30,11 +30,11 @@ class Navbar extends Component {
       <nav
         className={`navbar navbar-expand-lg navbar-${theme.nav} bg-${theme.bg} p-3 mb-3  border-bottom shadow-sm`}
       >
-        <a class="navbar-brand" href="/">
+        <a className="navbar-brand" href="/">
           <img src={isLightTheme ? DarkLogo : LightLogo} alt="Logo"></img>
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -42,11 +42,11 @@ class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
             {this.state.floors &&
               this.state.floors.map((floor) => (
                 <a className="nav-link" href={`/rooms-list/${floor.id}`}>
