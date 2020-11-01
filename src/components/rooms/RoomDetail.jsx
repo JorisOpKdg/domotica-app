@@ -10,7 +10,7 @@ const RoomDetail = (props) => {
 
   useEffect(() => {
     getRoom(props.match.params.roomId).then((nextRoom) => setRoom(nextRoom));
-  });
+  },[props.match.params.roomId]);
 
   return (
     <div className="container mt-5">
@@ -18,14 +18,15 @@ const RoomDetail = (props) => {
       <p className="mb-5">{room && room.description}</p>
 
       <div className="row mb-5">
-        {room.temperature && <TemperatureCard room={room} />}
-        {room.lighting && <LightingCard room={room} />}
-        {room.music && <MusicCard room={room} />}
-        {room.curtains && <CurtainsCard room={room} />}
+        {room.temperature !== undefined ? (
+          <TemperatureCard room={room} />
+        ) : null}
+        {room.lighting !== undefined ? <LightingCard room={room} /> : null}
+        {room.music !== undefined ? <MusicCard room={room} /> : null}
+        {room.curtains !== undefined ? <CurtainsCard room={room} /> : null}
       </div>
     </div>
   );
 };
 
 export default RoomDetail;
-

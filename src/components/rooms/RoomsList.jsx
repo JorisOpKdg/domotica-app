@@ -33,7 +33,7 @@ const RoomsList = ({
         {state.rooms &&
           state.floorId &&
           state.rooms.map((room) => (
-            <RoomSummary floorId={state.floorId} room={room} />
+            <RoomSummary key={room.id} floorId={state.floorId} room={room} />
           ))}
       </div>
     </div>

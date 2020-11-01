@@ -14,10 +14,6 @@ const RoomSummary = ({ room, floorId }) => {
     return `rgba(255, 165, 0,${alfa / 10}`;
   };
 
-  const [backgroundColor, setBackgroundColor] = useState(
-    calculateBackgroundColor(room.lighting)
-  );
-
   // When black background, return white color
   const calculateTextColor = (backgroundColor) => {
     if (backgroundColor === "#000") {
@@ -26,6 +22,9 @@ const RoomSummary = ({ room, floorId }) => {
     return "#000";
   };
 
+  const [backgroundColor, setBackgroundColor] = useState(
+    calculateBackgroundColor(room.lighting)
+  );
   const [textColor, setTextColor] = useState(
     calculateTextColor(backgroundColor)
   );
@@ -52,7 +51,7 @@ const RoomSummary = ({ room, floorId }) => {
           </h4>
         </div>
         <div className="card-body ">
-          <h4>{`Temperatuur: ${room.temperature}° Ingesteld op: ${room.desiredTemp}°`}</h4>
+          {room.temperature !== undefined ? <h4>{`Temperatuur: ${room.temperature}° Ingesteld op: ${room.desiredTemp}°`}</h4> : null}
           <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
           <Link
             id={room.id}

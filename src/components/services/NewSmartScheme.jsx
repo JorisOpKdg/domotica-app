@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { postScheme } from "../api/callSchemes";
-import { getHours } from "../api/callHours";
+import React, { useState, useEffect, useMemo } from "react";
+import { postScheme, getConfigInfo } from "../api/callSchemes";
 import * as QueryString from "query-string";
+import { useHistory } from "react-router-dom";
+import { getRoom } from "../api/callRooms";
+
+const createValues = (min, max) => {
+  let values = [];
+  for (let i = 0; i < 20; i++) {
+    values.push(i.toString());
+  }
+  return values;
+};
 
 const NewSmartScheme = (props) => {
   const params = QueryString.parse(props.location.search);
-  const [values, setValues] = useState([]);
-  const [hours, setHours] = useState([]);
+  const history = useHistory();
+
+  const [configInfo, setConfigInfo] = useState([]);
   const [scheme, setScheme] = useState({
     roomId: params.roomId,
     service: params.service,
@@ -15,20 +25,43 @@ const NewSmartScheme = (props) => {
     end: "",
   });
 
-  useEffect(() => {
-    getHours().then((nextHours) => setHours(nextHours));
-    setValues(createValues());
-  }, []);
+  const values = useMemo(() => {
+    let min;
+    let max;
 
-  const createValues = () => {
-    const min = props.min;
-    const max = props.max;
-    let values = [];
-    for (let i = min; i < max; i++) {
-      values.push(i.toString);
+    switch (scheme.service) {
+      case "temperature":
+        min = configInfo.minmax.temperature.min;
+        max = configInfo.minmax.temperature.max;
+        break;
+      case "music":
+        min = configInfo.minmax.music.min;
+        max = configInfo.minmax.music.max;
+        break;
+      case "lighting":
+        min = configInfo.minmax.lighting.min;
+        max = configInfo.minmax.lighting.max;
+        break;
+      default:
+        min = null;
+        max = null;
     }
-    return values;
-  };
+    if (min !== null && max != null) {
+      createValues(min, max);
+    }
+  }, [
+    configInfo.minmax.lighting.max,
+    configInfo.minmax.lighting.min,
+    configInfo.minmax.music.max,
+    configInfo.minmax.music.min,
+    configInfo.minmax.temperature.max,
+    configInfo.minmax.temperature.min,
+    scheme.service,
+  ]);
+
+  useEffect(() => {
+    getConfigInfo().then((configInfo) => setConfigInfo(configInfo));
+  }, []);
 
   const createTitle = () => {
     let title;
@@ -51,11 +84,23 @@ const NewSmartScheme = (props) => {
     return title;
   };
 
-  const onChange = (e, { name, value }) =>
-    setScheme({ ...scheme, [name]: value });
+  const valueHandler = (e) => {
+    setScheme({ ...scheme, amount: +e.target.value });
+  };
+
+  const startHandler = (e) => {
+    setScheme({ ...scheme, start: e.target.value });
+  };
+
+  const endHandler = (e) => {
+    setScheme({ ...scheme, end: e.target.value });
+  };
 
   const submitHandler = () => {
     postScheme(scheme);
+    let floorId;
+    getRoom(scheme.roomId).then((room) => (floorId = room.floorId));
+    history.push(`/room-detail/${floorId}/${scheme.roomId}`);
   };
 
   return (
@@ -72,10 +117,11 @@ const NewSmartScheme = (props) => {
               className="form-control mr-5"
               id="start"
               name="start"
-              onChange={onChange}
+              onChange={startHandler}
               value={scheme.start}
             >
-              {hours && hours.map((hour) => <option>{hour}</option>)}
+              {configInfo.hours &&
+                configInfo.hours.map((hour) => <option>{hour}</option>)}
             </select>
           </div>
           <div className="form-group col-md-4 pr-3">
@@ -86,10 +132,11 @@ const NewSmartScheme = (props) => {
               className="form-control"
               id="end"
               name="end"
-              onChange={onChange}
+              onChange={endHandler}
               value={scheme.end}
             >
-              {hours && hours.map((hour) => <option>{hour}</option>)}
+              {configInfo.hours &&
+                configInfo.hours.map((hour) => <option>{hour}</option>)}
             </select>
           </div>
 
@@ -101,10 +148,11 @@ const NewSmartScheme = (props) => {
               className="form-control"
               id="amount"
               name="amount"
-              onChange={onChange}
+              onChange={valueHandler}
               value={scheme.amount}
             >
-              {values && values.map((value) => <option>{value}</option>)}
+              {values &&
+                values.map((value) => <option key={value}>{value}</option>)}
             </select>
           </div>
         </div>
@@ -117,7 +165,6 @@ const NewSmartScheme = (props) => {
           </div>
         </div>
       </form>
-      {values && values.map((value) => <p>value</p>)}
     </div>
   );
 };

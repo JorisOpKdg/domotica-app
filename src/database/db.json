@@ -4,40 +4,25 @@
       "id": 1,
       "name": "Kelder",
       "image": "/images/kelder.jpg",
-      "rooms": [
-        11,
-        12
-      ]
+      "rooms": [11, 12]
     },
     {
       "id": 2,
       "name": "Gelijkvloers",
       "image": "/images/gelijkvloers.jpg",
-      "rooms": [
-        21,
-        22,
-        23,
-        24
-      ]
+      "rooms": [21, 22, 23, 24]
     },
     {
       "id": 3,
       "name": "1e verdiep",
       "image": "/images/eerste-verdiep.jpg",
-      "rooms": [
-        31,
-        32,
-        33,
-        34
-      ]
+      "rooms": [31, 32, 33, 34]
     },
     {
       "id": 4,
       "name": "Zolder",
       "image": "/images/zolder.jpg",
-      "rooms": [
-        41
-      ]
+      "rooms": [41]
     }
   ],
   "rooms": [
@@ -151,23 +136,15 @@
   ],
   "schemes": [
     {
-      "id": 1,
-      "roomId": 21,
-      "service": "temperature",
-      "amount": 18,
-      "start": "08:00",
-      "end": "10:00"
-    },
-    {
       "id": 4,
-      "roomId": 21,
+      "roomid": 21,
       "service": "lighting",
       "amount": 10,
       "start": "18:00",
       "end": "22:00"
     },
     {
-      "roomId": "21",
+      "roomid": "21",
       "service": "temperature",
       "amount": 0,
       "start": "",
@@ -179,33 +156,87 @@
       "start": "",
       "end": "",
       "id": 6
+    },
+    {
+      "roomid": "21",
+      "service": "temperature",
+      "amount": 10,
+      "start": "10:00",
+      "end": "12:00",
+      "id": 7
+    },
+    {
+      "roomid": "21",
+      "service": "temperature",
+      "amount": 10,
+      "start": "13:00",
+      "end": "10:00",
+      "id": 8
+    },
+    {
+      "roomid": "21",
+      "service": "temperature",
+      "amount": 2,
+      "start": "01:00",
+      "end": "02:00",
+      "id": 9
+    },
+    {
+      "roomid": "21",
+      "service": "temperature",
+      "amount": 3,
+      "start": "11:00",
+      "end": "14:00",
+      "id": 10
     }
   ],
-  "hours": [
-    "00:00",
-    "01:00",
-    "02:00",
-    "03:00",
-    "04:00",
-    "05:00",
-    "06:00",
-    "07:00",
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-    "23:00",
-    "24:00"
-  ]
+  "schemeconfig": {
+    "hours": [
+      "00:00",
+      "01:00",
+      "02:00",
+      "03:00",
+      "04:00",
+      "05:00",
+      "06:00",
+      "07:00",
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00",
+      "24:00"
+    ],
+    "minmax": [
+      {
+        "temperature": {
+          "min": 0,
+          "max": 30
+        }
+      },
+      {
+        "lighting": {
+          "min": 0,
+          "max": 20
+        }
+      },
+      {
+        "music": {
+          "min": 0,
+          "max": 20
+        }
+      }
+    ]
+  }
 }

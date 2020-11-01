@@ -39,3 +39,14 @@ export async function deleteScheme(schemeId) {
     console.error("Could not delete:" + error);
   }
 }
+
+export async function getConfigInfo() {
+  try {
+    const response = await axios.get(
+      `${DB_URL}/schemeconfig`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Could not retreive:" + error);
+  }
+}
