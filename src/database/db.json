@@ -3,37 +3,26 @@
     {
       "id": 1,
       "name": "Kelder",
-      "rooms": [
-        11,
-        12
-      ]
+      "image": "./../../assets/images/kelder.jpg",
+      "rooms": [11, 12]
     },
     {
       "id": 2,
       "name": "Gelijkvloers",
-      "rooms": [
-        21,
-        22,
-        23,
-        24
-      ]
+      "image": "./../../assets/images/gelijkvloers.jpg",
+      "rooms": [21, 22, 23, 24]
     },
     {
       "id": 3,
       "name": "1e verdiep",
-      "rooms": [
-        31,
-        32,
-        33,
-        34
-      ]
+      "image": "./../../assets/images/eerste-verdiep.jpg",
+      "rooms": [31, 32, 33, 34]
     },
     {
       "id": 4,
       "name": "Zolder",
-      "rooms": [
-        41
-      ]
+      "image": "./../../assets/images/zolder.jpg",
+      "rooms": [41]
     }
   ],
   "rooms": [
@@ -57,11 +46,11 @@
       "floorid": 2,
       "name": "Woonkamer",
       "description": "Een beschrijving van de woonkamer",
-      "temperature": 20,
+      "temperature": 10,
       "desiredTemp": 17,
-      "lighting": 10,
-      "music": 10,
-      "curtains": true
+      "lighting": 0,
+      "music": 0,
+      "curtains": false
     },
     {
       "id": 22,
@@ -70,7 +59,7 @@
       "description": "Een beschrijving van de keuken",
       "temperature": 20,
       "desiredTemp": 17,
-      "lighting": 10,
+      "lighting": 0,
       "music": 10,
       "curtains": true
     },
@@ -81,7 +70,7 @@
       "description": "Een beschrijving van de gang",
       "temperature": 20,
       "desiredTemp": 17,
-      "lighting": 10
+      "lighting": 3
     },
     {
       "id": 24,
@@ -90,7 +79,7 @@
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
       "desiredTemp": 17,
-      "lighting": 10,
+      "lighting": 20,
       "music": 10
     },
     {

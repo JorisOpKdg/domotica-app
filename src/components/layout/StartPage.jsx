@@ -1,29 +1,41 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { getFloors } from "../api/callFloors";
 import { Link } from "react-router-dom";
 
-class StartPage extends Component {
-  state = {};
-  render() {
-    return (
-      <div className="container">
-        <h1>Dit is de startpagina</h1>
-        <ul>
-          <li key="kelder">
-            <Link to="/rooms-list/1">Kelder</Link>
-          </li>
-          <li key="gelijksvloer">
-            <Link to="/rooms-list/2">Gelijksvloer</Link>
-          </li>
-          <li key="1eVerdiep">
-            <Link to="/rooms-list/3">1e verdiep</Link>
-          </li>
-          <li key="zolder">
-            <Link to="/rooms-list/4">Zolder</Link>
-          </li>
-        </ul>
+const StartPage = () => {
+  const [floors, setFloors] = useState();
+
+  useEffect(() => {
+    getFloors().then((floors) => setFloors({ floors: floors }));
+  }, []);
+
+  return (
+    <div className="container">
+      <div className="row">
+        {floors &&
+          floors.map((floor) => (
+            <div className="col-md-6 col-lg-3">
+              <div className="card mb-3 shadow-sm">
+                <img
+                  class="card-img-top"
+                  src={floor.image}
+                  alt="Card cap"
+                ></img>
+                <div className="card-body ">
+                  <Link
+                    id={floor.id}
+                    className="btn btn-lg btn-block btn-outline-secondary mt-3"
+                    to={`/rooms-list/${floor.id}`}
+                  >
+                    Details
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default StartPage;

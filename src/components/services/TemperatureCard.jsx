@@ -8,8 +8,8 @@ const TemperatureCard = (props) => {
   const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
-    getSchemes(room.id, "temperature").then((nextSchemes) =>
-      setSchemes(nextSchemes)
+    getSchemes(room.id, "temperature")
+    .then((nextSchemes) => setSchemes(nextSchemes)
     );
   }, [room.id]);
 

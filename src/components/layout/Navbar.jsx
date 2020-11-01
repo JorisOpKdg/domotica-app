@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { DB_URL } from "../../database/db";
 import { ThemeContext } from "./../../contexts/ThemeContext";
-import DarkLogo from "./../../assets/images/logo-dark.png";
-import LightLogo from "./../../assets/images/logo-light.png";
+import DarkLogo from "./../../assets/logo/logo-dark.png";
+import LightLogo from "./../../assets/logo/logo-light.png";
 import { Link } from "react-router-dom";
 
 class Navbar extends Component {
@@ -32,7 +32,11 @@ class Navbar extends Component {
         className={`navbar navbar-expand-lg navbar-${theme.nav} bg-${theme.bg} p-3 mb-3  border-bottom shadow-sm`}
       >
         <Link className="navbar-brand" to="/">
-          <img src={isLightTheme ? DarkLogo : LightLogo} alt="Logo"></img>
+          <img
+            id="logo"
+            src={isLightTheme ? DarkLogo : LightLogo}
+            alt="Logo"
+          ></img>
         </Link>
         <button
           className="navbar-toggler"
@@ -50,11 +54,15 @@ class Navbar extends Component {
           <ul className="navbar-nav mr-auto">
             {this.state.floors &&
               this.state.floors.map((floor) => (
-                <Link className="nav-link" to={`/rooms-list/${floor.id}`}>
+                <Link
+                  id={floor.id}
+                  className="nav-link"
+                  to={`/rooms-list/${floor.id}`}
+                >
                   {floor.name}
                 </Link>
               ))}
-            <Link className="nav-link" to="/settings/">
+            <Link id="instellingen-nav" className="nav-link" to="/settings/">
               Instellingen
             </Link>
           </ul>

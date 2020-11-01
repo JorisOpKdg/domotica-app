@@ -1,39 +1,62 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MusicOff from "./../../assets/images/music-off.png";
 import MusicOn from "./../../assets/images/music-on.png";
+import { useState } from "react";
 
 const RoomSummary = ({ room, floorId }) => {
-  /*
+  // When curtains are closed and the lighting = 0, make backgroundColor black
+  // When curtains are open and the lighting = 0, make backgroundColor white
+  // When curtains are open and the lighting < 1, make backgroundColor yellow
+  const calculateBackgroundColor = (alfa) => {
+    if (!room.curtains && alfa < 1) {
+      return "#000";
+    }
+    return `rgba(255, 165, 0,${alfa / 10}`;
+  };
+
   const [backgroundColor, setBackgroundColor] = useState(
-    "rgba(255, 165, 0, 0.8"
+    calculateBackgroundColor(room.lighting)
   );
 
-  useEffect(() => {
-    backgroundHandler();
-  });
-
-  const backgroundHandler = () => {
-    const alfa = room.lightning * 2;
-    const color = `rgba(255, 165, 0,${alfa}`;
-    setBackgroundColor({ backgroundColor: color });
+  // When black background, return white color
+  const calculateTextColor = (backgroundColor) => {
+    if (backgroundColor === "#000") {
+      return "#fff";
+    }
+    return "#000";
   };
-  style={{background-color: "rgba(255, 165, 0, 0.5"}}
-  */
+
+  const [textColor, setTextColor] = useState(
+    calculateTextColor(backgroundColor)
+  );
+
+  const backgroundColorHandler = () => {
+    const alfa = room.lighting;
+    setBackgroundColor({ backgroundColor: calculateBackgroundColor(alfa) });
+  };
+
+  const textColorHandler = () => {
+    setTextColor({ color: calculateTextColor() });
+  };
 
   return (
     <div className="col-md-6 col-lg-3">
-      <div
-        className="card mb-3 shadow-sm"
-        style={{ backgroundColor: "rgba(255, 165, 0, 1" }}
-      >
+      <div className="card mb-3 shadow-sm">
+        <div
+          className="card-header"
+          style={{ backgroundColor: `${backgroundColor}` }}
+          onChange={backgroundColorHandler}
+        >
+          <h4 style={{ color: `${textColor}` }} onChange={textColorHandler}>
+            {room.name}
+          </h4>
+        </div>
         <div className="card-body ">
-          <h4 className="">{room.name}</h4>
-
-          <h3>{room.temperature}°</h3>
+          <h4>{`Temperatuur: ${room.temperature}° Ingesteld op: ${room.desiredTemp}°`}</h4>
           <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
           <Link
-            className="btn btn-lg btn-block btn-secondary mt-3"
+            id={room.id}
+            className="btn btn-lg btn-block btn-outline-secondary mt-3"
             to={`/room-detail/${floorId}/${room.id}`}
           >
             Details
@@ -45,23 +68,3 @@ const RoomSummary = ({ room, floorId }) => {
 };
 
 export default RoomSummary;
-
-/*
-div className="card bg-warning mb-3 shadow-sm">
-        <div className="card-header">
-          <h4 className="my-0 font-weight-normal">{room.name}</h4>
-        </div>
-        <div className="card-body ">
-          <ul className="list-unstyled mt-3 mb-4">
-            <li>Temperatuur: {room.temperature}</li>
-            <li>Verlichting: {room.lightning}</li>
-            <li>Muziek: {room.music}</li>
-            <li>{`Gordijnen: ${room.curtains ? "Open" : "Gesloten"}`}</li>
-          </ul>
-          <Link
-            className="btn btn-lg btn-block btn-outline-primary"
-            to={`/room-detail/${floorId}/${room.id}`}
-          >
-            Details
-          </Link>
-        </div>*/
