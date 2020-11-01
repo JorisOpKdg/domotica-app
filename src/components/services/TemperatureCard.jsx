@@ -72,7 +72,7 @@ const TemperatureCard = (props) => {
                 <div className="col-4">
                   <Link
                     key="new-scheme-temperature"
-                    className="btn btn-primary float-right mr-3"
+                    className="btn btn-dark float-right mr-3"
                     to={`/new-smart-scheme?roomId=${room.id}&service=temperature`}
                   >
                     Nieuw

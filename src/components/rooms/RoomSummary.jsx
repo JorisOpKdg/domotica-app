@@ -56,7 +56,7 @@ const RoomSummary = ({ room, floorId }) => {
           <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
           <Link
             id={room.id}
-            className="btn btn-lg btn-block btn-outline-secondary mt-3"
+            className="btn btn-lg btn-block btn-outline-dark mt-3"
             to={`/room-detail/${floorId}/${room.id}`}
           >
             Details

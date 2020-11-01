@@ -58,7 +58,7 @@ const LightingCard = (props) => {
                 <div className="col-4">
                   <Link
                     key="new-scheme-lighting"
-                    className="btn btn-primary float-right mr-3"
+                    className="btn btn-dark float-right mr-3"
                     to={`/new-smart-scheme?roomId=${room.id}&service=lighting`}
                     roomId={room.id}
                     service={"lighting"}

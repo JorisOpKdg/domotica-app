@@ -13,12 +13,11 @@ const RoomDetail = (props) => {
   });
 
   return (
-    <div className="container">
-      <h1>{room && room.name}</h1>
-      <h3>Beschrijving</h3>
-      <p>{room && room.description}</p>
+    <div className="container mt-5">
+      <h1 className="display-4">{room && room.name}</h1>
+      <p className="mb-5">{room && room.description}</p>
 
-      <div className="row">
+      <div className="row mb-5">
         {room.temperature && <TemperatureCard room={room} />}
         {room.lighting && <LightingCard room={room} />}
         {room.music && <MusicCard room={room} />}

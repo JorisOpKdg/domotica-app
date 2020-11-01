@@ -11,7 +11,7 @@ class Settings extends Component {
 
     return (
       <div className="container">
-        <form className="form-right my-2 my-lg-0">
+        <form className="form-right my-5">
           <div className="custom-control custom-switch">
             <input
               type="checkbox"
@@ -20,7 +20,7 @@ class Settings extends Component {
               onClick={toggleTheme}
             />
             <label className="custom-control-label" for="darkSwitch">
-              Dark Mode
+              Light Mode
             </label>
           </div>
         </form>

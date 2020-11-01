@@ -9,7 +9,7 @@ const Footer = () => {
         const theme = isLightTheme ? light : dark;
         return (
           <footer
-            className={`container-fluid page-footer text-light mt-5 p-5 border-top shadow-sm bg-${theme.bg}`}
+            className={`container-fluid page-footer text-light mt-auto p-5 border-top shadow-sm bottom bg-${theme.bg}`}
           >
             <p>Copyright 2020 - Domotica app</p>
           </footer>
