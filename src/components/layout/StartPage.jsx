@@ -3,11 +3,11 @@ import { getFloors } from "../api/callFloors";
 import { Link } from "react-router-dom";
 
 const StartPage = () => {
-  const [floors, setFloors] = useState();
+  const [floors, setFloors] = useState([]);
 
   useEffect(() => {
-    getFloors().then((floors) => setFloors({ floors: floors }));
-  }, []);
+    getFloors().then((nextFloors) => setFloors(nextFloors));
+  },[]);
 
   return (
     <div className="container">
@@ -23,11 +23,11 @@ const StartPage = () => {
                 ></img>
                 <div className="card-body ">
                   <Link
-                    id={floor.id}
-                    className="btn btn-lg btn-block btn-outline-secondary mt-3"
+                    key={floor.id}
+                    className="btn btn-lg btn-block btn-outline-dark mt-3"
                     to={`/rooms-list/${floor.id}`}
                   >
-                    Details
+                    {floor.name}
                   </Link>
                 </div>
               </div>
@@ -39,3 +39,4 @@ const StartPage = () => {
 };
 
 export default StartPage;
+

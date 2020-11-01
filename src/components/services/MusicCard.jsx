@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { DB_URL } from "../../database/db";
+import { getSchemes } from "../api/callSchemes";
 import SmartScheme from "./SmartScheme";
+import { Link } from "react-router-dom";
 
 const MusicCard = (props) => {
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${DB_URL}/schemes?roomId=${props.roomId}&service=temperature`
-        );
-        setSchemes(response.data);
-      } catch (error) {
-        console.error("Could not load rooms:" + error);
-      }
-    };
-    fetchData();
-  }, [props.roomId]);
+    getSchemes(room.id, "music").then((nextSchemes) => setSchemes(nextSchemes));
+  }, [room.id]);
 
   const musicHandler = (e) => {
-    console.log(e);
-    setRoom({ music: e.target.value });
+    setRoom((previousRoom) => ({
+      ...previousRoom,
+      music: e.target.value,
+    }));
   };
 
   return (
@@ -62,9 +54,15 @@ const MusicCard = (props) => {
                   <h5 className="card-title pl-3 pt-2">Slim schema</h5>
                 </div>
                 <div className="col-4">
-                  <button className="btn btn-primary float-right mr-3">
+                  <Link
+                    key="new-scheme-music"
+                    className="btn btn-primary float-right mr-3"
+                    to={`/new-smart-scheme?roomId=${room.id}&service=music`}
+                    roomId={room.id}
+                    service={"music"}
+                  >
                     Nieuw
-                  </button>
+                  </Link>
                 </div>
               </div>
             </li>

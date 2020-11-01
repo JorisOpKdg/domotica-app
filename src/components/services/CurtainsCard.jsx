@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { DB_URL } from "../../database/db";
+import { getSchemes } from "../api/callSchemes";
 import SmartScheme from "./SmartScheme";
+import { Link } from "react-router-dom";
 
 const CurtainsCard = (props) => {
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${DB_URL}/schemes?roomId=${props.roomId}&service=temperature`
-        );
-        setSchemes(response.data);
-      } catch (error) {
-        console.error("Could not load rooms:" + error);
-      }
-    };
-    fetchData();
-  }, [props.roomId]);
+    getSchemes(room.id, "curtains").then((nextSchemes) =>
+      setSchemes(nextSchemes)
+    );
+  }, [room.id]);
 
   const curtainHandler = (e) => {
-    setRoom(previousRoom => ( {...previousRoom, curtains: !previousRoom.curtains }));
+    setRoom((previousRoom) => ({
+      ...previousRoom,
+      curtains: !previousRoom.curtains,
+    }));
   };
 
   return (
@@ -63,9 +58,15 @@ const CurtainsCard = (props) => {
                   <h5 className="card-title pl-3 pt-2">Slim schema</h5>
                 </div>
                 <div className="col-4">
-                  <button className="btn btn-primary float-right mr-3">
+                  <Link
+                    key="new-scheme-curtain"
+                    className="btn btn-primary float-right mr-3"
+                    to={`/new-smart-scheme?roomId=${room.id}&service=curtains`}
+                    roomId={room.id}
+                    service={"curtains"}
+                  >
                     Nieuw
-                  </button>
+                  </Link>
                 </div>
               </div>
             </li>

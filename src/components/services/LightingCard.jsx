@@ -1,29 +1,23 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { DB_URL } from "../../database/db";
+import { getSchemes } from "../api/callSchemes";
 import SmartScheme from "./SmartScheme";
+import { Link } from "react-router-dom";
 
 const LightingCard = (props) => {
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${DB_URL}/schemes?roomId=${props.roomId}&service=temperature`
-        );
-        setSchemes(response.data);
-      } catch (error) {
-        console.error("Could not load rooms:" + error);
-      }
-    };
-    fetchData();
-  }, [props.roomId]);
+    getSchemes(room.id, "lighting").then((nextSchemes) =>
+      setSchemes(nextSchemes)
+    );
+  }, [room.id]);
 
   const lightingHandler = (e) => {
-    console.log(e);
-    setRoom({ lighting: e.target.value });
+    setRoom((previousRoom) => ({
+      ...previousRoom,
+      lighting: e.target.value,
+    }));
   };
 
   return (
@@ -62,7 +56,15 @@ const LightingCard = (props) => {
                   <h5 className="card-title pl-3 pt-2">Slim schema</h5>
                 </div>
                 <div className="col-4">
-                  <a className="btn btn-primary float-right mr-3">Nieuw</a>
+                  <Link
+                    key="new-scheme-lighting"
+                    className="btn btn-primary float-right mr-3"
+                    to={`/new-smart-scheme?roomId=${room.id}&service=lighting`}
+                    roomId={room.id}
+                    service={"lighting"}
+                  >
+                    Nieuw
+                  </Link>
                 </div>
               </div>
             </li>

@@ -13,7 +13,14 @@ export async function getRooms(floorId) {
 }
 
 export async function getRoom(roomId) {
- // Kan nog uitgewerkt worden
+  try {
+    const response = await axios.get(
+      `${DB_URL}/rooms/${roomId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Could not load rooms:" + error);
+  }
 }
 
 export async function postRoom(roomId) {

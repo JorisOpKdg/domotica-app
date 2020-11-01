@@ -1,13 +1,37 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { DB_URL } from "../../database/db";
+import React, { useState, useEffect } from "react";
 import TemperatureCard from "../services/TemperatureCard";
 import LightingCard from "./../services/LightingCard";
 import MusicCard from "./../services/MusicCard";
 import CurtainsCard from "../services/CurtainsCard";
+import { getRoom } from "../api/callRooms";
 
-class RoomDetail extends Component {
-  state = {
+const RoomDetail = (props) => {
+  const [room, setRoom] = useState({});
+
+  useEffect(() => {
+    getRoom(props.match.params.roomId).then((nextRoom) => setRoom(nextRoom));
+  });
+
+  return (
+    <div className="container">
+      <h1>{room && room.name}</h1>
+      <h3>Beschrijving</h3>
+      <p>{room && room.description}</p>
+
+      <div className="row">
+        {room.temperature && <TemperatureCard room={room} />}
+        {room.lighting && <LightingCard room={room} />}
+        {room.music && <MusicCard room={room} />}
+        {room.curtains && <CurtainsCard room={room} />}
+      </div>
+    </div>
+  );
+};
+
+export default RoomDetail;
+
+/*
+state = {
     room: {},
   };
 
@@ -41,6 +65,4 @@ class RoomDetail extends Component {
       </div>
     );
   }
-}
-
-export default RoomDetail;
+*/

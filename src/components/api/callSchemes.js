@@ -6,18 +6,29 @@ export async function getSchemes(roomId, service) {
     const response = await axios.get(
       `${DB_URL}/schemes?roomId=${roomId}&service=${service}`
     );
-    console.log("Response:", response);
     return response.data;
   } catch (error) {
     console.error("Could not retreive:" + error);
   }
 }
 
-export async function getScheme(schemeId) {}
+export async function getScheme(schemeId) {
+  // Kan nog uitgewerkt worden
+}
 
-export async function postScheme(schemeId) {}
+export async function postScheme(scheme) {
+  const { roomId, service, amount, start, end } = scheme;
+  try {
+      const response = await axios.post(`${DB_URL}/schemes`, { roomId, service, amount, start, end });
+      console.log("Response:", response);
+  } catch (error) {
+      console.error("Could not create new todo:" + error);
+  }
+}
 
-export async function putScheme(schemeId) {}
+export async function putScheme(schemeId) {
+  // Kan nog uitgewerkt worden
+}
 
 export async function deleteScheme(schemeId) {
   try {

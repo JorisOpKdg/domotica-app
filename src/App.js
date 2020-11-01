@@ -8,7 +8,7 @@ import RoomDetail from "./components/rooms/RoomDetail";
 import Settings from "./components/Settings";
 import Footer from "./components/layout/Footer";
 import ThemeContextProvider from "./contexts/ThemeContext";
-
+import NewSmartScheme from "./components/services/NewSmartScheme";
 
 class App extends Component {
   state = {};
@@ -19,6 +19,7 @@ class App extends Component {
           <BrowserRouter>
             <Navbar />
             <Switch>
+              <Route path="/new-smart-scheme" component={NewSmartScheme} />
               <Route path="/settings" component={Settings} />
               <Route path="/rooms-list/:floorId" component={RoomsList} />
               <Route path="/rooms-map/:floorId" component={RoomsMap} />

@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { getSchemes } from "../api/callSchemes";
 import { postRoom } from "../api/callRooms";
 import SmartScheme from "./SmartScheme";
+import { Link } from "react-router-dom";
 
 const TemperatureCard = (props) => {
+  const min = 0;
+  const max = 30;
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
   useEffect(() => {
-    getSchemes(room.id, "temperature")
-    .then((nextSchemes) => setSchemes(nextSchemes)
+    getSchemes(room.id, "temperature").then((nextSchemes) =>
+      setSchemes(nextSchemes)
     );
   }, [room.id]);
 
@@ -25,7 +28,6 @@ const TemperatureCard = (props) => {
     loadData();
   };
 
-  console.log(schemes);
   return (
     <div className="col-lg-6">
       <div className="card mb-3 shadow-sm">
@@ -53,8 +55,8 @@ const TemperatureCard = (props) => {
                   <input
                     type="range"
                     className="custom-range"
-                    min="0"
-                    max="30"
+                    min={min}
+                    max={max}
                     onChange={desiredTempHandler}
                     value={room.desiredTemp}
                     id="temperatureRange"
@@ -68,14 +70,18 @@ const TemperatureCard = (props) => {
                   <h5 className="card-title pl-3 pt-2">Slim schema</h5>
                 </div>
                 <div className="col-4">
-                  <a className="btn btn-primary float-right mr-3" href="#">
+                  <Link
+                    key="new-scheme-temperature"
+                    className="btn btn-primary float-right mr-3"
+                    to={`/new-smart-scheme?roomId=${room.id}&service=temperature`}
+                  >
                     Nieuw
-                  </a>
+                  </Link>
                 </div>
               </div>
             </li>
             {schemes &&
-              schemes.map((scheme) => <SmartScheme scheme={scheme} />)}
+              schemes.map((scheme) => <SmartScheme scheme={scheme} min={min} max={max} />)}
           </ul>
         </div>
       </div>

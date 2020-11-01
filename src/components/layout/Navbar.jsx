@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { DB_URL } from "../../database/db";
 import { ThemeContext } from "./../../contexts/ThemeContext";
 import DarkLogo from "./../../assets/logo/logo-dark.png";
 import LightLogo from "./../../assets/logo/logo-light.png";
+import { getFloors } from "../api/callFloors";
 import { Link } from "react-router-dom";
 
+// Dit is een voorbeeld van een class component zonder hooks
 class Navbar extends Component {
   static contextType = ThemeContext;
 
@@ -13,14 +13,8 @@ class Navbar extends Component {
     floors: [],
   };
 
-  async componentDidMount() {
-    try {
-      const response = await axios.get(`${DB_URL}/floors`);
-      const floors = response.data;
-      this.setState({ floors: floors });
-    } catch (error) {
-      console.error("Could not load floors:" + error);
-    }
+  componentDidMount() {
+    getFloors().then((floors) => this.setState({ floors: floors }));
   }
 
   render() {
@@ -31,7 +25,7 @@ class Navbar extends Component {
       <nav
         className={`navbar navbar-expand-lg navbar-${theme.nav} bg-${theme.bg} p-3 mb-3  border-bottom shadow-sm`}
       >
-        <Link className="navbar-brand" to="/">
+        <Link key="navbar-logo" className="navbar-brand" to="/">
           <img
             id="logo"
             src={isLightTheme ? DarkLogo : LightLogo}
@@ -55,7 +49,7 @@ class Navbar extends Component {
             {this.state.floors &&
               this.state.floors.map((floor) => (
                 <Link
-                  id={floor.id}
+                  key={floor.id}
                   className="nav-link"
                   to={`/rooms-list/${floor.id}`}
                 >
