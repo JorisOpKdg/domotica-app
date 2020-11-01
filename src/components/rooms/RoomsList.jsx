@@ -27,18 +27,16 @@ const RoomsList = ({
   }, [floorId]);
 
   return (
-    <>
-      <div className="container">
-        <RoomsViewNavbar floorId={state.floorId} floorName={state.floorName} />
-        <div className="row">
-          {state.rooms &&
-            state.floorId &&
-            state.rooms.map((room) => (
-              <RoomSummary floorId={state.floorId} room={room} />
-            ))}
-        </div>
+    <div className="container">
+      <RoomsViewNavbar floorId={state.floorId} floorName={state.floorName} />
+      <div className="row">
+        {state.rooms &&
+          state.floorId &&
+          state.rooms.map((room) => (
+            <RoomSummary floorId={state.floorId} room={room} />
+          ))}
       </div>
-    </>
+    </div>
   );
 };
 
