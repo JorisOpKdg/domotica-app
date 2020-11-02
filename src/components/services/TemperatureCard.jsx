@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getSchemes } from "../api/callSchemes";
-import { postRoom } from "../api/callRooms";
-import SmartScheme from "./SmartScheme";
+import ServiceScheme from "./schemes/ServiceScheme";
 import { Link } from "react-router-dom";
+import { deleteScheme } from "./../api/callSchemes";
+import { putRoom } from "./../api/callRooms";
 
 const TemperatureCard = (props) => {
   const min = 0;
   const max = 30;
+  const service = "temperature";
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
@@ -22,10 +24,11 @@ const TemperatureCard = (props) => {
       desiredTemp: e.target.value,
     }));
 
-    const loadData = async () => {
-      await postRoom(room.id);
-    };
-    loadData();
+    putRoom(room, room.id).then();
+  };
+
+  const deleteHandler = async () => {
+    await deleteScheme(props.scheme.id);
   };
 
   return (
@@ -71,9 +74,11 @@ const TemperatureCard = (props) => {
                 </div>
                 <div className="col-4">
                   <Link
-                    key="new-scheme-temperature"
                     className="btn btn-dark float-right mr-3"
                     to={`/new-smart-scheme?roomId=${room.id}&service=temperature`}
+                    roomId={room.id}
+                    service={service}
+                    deleteHandler={deleteHandler}
                   >
                     Nieuw
                   </Link>
@@ -81,7 +86,9 @@ const TemperatureCard = (props) => {
               </div>
             </li>
             {schemes &&
-              schemes.map((scheme) => <SmartScheme scheme={scheme} min={min} max={max} />)}
+              schemes.map((scheme) => (
+                <ServiceScheme scheme={scheme} min={min} max={max} />
+              ))}
           </ul>
         </div>
       </div>

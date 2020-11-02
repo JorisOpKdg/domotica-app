@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getSchemes } from "../api/callSchemes";
-import SmartScheme from "./SmartScheme";
+import ServiceScheme from "./schemes/ServiceScheme";
 import { Link } from "react-router-dom";
+import { deleteScheme } from "./../api/callSchemes";
+import { putRoom } from "./../api/callRooms";
 
 const MusicCard = (props) => {
+  const min = 0;
+  const max = 20;
+  const service = "music";
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
@@ -16,6 +21,12 @@ const MusicCard = (props) => {
       ...previousRoom,
       music: e.target.value,
     }));
+
+    putRoom(room, room.id).then();
+  };
+
+  const deleteHandler = async () => {
+    await deleteScheme(props.scheme.id);
   };
 
   return (
@@ -39,8 +50,8 @@ const MusicCard = (props) => {
                   <input
                     type="range"
                     className="custom-range"
-                    min="0"
-                    max="20"
+                    min={min}
+                    max={max}
                     onChange={musicHandler}
                     value={room.music}
                     id="musicRange"
@@ -55,11 +66,11 @@ const MusicCard = (props) => {
                 </div>
                 <div className="col-4">
                   <Link
-                    key="new-scheme-music"
                     className="btn btn-dark float-right mr-3"
                     to={`/new-smart-scheme?roomId=${room.id}&service=music`}
                     roomId={room.id}
-                    service={"music"}
+                    service={service}
+                    deleteHandler={deleteHandler}
                   >
                     Nieuw
                   </Link>
@@ -67,7 +78,7 @@ const MusicCard = (props) => {
               </div>
             </li>
             {schemes &&
-              schemes.map((scheme) => <SmartScheme scheme={scheme} />)}
+              schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
           </ul>
         </div>
       </div>

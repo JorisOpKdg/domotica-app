@@ -27,7 +27,7 @@ export async function postRoom(roomId) {
   // Kan nog uitgewerkt worden
 }
 
-export async function putRoom(roomId) {
+export async function putRoom(room, roomId) {
   // Kan nog uitgewerkt worden
 }
 

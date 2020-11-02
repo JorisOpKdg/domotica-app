@@ -19,10 +19,16 @@ export async function getScheme(schemeId) {
 export async function postScheme(scheme) {
   const { roomId, service, amount, start, end } = scheme;
   try {
-      const response = await axios.post(`${DB_URL}/schemes`, { roomId, service, amount, start, end });
-      console.log("Response:", response);
+    const response = await axios.post(`${DB_URL}/schemes`, {
+      roomId,
+      service,
+      amount,
+      start,
+      end,
+    });
+    console.log("Response:", response);
   } catch (error) {
-      console.error("Could not create new todo:" + error);
+    console.error("Could not create new todo:" + error);
   }
 }
 
@@ -37,16 +43,5 @@ export async function deleteScheme(schemeId) {
     console.log("Response:", response);
   } catch (error) {
     console.error("Could not delete:" + error);
-  }
-}
-
-export async function getConfigInfo() {
-  try {
-    const response = await axios.get(
-      `${DB_URL}/schemeconfig`
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Could not retreive:" + error);
   }
 }

@@ -1,11 +1,6 @@
 import React from "react";
-import { deleteScheme } from "./../api/callSchemes";
 
-const SmartScheme = (props) => {
-  const handleDelete = async () => {
-    await deleteScheme(props.scheme.id);
-  };
-
+const ServiceScheme = (props) => {
   return (
     <li className="list-group-item py-4">
       <div className="row">
@@ -20,7 +15,7 @@ const SmartScheme = (props) => {
         </div>
         <div className="col-4">
           <button
-            onClick={handleDelete}
+            onClick={props.deleteHandler}
             className="btn btn-outline-danger float-right mr-3"
           >
             Delete
@@ -31,4 +26,4 @@ const SmartScheme = (props) => {
   );
 };
 
-export default SmartScheme;
+export default ServiceScheme;

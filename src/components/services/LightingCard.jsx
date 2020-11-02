@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getSchemes } from "../api/callSchemes";
-import SmartScheme from "./SmartScheme";
+import ServiceScheme from "./schemes/ServiceScheme";
 import { Link } from "react-router-dom";
+import { deleteScheme } from "./../api/callSchemes";
+import { putRoom } from "./../api/callRooms";
 
 const LightingCard = (props) => {
+  const min = 0;
+  const max = 30;
+  const service = "lighting";
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
@@ -18,6 +23,12 @@ const LightingCard = (props) => {
       ...previousRoom,
       lighting: e.target.value,
     }));
+
+    putRoom(room, room.id).then();
+  };
+
+  const deleteHandler = async () => {
+    await deleteScheme(props.scheme.id);
   };
 
   return (
@@ -41,8 +52,8 @@ const LightingCard = (props) => {
                   <input
                     type="range"
                     className="custom-range"
-                    min="0"
-                    max="20"
+                    min={min}
+                    max={max}
                     onChange={lightingHandler}
                     value={room.lighting}
                     id="lightingRange"
@@ -57,11 +68,11 @@ const LightingCard = (props) => {
                 </div>
                 <div className="col-4">
                   <Link
-                    key="new-scheme-lighting"
                     className="btn btn-dark float-right mr-3"
                     to={`/new-smart-scheme?roomId=${room.id}&service=lighting`}
                     roomId={room.id}
-                    service={"lighting"}
+                    service={service}
+                    deleteHandler={deleteHandler}
                   >
                     Nieuw
                   </Link>
@@ -69,7 +80,7 @@ const LightingCard = (props) => {
               </div>
             </li>
             {schemes &&
-              schemes.map((scheme) => <SmartScheme scheme={scheme} />)}
+              schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
           </ul>
         </div>
       </div>

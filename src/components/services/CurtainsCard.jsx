@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getSchemes } from "../api/callSchemes";
-import SmartScheme from "./SmartScheme";
+import ServiceScheme from "./schemes/ServiceScheme";
 import { Link } from "react-router-dom";
+import { deleteScheme } from "./../api/callSchemes";
+import { putRoom } from "./../api/callRooms";
 
 const CurtainsCard = (props) => {
+  const service = "curtains";
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
@@ -18,6 +21,12 @@ const CurtainsCard = (props) => {
       ...previousRoom,
       curtains: !previousRoom.curtains,
     }));
+
+    putRoom(room, room.id).then();
+  };
+
+  const deleteHandler = async () => {
+    await deleteScheme(props.scheme.id);
   };
 
   return (
@@ -63,7 +72,8 @@ const CurtainsCard = (props) => {
                     className="btn btn-dark float-right mr-3"
                     to={`/new-smart-scheme?roomId=${room.id}&service=curtains`}
                     roomId={room.id}
-                    service={"curtains"}
+                    service={service}
+                    deleteHandler={deleteHandler}
                   >
                     Nieuw
                   </Link>
@@ -71,7 +81,7 @@ const CurtainsCard = (props) => {
               </div>
             </li>
             {schemes &&
-              schemes.map((scheme) => <SmartScheme scheme={scheme} />)}
+              schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
           </ul>
         </div>
       </div>

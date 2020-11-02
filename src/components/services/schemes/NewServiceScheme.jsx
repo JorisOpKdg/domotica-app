@@ -1,22 +1,19 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { postScheme, getConfigInfo } from "../api/callSchemes";
+import React, { useState, useEffect } from "react";
+import { postScheme } from "../../api/callSchemes";
 import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
-import { getRoom } from "../api/callRooms";
+import { getRoom } from "../../api/callRooms";
+import { createValues, createTitle, getMinMax, getHours } from "./utilities";
 
-const createValues = (min, max) => {
-  let values = [];
-  for (let i = 0; i < 20; i++) {
-    values.push(i.toString());
-  }
-  return values;
-};
-
-const NewSmartScheme = (props) => {
+const NewServiceScheme = (props) => {
   const params = QueryString.parse(props.location.search);
   const history = useHistory();
 
-  const [configInfo, setConfigInfo] = useState([]);
+  const [configInfo, setConfigInfo] = useState({
+    hours: [],
+    values: [],
+  });
+
   const [scheme, setScheme] = useState({
     roomId: params.roomId,
     service: params.service,
@@ -25,67 +22,21 @@ const NewSmartScheme = (props) => {
     end: "",
   });
 
-  const values = useMemo(() => {
-    let min;
-    let max;
-
-    switch (scheme.service) {
-      case "temperature":
-        min = configInfo.minmax.temperature.min;
-        max = configInfo.minmax.temperature.max;
-        break;
-      case "music":
-        min = configInfo.minmax.music.min;
-        max = configInfo.minmax.music.max;
-        break;
-      case "lighting":
-        min = configInfo.minmax.lighting.min;
-        max = configInfo.minmax.lighting.max;
-        break;
-      default:
-        min = null;
-        max = null;
-    }
-    if (min !== null && max != null) {
-      createValues(min, max);
-    }
-  }, [
-    configInfo.minmax.lighting.max,
-    configInfo.minmax.lighting.min,
-    configInfo.minmax.music.max,
-    configInfo.minmax.music.min,
-    configInfo.minmax.temperature.max,
-    configInfo.minmax.temperature.min,
-    scheme.service,
-  ]);
-
   useEffect(() => {
-    getConfigInfo().then((configInfo) => setConfigInfo(configInfo));
-  }, []);
+    const minmax = getMinMax(scheme.service);
+    const hours = getHours;
+    let values;
 
-  const createTitle = () => {
-    let title;
-    switch (scheme.service) {
-      case "temperature":
-        title = "Temperatuur";
-        break;
-      case "music":
-        title = "Muziek";
-        break;
-      case "lighting":
-        title = "Verlichting";
-        break;
-      case "curtains":
-        title = "Gordijnen";
-        break;
-      default:
-        title = "Titel is ongekend";
+    if (minmax !== null) {
+      values = createValues(minmax[0], minmax[1]);
+    } else {
+      values = ["Open", "Dicht"];
     }
-    return title;
-  };
+    setConfigInfo({ hours, values });
+  }, [scheme.service]);
 
   const valueHandler = (e) => {
-    setScheme({ ...scheme, amount: +e.target.value });
+    setScheme({ ...scheme, amount: e.target.value });
   };
 
   const startHandler = (e) => {
@@ -105,7 +56,7 @@ const NewSmartScheme = (props) => {
 
   return (
     <div className="container">
-      <h1 className="mt-5">{scheme && createTitle()}</h1>
+      <h1 className="mt-5">{scheme && createTitle(scheme.service)}</h1>
       <h2 className="mb-5">Maak een nieuw slim schema</h2>
       <form onSubmit={submitHandler}>
         <div className="form-row">
@@ -151,8 +102,10 @@ const NewSmartScheme = (props) => {
               onChange={valueHandler}
               value={scheme.amount}
             >
-              {values &&
-                values.map((value) => <option key={value}>{value}</option>)}
+              {configInfo.values &&
+                configInfo.values.map((value) => (
+                  <option key={value}>{value}</option>
+                ))}
             </select>
           </div>
         </div>
@@ -169,4 +122,4 @@ const NewSmartScheme = (props) => {
   );
 };
 
-export default NewSmartScheme;
+export default NewServiceScheme;

@@ -6,11 +6,12 @@ import CurtainsCard from "../services/CurtainsCard";
 import { getRoom } from "../api/callRooms";
 
 const RoomDetail = (props) => {
+  const roomId = props.match.params.roomId
   const [room, setRoom] = useState({});
 
   useEffect(() => {
-    getRoom(props.match.params.roomId).then((nextRoom) => setRoom(nextRoom));
-  },[props.match.params.roomId]);
+    getRoom(roomId).then((nextRoom) => setRoom(nextRoom));
+  }, [roomId]);
 
   return (
     <div className="container mt-5">
