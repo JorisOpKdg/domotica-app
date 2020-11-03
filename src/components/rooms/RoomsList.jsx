@@ -13,20 +13,22 @@ const RoomsList = ({
   const [floor, setFloor] = useState();
 
   useEffect(() => {
-    setFloor(getFloor(floorId).then());
-    setRooms(getRooms(floorId).then());
+    Promise.all([
+      getFloor(floorId).then((nextFloor) => setFloor(nextFloor)),
+      getRooms(floorId).then((nextRooms) => setRooms(nextRooms)),
+    ]);
   }, [floorId]);
 
   return (
     <div className="container">
       {floor !== undefined ? (
-        <RoomsViewNavbar floorId={floor.floorId} floorName={floor.floorName} />
+        <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
       ) : null}
 
       <div className="row">
         {rooms !== undefined && floor !== undefined
           ? rooms.map((room) => (
-              <RoomSummary key={room.id} floorId={floor.floorId} room={room} />
+              <RoomSummary key={room.id} floorId={floor.id} room={room} />
             ))
           : null}
       </div>

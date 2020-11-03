@@ -32,7 +32,7 @@ const CurtainsCard = (props) => {
   return (
     <div className="col-lg-6">
       <div className="card mb-3 shadow-sm">
-        <div className="card-header pl-5 pt-3">
+        <div className="card-header pl-5 pt-3 row">
           <div className="row">
             <div className="col-8">
               <h2 className="my-0 font-weight-normal">Gordijnen</h2>

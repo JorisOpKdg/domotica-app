@@ -14,35 +14,44 @@ const RoomsMap = ({
   const [floor, setFloor] = useState();
 
   useEffect(() => {
-    setRooms(getRooms());
-    setFloor(getFloor(floorId));
+    Promise.all([
+      getFloor(floorId).then((nextFloor) => setFloor(nextFloor)),
+      getRooms(floorId).then((nextRooms) => setRooms(nextRooms)),
+    ]);
   }, [floorId]);
 
   const getBackground = () => {
-    switch (floor.id) {
+    switch (floorId) {
       case 1:
-        return kelder;
+        return 'url("images/bg-kelder.jpeg")';
       case 2:
-        return kelder;
+        return 'url("images/bg-kelder.jpeg")';
       case 3:
-        return kelder;
+        return 'url("images/bg-kelder.jpeg")';
       case 4:
-        return kelder;
+        return 'url("images/bg-kelder.jpeg")';
       default:
-        return "white";
+        return undefined;
     }
   };
 
   return (
     <div className="container">
       {floor !== undefined ? (
-        <RoomsViewNavbar floorId={floor.floorId} floorName={floor.floorName} />
+        <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
       ) : null}
 
-      <div className="row" style={{ background: getBackground() }}>
+      <div
+        className="row"
+        styles={{
+          width: "100%",
+          height: "400px",
+          backgroundImage: getBackground(),
+        }}
+      >
         {floor !== undefined
           ? rooms.map((room) => (
-              <RoomSummary key={room.id} floorId={floor.floorId} room={room} />
+              <RoomSummary key={room.id} floorId={floor.id} room={room} />
             ))
           : null}
       </div>
