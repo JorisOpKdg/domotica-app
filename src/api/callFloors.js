@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DB_URL } from "../../database/db";
+import { DB_URL } from "./../database/db";
 
 export async function getFloors() {
   try {
@@ -12,9 +12,7 @@ export async function getFloors() {
 
 export async function getFloor(floorId) {
   try {
-    const response = await axios.get(
-      `${DB_URL}/floors/${floorId}`
-    );
+    const response = await axios.get(`${DB_URL}/floors/${floorId}`);
     return response.data;
   } catch (error) {
     console.error("Could not load rooms:" + error);

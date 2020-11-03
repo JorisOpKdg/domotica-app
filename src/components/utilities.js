@@ -59,13 +59,13 @@ export function getMinMax(service) {
   let minmax;
   switch (service) {
     case "temperature":
-      minmax = [0, 30];
+      minmax = {min: 0,max: 30};
       break;
     case "music":
-      minmax = [0, 20];
+      minmax = {min: 0, max:  20};
       break;
     case "lighting":
-      minmax = [0, 20];
+      minmax = {min: 0, max:  20};
       break;
     default:
       minmax = null;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ThemeContext } from "./../../contexts/ThemeContext";
 import DarkLogo from "./../../assets/logo/logo-dark.png";
 import LightLogo from "./../../assets/logo/logo-light.png";
-import { getFloors } from "../api/callFloors";
+import { getFloors } from "../../api/callFloors";
 import { Link } from "react-router-dom";
 
 // Dit is een voorbeeld van een class component zonder hooks

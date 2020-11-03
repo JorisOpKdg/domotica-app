@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getFloors } from "../api/callFloors";
+import { getFloors } from "../../api/callFloors";
 import { Link } from "react-router-dom";
 
 const StartPage = () => {

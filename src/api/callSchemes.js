@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DB_URL } from "../../database/db";
+import { DB_URL } from "./../database/db";
 
 export async function getSchemes(roomId, service) {
   try {

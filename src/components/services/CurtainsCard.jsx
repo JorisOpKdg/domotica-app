@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getSchemes } from "../api/callSchemes";
 import ServiceScheme from "./schemes/ServiceScheme";
-import { Link } from "react-router-dom";
-import { deleteScheme } from "./../api/callSchemes";
-import { putRoom } from "./../api/callRooms";
+import { deleteScheme, getSchemes } from "./../../api/callSchemes";
+import { putRoom } from "./../../api/callRooms";
+import ServiceCardNewScheme from "./ServiceCardNewScheme";
 
 const CurtainsCard = (props) => {
   const service = "curtains";
@@ -31,13 +30,13 @@ const CurtainsCard = (props) => {
 
   return (
     <div className="col-lg-6">
-      <div className="card mb-3 shadow-sm">
-        <div className="card-header pl-5 pt-3 row">
-          <div className="row">
-            <div className="col-8">
-              <h2 className="my-0 font-weight-normal">Gordijnen</h2>
-            </div>
-            <div className="col-4">
+    <div className="card mb-3 shadow-sm">
+      <div className="card-header pl-5 pt-3">
+        <div className="row">
+          <div className="col-8">
+            <h2 className="my-0 font-weight-normal">Gordijnen:</h2>
+          </div>
+          <div className="col-4">
               <h2 className="text-right pr-4 ">
                 {room.curtains ? "Open" : "Dicht"}
               </h2>
@@ -61,25 +60,11 @@ const CurtainsCard = (props) => {
                 </div>
               </form>
             </li>
-            <li className="list-group-item py-4">
-              <div className="row">
-                <div className="col-8">
-                  <h5 className="card-title pl-3 pt-2">Slim schema</h5>
-                </div>
-                <div className="col-4">
-                  <Link
-                    key="new-scheme-curtain"
-                    className="btn btn-dark float-right mr-3"
-                    to={`/new-smart-scheme?roomId=${room.id}&service=curtains`}
-                    roomId={room.id}
-                    service={service}
-                    deleteHandler={deleteHandler}
-                  >
-                    Nieuw
-                  </Link>
-                </div>
-              </div>
-            </li>
+            <ServiceCardNewScheme
+              room={room}
+              service={service}
+              deleteHandler={deleteHandler}
+            />
             {schemes &&
               schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
           </ul>

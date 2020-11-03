@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { postScheme } from "../../api/callSchemes";
+import { postScheme } from "../../../api/callSchemes";
 import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
-import { getRoom } from "../../api/callRooms";
+import { getRoom } from "../../../api/callRooms";
 import { createValues, createTitle, getMinMax, getHours } from "../../utilities";
 
 const NewServiceScheme = (props) => {

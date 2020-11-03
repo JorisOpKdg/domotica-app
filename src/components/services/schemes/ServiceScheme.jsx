@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteScheme } from "./../../api/callSchemes";
+import { deleteScheme } from "./../../../api/callSchemes";
 import { useHistory } from "react-router-dom";
 
 const ServiceScheme = ({room, scheme}) => {

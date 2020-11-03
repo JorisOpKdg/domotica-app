@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getSchemes } from "../api/callSchemes";
 import ServiceScheme from "./schemes/ServiceScheme";
-import { Link } from "react-router-dom";
-
-import { putRoom } from "./../api/callRooms";
+import { putRoom } from "./../../api/callRooms";
+import { deleteScheme, getSchemes } from "./../../api/callSchemes";
+import ServiceCardNewScheme from './ServiceCardNewScheme';
 
 
 const TemperatureCard = (props) => {
@@ -29,7 +28,9 @@ const TemperatureCard = (props) => {
     putRoom(room, room.id).then();
   };
 
-  
+  const deleteHandler = async () => {
+    await deleteScheme(props.scheme.id);
+  };
 
   return (
     <div className="col-lg-6">
@@ -67,23 +68,11 @@ const TemperatureCard = (props) => {
                 </form>
               </div>
             </li>
-            <li className="list-group-item py-4">
-              <div className="row">
-                <div className="col-8">
-                  <h5 className="card-title pl-3 pt-2">Slim schema</h5>
-                </div>
-                <div className="col-4">
-                  <Link
-                    className="btn btn-dark float-right mr-3"
-                    to={`/new-smart-scheme?roomId=${room.id}&service=temperature`}
-                    room={room}
-                    service={service}
-                  >
-                    Nieuw
-                  </Link>
-                </div>
-              </div>
-            </li>
+            <ServiceCardNewScheme
+              room={room}
+              service={service}
+              deleteHandler={deleteHandler}
+            />
             {schemes &&
               schemes.map((scheme) => (
                 <ServiceScheme scheme={scheme} min={min} max={max} />

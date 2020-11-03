@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getRooms } from "./../api/callRooms";
-import { getFloor } from "./../api/callFloors";
+import React from "react";
+import { useRoomsAndFloor } from "./../../hooks/customHooks";
 import RoomSummary from "./RoomSummary";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 
@@ -9,15 +8,8 @@ const RoomsList = ({
     params: { floorId },
   },
 }) => {
-  const [rooms, setRooms] = useState([]);
-  const [floor, setFloor] = useState();
-
-  useEffect(() => {
-    Promise.all([
-      getFloor(floorId).then((nextFloor) => setFloor(nextFloor)),
-      getRooms(floorId).then((nextRooms) => setRooms(nextRooms)),
-    ]);
-  }, [floorId]);
+  // maakt gebruik van custom hook useRoomsAndFloor voor het ophalen van floor en rooms data
+  const { rooms, floor } = useRoomsAndFloor(floorId);
 
   return (
     <div className="container">

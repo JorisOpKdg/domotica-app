@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getSchemes } from "../api/callSchemes";
 import ServiceScheme from "./schemes/ServiceScheme";
-import { Link } from "react-router-dom";
-import { deleteScheme } from "./../api/callSchemes";
-import { putRoom } from "./../api/callRooms";
+import { deleteScheme, getSchemes } from "./../../api/callSchemes";
+import { putRoom } from "./../../api/callRooms";
+import ServiceCardNewScheme from './ServiceCardNewScheme';
 
 const LightingCard = (props) => {
   const min = 0;
@@ -61,24 +60,11 @@ const LightingCard = (props) => {
                 </form>
               </div>
             </li>
-            <li className="list-group-item py-4">
-              <div className="row">
-                <div className="col-8">
-                  <h5 className="card-title pl-3 pt-2">Slim schema</h5>
-                </div>
-                <div className="col-4">
-                  <Link
-                    className="btn btn-dark float-right mr-3"
-                    to={`/new-smart-scheme?roomId=${room.id}&service=lighting`}
-                    roomId={room.id}
-                    service={service}
-                    deleteHandler={deleteHandler}
-                  >
-                    Nieuw
-                  </Link>
-                </div>
-              </div>
-            </li>
+            <ServiceCardNewScheme
+              room={room}
+              service={service}
+              deleteHandler={deleteHandler}
+            />
             {schemes &&
               schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
           </ul>

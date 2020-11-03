@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import RoomSummary from "./RoomSummary";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
-import { getRooms } from "./../api/callRooms";
-import { getFloor } from "./../api/callFloors";
+import { useRoomsAndFloor } from "./../../hooks/customHooks";
 import kelder from "./../../assets/images/bg-kelder.jpeg";
 
 const RoomsMap = ({
@@ -10,15 +9,8 @@ const RoomsMap = ({
     params: { floorId },
   },
 }) => {
-  const [rooms, setRooms] = useState([]);
-  const [floor, setFloor] = useState();
-
-  useEffect(() => {
-    Promise.all([
-      getFloor(floorId).then((nextFloor) => setFloor(nextFloor)),
-      getRooms(floorId).then((nextRooms) => setRooms(nextRooms)),
-    ]);
-  }, [floorId]);
+  // maakt gebruik van custom hook useRoomsAndFloor voor het ophalen van floor en rooms data.
+  const { rooms, floor } = useRoomsAndFloor(floorId);
 
   const getBackground = () => {
     switch (floorId) {
