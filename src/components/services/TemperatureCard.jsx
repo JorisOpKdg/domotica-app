@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getSchemes } from "../api/callSchemes";
 import ServiceScheme from "./schemes/ServiceScheme";
 import { Link } from "react-router-dom";
-import { deleteScheme } from "./../api/callSchemes";
+
 import { putRoom } from "./../api/callRooms";
+
 
 const TemperatureCard = (props) => {
   const min = 0;
@@ -11,6 +12,7 @@ const TemperatureCard = (props) => {
   const service = "temperature";
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
+
 
   useEffect(() => {
     getSchemes(room.id, "temperature").then((nextSchemes) =>
@@ -27,9 +29,7 @@ const TemperatureCard = (props) => {
     putRoom(room, room.id).then();
   };
 
-  const deleteHandler = async () => {
-    await deleteScheme(props.scheme.id);
-  };
+  
 
   return (
     <div className="col-lg-6">
@@ -76,9 +76,8 @@ const TemperatureCard = (props) => {
                   <Link
                     className="btn btn-dark float-right mr-3"
                     to={`/new-smart-scheme?roomId=${room.id}&service=temperature`}
-                    roomId={room.id}
+                    room={room}
                     service={service}
-                    deleteHandler={deleteHandler}
                   >
                     Nieuw
                   </Link>

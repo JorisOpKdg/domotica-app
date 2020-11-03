@@ -3,7 +3,7 @@ import { postScheme } from "../../api/callSchemes";
 import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
 import { getRoom } from "../../api/callRooms";
-import { createValues, createTitle, getMinMax, getHours } from "./utilities";
+import { createValues, createTitle, getMinMax, getHours } from "../../utilities";
 
 const NewServiceScheme = (props) => {
   const params = QueryString.parse(props.location.search);
@@ -49,9 +49,9 @@ const NewServiceScheme = (props) => {
 
   const submitHandler = () => {
     postScheme(scheme);
-    let floorId;
-    getRoom(scheme.roomId).then((room) => (floorId = room.floorId));
-    history.push(`/room-detail/${floorId}/${scheme.roomId}`);
+    let floorid;
+    getRoom(scheme.roomId).then((room) => (floorid = room.floorid));
+    history.push(`/room-detail/${floorid}/${scheme.roomid}`);
   };
 
   return (

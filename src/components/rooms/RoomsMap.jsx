@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import RoomSummary from "./RoomSummary";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
-import axios from "axios";
-import { DB_URL } from "../../database/db";
+import { getRooms } from "./../api/callRooms";
+import { getFloor } from "./../api/callFloors";
 import kelder from "./../../assets/images/bg-kelder.jpeg";
 
 const RoomsMap = ({
@@ -10,31 +10,41 @@ const RoomsMap = ({
     params: { floorId },
   },
 }) => {
-  const [state, setState] = useState({ floorId, rooms: [] });
+  const [rooms, setRooms] = useState([]);
+  const [floor, setFloor] = useState();
 
   useEffect(() => {
-    axios
-      .get(`${DB_URL}/rooms?floorid=${floorId}`)
-      .then((response) => {
-        setState((prevState) => ({ ...prevState, rooms: response.data }));
-      })
-      .then(() => axios.get(`${DB_URL}/floors/${floorId}`))
-      .then((response) => {
-        setState((prevState) => ({
-          ...prevState,
-          floorName: response.data.name,
-        }));
-      });
+    setRooms(getRooms());
+    setFloor(getFloor(floorId));
   }, [floorId]);
+
+  const getBackground = () => {
+    switch (floor.id) {
+      case 1:
+        return kelder;
+      case 2:
+        return kelder;
+      case 3:
+        return kelder;
+      case 4:
+        return kelder;
+      default:
+        return "white";
+    }
+  };
+
   return (
-    <div className="container" styles={{ backgroundImage: `url(${kelder})` }}>
-      <RoomsViewNavbar floorId={state.floorId} floorName={state.floorName} />
-      <div className="row">
-        {state.rooms &&
-          state.floorId &&
-          state.rooms.map((room) => (
-            <RoomSummary key={room.id} floorId={state.floorId} room={room} />
-          ))}
+    <div className="container">
+      {floor !== undefined ? (
+        <RoomsViewNavbar floorId={floor.floorId} floorName={floor.floorName} />
+      ) : null}
+
+      <div className="row" style={{ background: getBackground() }}>
+        {floor !== undefined
+          ? rooms.map((room) => (
+              <RoomSummary key={room.id} floorId={floor.floorId} room={room} />
+            ))
+          : null}
       </div>
     </div>
   );

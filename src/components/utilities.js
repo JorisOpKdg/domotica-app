@@ -68,7 +68,7 @@ export function getMinMax(service) {
       minmax = [0, 20];
       break;
     default:
-      minmax = [null];
+      minmax = null;
   }
   return minmax;
 }
