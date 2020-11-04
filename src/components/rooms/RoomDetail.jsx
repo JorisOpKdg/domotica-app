@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import TemperatureCard from "../services/TemperatureCard";
-import LightingCard from "./../services/LightingCard";
-import MusicCard from "./../services/MusicCard";
-import CurtainsCard from "./../services/CurtainsCard";
+import Temperature from "../services/Temperature";
+import Lighting from "../services/Lighting";
+import Music from "../services/Music";
+import Curtains from "../services/Curtains";
 import { getRoom } from "./../../api/callRooms";
-import ServiceCard from '../services/alternatief/ServiceCard';
 
 const RoomDetail = (props) => {
-  const roomId = props.match.params.roomId
+  const roomId = props.match.params.roomId;
   const [room, setRoom] = useState({});
 
   useEffect(() => {
@@ -21,11 +20,17 @@ const RoomDetail = (props) => {
 
       <div className="row mb-5">
         {room.temperature !== undefined ? (
-          <TemperatureCard room={room} service="temperature" />
+          <Temperature room={room} service="temperature" />
         ) : null}
-        {room.lighting !== undefined ? <LightingCard room={room} service="lighting"/> : null}
-        {room.music !== undefined ? <MusicCard room={room} service="music"/> : null}
-        {room.curtains !== undefined ? <CurtainsCard room={room} service="curtains"/> : null}
+        {room.lighting !== undefined ? (
+          <Lighting room={room} service="lighting" />
+        ) : null}
+        {room.music !== undefined ? (
+          <Music room={room} service="music" />
+        ) : null}
+        {room.curtains !== undefined ? (
+          <Curtains room={room} service="curtains" />
+        ) : null}
       </div>
     </div>
   );

@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
 import ServiceScheme from "./schemes/ServiceScheme";
-import { putRoom } from "./../../api/callRooms";
-import { deleteScheme, getSchemes } from "./../../api/callSchemes";
-import ServiceCardNewScheme from './ServiceCardNewScheme';
+import { deleteScheme, getSchemes } from "../../api/callSchemes";
+import { putRoom } from "../../api/callRooms";
+import ServiceCardNewScheme from './cards/ServiceCardNewScheme';
 
-
-const TemperatureCard = (props) => {
+const Lighting = (props) => {
   const min = 0;
   const max = 30;
-  const service = "temperature";
+  const service = "lighting";
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
-
   useEffect(() => {
-    getSchemes(room.id, "temperature").then((nextSchemes) =>
+    getSchemes(room.id, "lighting").then((nextSchemes) =>
       setSchemes(nextSchemes)
     );
   }, [room.id]);
 
-  const desiredTempHandler = (e) => {
+  const lightingHandler = (e) => {
     setRoom((previousRoom) => ({
       ...previousRoom,
-      desiredTemp: e.target.value,
+      lighting: e.target.value,
     }));
 
     putRoom(room, room.id).then();
@@ -35,13 +33,14 @@ const TemperatureCard = (props) => {
   return (
     <div className="col-lg-6">
       <div className="card mb-3 shadow-sm">
+
         <div className="card-header pl-5 pt-3">
           <div className="row">
             <div className="col-8">
-              <h2 className="my-0 font-weight-normal">Temperatuur:</h2>
+              <h2 className="my-0 font-weight-normal">Verlichting:</h2>
             </div>
             <div className="col-4">
-              <h2 className="text-right pr-4 ">{room.temperature}°</h2>
+              <h2 className="text-right pr-4 ">{room.lighting}</h2>
             </div>
           </div>
         </div>
@@ -49,21 +48,15 @@ const TemperatureCard = (props) => {
           <ul className="list-group list-group-flush">
             <li className="list-group-item py-2">
               <div className="row">
-                <div className="col-8">
-                  <h5 className="card-title pl-3">Ingesteld op:</h5>
-                </div>
-                <div className="col-4 text-">
-                  <h3 className="text-right pr-2">{room.desiredTemp}°</h3>
-                </div>
                 <form className="m-3 col-11">
                   <input
                     type="range"
                     className="custom-range"
                     min={min}
                     max={max}
-                    onChange={desiredTempHandler}
-                    value={room.desiredTemp}
-                    id="temperatureRange"
+                    onChange={lightingHandler}
+                    value={room.lighting}
+                    id="lightingRange"
                   ></input>
                 </form>
               </div>
@@ -74,14 +67,13 @@ const TemperatureCard = (props) => {
               deleteHandler={deleteHandler}
             />
             {schemes &&
-              schemes.map((scheme) => (
-                <ServiceScheme scheme={scheme} min={min} max={max} />
-              ))}
+              schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
           </ul>
         </div>
+
       </div>
     </div>
   );
 };
 
-export default TemperatureCard;
+export default Lighting;

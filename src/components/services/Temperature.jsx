@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ServiceScheme from "./schemes/ServiceScheme";
-import { deleteScheme, getSchemes } from "./../../api/callSchemes";
-import { putRoom } from "./../../api/callRooms";
-import ServiceCardNewScheme from './ServiceCardNewScheme';
+import { putRoom } from "../../api/callRooms";
+import { deleteScheme, getSchemes } from "../../api/callSchemes";
+import ServiceCardNewScheme from './cards/ServiceCardNewScheme';
 
-const LightingCard = (props) => {
+
+const Temperature = (props) => {
   const min = 0;
   const max = 30;
-  const service = "lighting";
+  const service = "temperature";
   const [schemes, setSchemes] = useState();
   const [room, setRoom] = useState(props.room);
 
+
   useEffect(() => {
-    getSchemes(room.id, "lighting").then((nextSchemes) =>
+    getSchemes(room.id, "temperature").then((nextSchemes) =>
       setSchemes(nextSchemes)
     );
   }, [room.id]);
 
-  const lightingHandler = (e) => {
+  const temperatureHandler = (e) => {
     setRoom((previousRoom) => ({
       ...previousRoom,
-      lighting: e.target.value,
+      temperature: e.target.value,
     }));
 
     putRoom(room, room.id).then();
@@ -36,10 +38,10 @@ const LightingCard = (props) => {
         <div className="card-header pl-5 pt-3">
           <div className="row">
             <div className="col-8">
-              <h2 className="my-0 font-weight-normal">Verlichting:</h2>
+              <h2 className="my-0 font-weight-normal">Temperatuur:</h2>
             </div>
             <div className="col-4">
-              <h2 className="text-right pr-4 ">{room.lighting}</h2>
+              <h2 className="text-right pr-4 ">{room.temperature}°</h2>
             </div>
           </div>
         </div>
@@ -53,9 +55,9 @@ const LightingCard = (props) => {
                     className="custom-range"
                     min={min}
                     max={max}
-                    onChange={lightingHandler}
-                    value={room.lighting}
-                    id="lightingRange"
+                    onChange={temperatureHandler}
+                    value={room.temperature}
+                    id="temperatureRange"
                   ></input>
                 </form>
               </div>
@@ -66,7 +68,9 @@ const LightingCard = (props) => {
               deleteHandler={deleteHandler}
             />
             {schemes &&
-              schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
+              schemes.map((scheme) => (
+                <ServiceScheme scheme={scheme} min={min} max={max} />
+              ))}
           </ul>
         </div>
       </div>
@@ -74,4 +78,4 @@ const LightingCard = (props) => {
   );
 };
 
-export default LightingCard;
+export default Temperature;

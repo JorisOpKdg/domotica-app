@@ -8,11 +8,7 @@ const ServiceCardHeader = (props) => {
           <h2 className="my-0 font-weight-normal">{props.title}</h2>
         </div>
         <div className="col-4">
-          <h2 className="text-right pr-4 ">
-            {props.service === "temperature"
-              ? `${props.serviceValue}°`
-              : `${props.serviceValue}`}
-          </h2>
+          <h2 className="text-right pr-4 ">{props.value}</h2>
         </div>
       </div>
     </div>

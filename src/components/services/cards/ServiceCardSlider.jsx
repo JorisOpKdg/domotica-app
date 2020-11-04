@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServiceCardLiMuSlider = (props) => {
+const ServiceCardSlider = (props) => {
   return (
     <li className="list-group-item py-2">
       <div className="row">
@@ -10,8 +10,8 @@ const ServiceCardLiMuSlider = (props) => {
             className="custom-range"
             min={props.min}
             max={props.max}
-            onChange={props.valueHandler}
-            value={props.room.lighting}
+            onChange={props.clickHandler}
+            value={props.value}
           ></input>
         </form>
       </div>
@@ -19,4 +19,4 @@ const ServiceCardLiMuSlider = (props) => {
   );
 };
 
-export default ServiceCardLiMuSlider;
+export default ServiceCardSlider;

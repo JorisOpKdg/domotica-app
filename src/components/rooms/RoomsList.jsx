@@ -1,8 +1,9 @@
 import React from "react";
 import { useRoomsAndFloor } from "./../../hooks/customHooks";
-import RoomSummary from "./RoomSummary";
+import RoomSummaryCard from "./RoomSummaryCard";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 
+// voorbeeld van destructuring vd parameter floorId
 const RoomsList = ({
   match: {
     params: { floorId },
@@ -20,7 +21,7 @@ const RoomsList = ({
       <div className="row">
         {rooms !== undefined && floor !== undefined
           ? rooms.map((room) => (
-              <RoomSummary key={room.id} floorId={floor.id} room={room} />
+              <RoomSummaryCard key={room.id} floorId={floor.id} room={room} />
             ))
           : null}
       </div>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ServiceScheme from "./schemes/ServiceScheme";
-import { deleteScheme, getSchemes } from "./../../api/callSchemes";
-import { putRoom } from "./../../api/callRooms";
-import ServiceCardNewScheme from './ServiceCardNewScheme';
+import { deleteScheme, getSchemes } from "../../api/callSchemes";
+import { putRoom } from "../../api/callRooms";
+import ServiceCardNewScheme from './cards/ServiceCardNewScheme';
 
-const MusicCard = (props) => {
+const Music = (props) => {
   const min = 0;
   const max = 20;
   const service = "music";
@@ -72,4 +72,4 @@ const MusicCard = (props) => {
   );
 };
 
-export default MusicCard;
+export default Music;

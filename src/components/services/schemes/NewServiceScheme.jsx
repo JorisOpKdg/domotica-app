@@ -3,7 +3,7 @@ import { postScheme } from "../../../api/callSchemes";
 import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
 import { getRoom } from "../../../api/callRooms";
-import { createValues, createTitle, getMinMax, getHours } from "../../utilities";
+import { createValues, createTitle, getMinMax, getHours } from "./../serviceUtilities";
 
 const NewServiceScheme = (props) => {
   const params = QueryString.parse(props.location.search);

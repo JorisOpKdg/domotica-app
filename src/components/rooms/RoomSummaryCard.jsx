@@ -2,26 +2,9 @@ import { Link } from "react-router-dom";
 import MusicOff from "./../../assets/images/music-off.png";
 import MusicOn from "./../../assets/images/music-on.png";
 import { useState } from "react";
+import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 
-const RoomSummary = ({ room, floorId }) => {
-  // When curtains are closed and the lighting = 0, make backgroundColor black
-  // When curtains are open and the lighting = 0, make backgroundColor white
-  // When curtains are open and the lighting < 1, make backgroundColor yellow
-  const calculateBackgroundColor = (alfa) => {
-    if (!room.curtains && alfa < 1) {
-      return "#000";
-    }
-    return `rgba(255, 165, 0,${alfa / 10}`;
-  };
-
-  // When black background, return white color
-  const calculateTextColor = (backgroundColor) => {
-    if (backgroundColor === "#000") {
-      return "#fff";
-    }
-    return "#000";
-  };
-
+const RoomSummaryCard = ({ room, floorId }) => {
   const [backgroundColor, setBackgroundColor] = useState(
     calculateBackgroundColor(room.lighting)
   );
@@ -30,8 +13,9 @@ const RoomSummary = ({ room, floorId }) => {
   );
 
   const backgroundColorHandler = () => {
-    const alfa = room.lighting;
-    setBackgroundColor({ backgroundColor: calculateBackgroundColor(alfa) });
+    setBackgroundColor({
+      backgroundColor: calculateBackgroundColor(room.lighting, room.curtains),
+    });
   };
 
   const textColorHandler = () => {
@@ -51,7 +35,9 @@ const RoomSummary = ({ room, floorId }) => {
           </h4>
         </div>
         <div className="card-body ">
-          {room.temperature !== undefined ? <h4>{`Temperatuur: ${room.temperature}° Ingesteld op: ${room.desiredTemp}°`}</h4> : null}
+          {room.temperature !== undefined ? (
+            <h4>{`Temperatuur: ${room.temperature}° Ingesteld op: ${room.desiredTemp}°`}</h4>
+          ) : null}
           <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
           <Link
             id={room.id}
@@ -66,4 +52,4 @@ const RoomSummary = ({ room, floorId }) => {
   );
 };
 
-export default RoomSummary;
+export default RoomSummaryCard;
