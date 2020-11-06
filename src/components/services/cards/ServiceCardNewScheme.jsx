@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ServiceCardNewScheme = (props) => {
+const ServiceCardNewScheme = ({ room, service, deleteHandler }) => {
   return (
     <li className="list-group-item py-4">
       <div className="row">
@@ -11,10 +11,10 @@ const ServiceCardNewScheme = (props) => {
         <div className="col-4">
           <Link
             className="btn btn-dark float-right mr-3"
-            to={`/new-smart-scheme?roomId=${props.room.id}&service=temperature`}
-            room={props.room}
-            service={props.service}
-            deleteHandler={props.deleteHandler}
+            to={`/new-smart-scheme?roomId=${room.id}&service=temperature`}
+            room={room}
+            service={service}
+            deleteHandler={deleteHandler}
           >
             Nieuw
           </Link>

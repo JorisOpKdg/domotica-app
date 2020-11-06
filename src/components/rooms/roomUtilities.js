@@ -19,13 +19,13 @@ export function calculateTextColor(backgroundColor) {
 export function getBackgroundImage(floorId) {
   switch (floorId) {
     case 1:
-      return 'url("images/bg-kelder.jpeg")';
+      return 'url("images/background/bg-kelder.jpeg")';
     case 2:
-      return 'url("images/bg-kelder.jpeg")';
+      return 'url("images/background/bg-kelder.jpeg")';
     case 3:
-      return 'url("images/bg-kelder.jpeg")';
+      return 'url("images/background/bg-kelder.jpeg")';
     case 4:
-      return 'url("images/bg-kelder.jpeg")';
+      return 'url("images/background/bg-kelder.jpeg")';
     default:
       return undefined;
   }

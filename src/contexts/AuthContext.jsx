@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 
 export const AuthContext = createContext();
 
-const AuthContextProvider = (props) => {
+const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const toggleAuth = () => {
@@ -11,7 +11,7 @@ const AuthContextProvider = (props) => {
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, toggleAuth }}>
-      {this.props.children}
+      {children}
     </AuthContext.Provider>
   );
 };

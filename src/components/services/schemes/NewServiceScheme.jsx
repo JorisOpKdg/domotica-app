@@ -3,10 +3,16 @@ import { postScheme } from "../../../api/callSchemes";
 import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
 import { getRoom } from "../../../api/callRooms";
-import { createValues, createTitle, getMinMax, getHours } from "./../serviceUtilities";
+import FormElement from "./FormElement";
+import {
+  createValues,
+  createTitle,
+  getMinMax,
+  getHours,
+} from "./../serviceUtilities";
 
-const NewServiceScheme = (props) => {
-  const params = QueryString.parse(props.location.search);
+const NewServiceScheme = ({ location }) => {
+  const params = QueryString.parse(location.search);
   const history = useHistory();
 
   const [configInfo, setConfigInfo] = useState({
@@ -60,7 +66,44 @@ const NewServiceScheme = (props) => {
       <h2 className="mb-5">Maak een nieuw slim schema</h2>
       <form onSubmit={submitHandler}>
         <div className="form-row">
-          <div className="form-group col-md-4 pr-3">
+          <FormElement
+            title="Start:"
+            changeHandler={startHandler}
+            optionValues={configInfo.hours}
+            value={scheme.start}
+            type="start"
+          />
+          <FormElement
+            title="Einde:"
+            changeHandler={endHandler}
+            optionValues={configInfo.hours}
+            value={scheme.end}
+            type="end"
+          />
+          <FormElement
+            title="Hoeveelheid:"
+            changeHandler={valueHandler}
+            optionValues={configInfo.values}
+            value={scheme.amount}
+            type="amount"
+          />
+        </div>
+        <div className="form-row">
+          <div className="form-group ml-1">
+            <button type="submit" className="btn btn-dark">
+              Opslaan
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default NewServiceScheme;
+
+/*
+<div className="form-group col-md-4 pr-3">
             <label className="mr-3 " htmlFor="start">
               Start:
             </label>
@@ -75,6 +118,7 @@ const NewServiceScheme = (props) => {
                 configInfo.hours.map((hour) => <option>{hour}</option>)}
             </select>
           </div>
+
           <div className="form-group col-md-4 pr-3">
             <label className="mr-3 " htmlFor="end">
               Eind:
@@ -108,18 +152,4 @@ const NewServiceScheme = (props) => {
                 ))}
             </select>
           </div>
-        </div>
-
-        <div className="form-row">
-          <div className="form-group ml-1">
-            <button type="submit" className="btn btn-dark">
-              Opslaan
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
-};
-
-export default NewServiceScheme;
+*/

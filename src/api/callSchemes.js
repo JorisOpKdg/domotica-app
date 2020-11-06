@@ -12,10 +12,6 @@ export async function getSchemes(roomId, service) {
   }
 }
 
-export async function getScheme(schemeId) {
-  // Kan nog uitgewerkt worden
-}
-
 export async function postScheme(scheme) {
   const { roomId, service, amount, start, end } = scheme;
   try {
@@ -32,8 +28,20 @@ export async function postScheme(scheme) {
   }
 }
 
-export async function putScheme(schemeId) {
-  // Kan nog uitgewerkt worden
+export async function putScheme(scheme, schemeId) {
+  const { roomId, service, amount, start, end } = scheme;
+  try {
+    const response = await axios.post(`${DB_URL}/schemes/${schemeId}`, {
+      roomId,
+      service,
+      amount,
+      start,
+      end,
+    });
+    console.log("Response:", response);
+  } catch (error) {
+    console.error("Could not create new todo:" + error);
+  }
 }
 
 export async function deleteScheme(schemeId) {

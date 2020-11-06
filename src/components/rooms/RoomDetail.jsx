@@ -22,12 +22,15 @@ const RoomDetail = (props) => {
         {room.temperature !== undefined ? (
           <Temperature room={room} service="temperature" />
         ) : null}
+
         {room.lighting !== undefined ? (
           <Lighting room={room} service="lighting" />
         ) : null}
+
         {room.music !== undefined ? (
           <Music room={room} service="music" />
         ) : null}
+
         {room.curtains !== undefined ? (
           <Curtains room={room} service="curtains" />
         ) : null}

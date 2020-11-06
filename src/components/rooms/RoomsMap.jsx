@@ -5,17 +5,17 @@ import { useRoomsAndFloor } from "./../../hooks/customHooks";
 import { getBackgroundImage } from "./roomUtilities";
 
 const RoomsMap = (props) => {
-  const floorId = props.match.params;
+  const { floorId } = props.match.params;
 
   // maakt gebruik van custom hook useRoomsAndFloor voor het ophalen van floor en rooms data.
   const { rooms, floor } = useRoomsAndFloor(floorId);
 
+  if (!(rooms && floor)) return null;
+
   return (
     <div className="container">
-      {floor !== undefined ? (
-        <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
-      ) : null}
-
+      <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
+      
       <div
         className="row"
         styles={{
@@ -24,11 +24,9 @@ const RoomsMap = (props) => {
           backgroundImage: getBackgroundImage(floor.id),
         }}
       >
-        {floor !== undefined
-          ? rooms.map((room) => (
-              <RoomSummaryCard key={room.id} floorId={floor.id} room={room} />
-            ))
-          : null}
+        {rooms.map((room) => (
+          <RoomSummaryCard key={room.id} floorId={floor.id} room={room} />
+        ))}
       </div>
     </div>
   );

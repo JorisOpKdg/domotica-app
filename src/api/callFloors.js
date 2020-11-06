@@ -18,15 +18,3 @@ export async function getFloor(floorId) {
     console.error("Could not load rooms:" + error);
   }
 }
-
-export async function postFloor(floorId) {
-  // Kan nog uitgewerkt worden
-}
-
-export async function putFloor(floorId) {
-  // Kan nog uitgewerkt worden
-}
-
-export async function deleteFloor(floorId) {
-  // Kan nog uitgewerkt worden
-}

@@ -9,6 +9,14 @@ import Settings from "./components/Settings";
 import Footer from "./components/layout/Footer";
 import ThemeContextProvider from "./contexts/ThemeContext";
 import NewServiceScheme from "./components/services/schemes/NewServiceScheme";
+import {
+  homeRoute,
+  settingsRoute,
+  roomsListRoute,
+  roomsMapRoute,
+  roomDetailRoute,
+  newServiceSchemeRoute,
+} from "./routes";
 
 class App extends Component {
   state = {};
@@ -19,15 +27,12 @@ class App extends Component {
           <BrowserRouter>
             <Navbar />
             <Switch>
-              <Route path="/new-smart-scheme" component={NewServiceScheme} />
-              <Route path="/settings" component={Settings} />
-              <Route path="/rooms-list/:floorId" component={RoomsList} />
-              <Route path="/rooms-map/:floorId" component={RoomsMap} />
-              <Route
-                path="/room-detail/:floorId/:roomId"
-                component={RoomDetail}
-              />
-              <Route path="/" component={StartPage} />
+              <Route exact path={homeRoute} component={StartPage} />
+              <Route path={roomsListRoute} component={RoomsList} />
+              <Route path={roomsMapRoute} component={RoomsMap} />
+              <Route path={roomDetailRoute} component={RoomDetail} />
+              <Route path={newServiceSchemeRoute}component={NewServiceScheme}/>
+              <Route path={settingsRoute} component={Settings} />
             </Switch>
             <Footer />
           </BrowserRouter>

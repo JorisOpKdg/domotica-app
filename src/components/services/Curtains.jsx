@@ -27,7 +27,7 @@ const Curtains = (props) => {
       curtains: !previousRoom.curtains,
     }));
 
-    putRoom(room, room.id).then();
+    putRoom(room);
   };
 
   const deleteHandler = async () => {
@@ -35,35 +35,23 @@ const Curtains = (props) => {
   };
 
   return (
-    <ServiceCard
-      title={title}
-      value={room.curtains ? "Open" : "Dicht"}
-      clickHandler={curtainHandler}
-      room={room}
-      service={service}
-      deleteHandler={deleteHandler}
-      schemes={schemes}
-      checkbox={true}
-    />
+    <ServiceCard>
+      <ServiceCardHeader
+        title={title}
+        value={room.curtains ? "Open" : "Dicht"}
+      />
+      <ServiceCardBody>
+        <ServiceCardCheckBox clickHandler={curtainHandler} />
+        <ServiceCardNewScheme
+          room={room}
+          service={service}
+          deleteHandler={deleteHandler}
+        />
+        {schemes && schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
+      </ServiceCardBody>
+    </ServiceCard>
   );
 };
 
 export default Curtains;
 
-/*
-<ServiceCard>
- <ServiceCardHeader
-    title={title}
-    value={room.curtains ? "Open" : "Dicht"}
-  />
-  <ServiceCardBody>
-    <ServiceCardCheckBox clickHandler={curtainHandler} />
-    <ServiceCardNewScheme
-      room={room}
-      service={service}
-      deleteHandler={deleteHandler}
-    />
-    {schemes && schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
-  </ServiceCardBody>
-</ServiceCard>     
-*/

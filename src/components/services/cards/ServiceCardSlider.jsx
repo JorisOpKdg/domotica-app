@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServiceCardSlider = (props) => {
+const ServiceCardSlider = ({min, max, clickHandler, value}) => {
   return (
     <li className="list-group-item py-2">
       <div className="row">
@@ -8,10 +8,10 @@ const ServiceCardSlider = (props) => {
           <input
             type="range"
             className="custom-range"
-            min={props.min}
-            max={props.max}
-            onChange={props.clickHandler}
-            value={props.value}
+            min={min}
+            max={max}
+            onChange={clickHandler}
+            value={value}
           ></input>
         </form>
       </div>

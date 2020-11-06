@@ -4,29 +4,31 @@ import RoomSummaryCard from "./RoomSummaryCard";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 
 // voorbeeld van destructuring vd parameter floorId
-const RoomsList = ({
-  match: {
-    params: { floorId },
-  },
-}) => {
+const RoomsList = (props) => {
+  const { floorId } = props.match.params;
+
   // maakt gebruik van custom hook useRoomsAndFloor voor het ophalen van floor en rooms data
   const { rooms, floor } = useRoomsAndFloor(floorId);
 
+  if (!(rooms && floor)) return null;
+
   return (
     <div className="container">
-      {floor !== undefined ? (
-        <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
-      ) : null}
+      <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
 
       <div className="row">
-        {rooms !== undefined && floor !== undefined
-          ? rooms.map((room) => (
-              <RoomSummaryCard key={room.id} floorId={floor.id} room={room} />
-            ))
-          : null}
+        {rooms.map((room) => (
+          <RoomSummaryCard key={room.id} floorId={floor.id} room={room} />
+        ))}
       </div>
     </div>
   );
 };
 
 export default RoomsList;
+
+/*
+<div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+*/
