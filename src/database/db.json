@@ -4,40 +4,25 @@
       "id": 1,
       "name": "Kelder",
       "image": "/images/kelder.jpg",
-      "rooms": [
-        11,
-        12
-      ]
+      "rooms": [11, 12]
     },
     {
       "id": 2,
       "name": "Gelijkvloers",
       "image": "/images/gelijkvloers.jpg",
-      "rooms": [
-        21,
-        22,
-        23,
-        24
-      ]
+      "rooms": [21, 22, 23, 24]
     },
     {
       "id": 3,
       "name": "1e verdiep",
       "image": "/images/eerste-verdiep.jpg",
-      "rooms": [
-        31,
-        32,
-        33,
-        34
-      ]
+      "rooms": [31, 32, 33, 34]
     },
     {
       "id": 4,
       "name": "Zolder",
       "image": "/images/zolder.jpg",
-      "rooms": [
-        41
-      ]
+      "rooms": [41]
     }
   ],
   "rooms": [
@@ -47,14 +32,18 @@
       "name": "Wijnkelder",
       "description": "Een beschrijving van de wijnkelder.",
       "lighting": 10,
-      "music": 10
+      "music": 10,
+      "top": 450,
+      "left": 245
     },
     {
       "id": 12,
       "floorid": 1,
       "name": "Nutskamer",
       "description": "Een beschrijving van de ruimte met boiler, electriciteitsmeter en waterstandmeter.",
-      "lighting": 10
+      "lighting": 10,
+      "top": 450,
+      "left": 810
     },
     {
       "id": 21,
@@ -64,7 +53,9 @@
       "temperature": 10,
       "lighting": 0,
       "music": 0,
-      "curtains": false
+      "curtains": false,
+      "top": 350,
+      "left": 430
     },
     {
       "id": 22,
@@ -74,7 +65,9 @@
       "temperature": 20,
       "lighting": 0,
       "music": 10,
-      "curtains": true
+      "curtains": true,
+      "top": 770,
+      "left": 560
     },
     {
       "id": 23,
@@ -82,7 +75,9 @@
       "name": "Gang",
       "description": "Een beschrijving van de gang",
       "temperature": 20,
-      "lighting": 3
+      "lighting": 3,
+      "top": 620,
+      "left": 260
     },
     {
       "id": 24,
@@ -91,7 +86,9 @@
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
       "lighting": 20,
-      "music": 10
+      "music": 10,
+      "top": 810,
+      "left": 200
     },
     {
       "id": 31,
@@ -99,9 +96,11 @@
       "name": "Slaapkamer 1",
       "description": "Een beschrijving van de woonkamer",
       "temperature": 20,
-      "lighting": 10,
+      "lighting": 3,
       "music": 10,
-      "curtains": false
+      "curtains": false,
+      "top": 810,
+      "left": 500
     },
     {
       "id": 32,
@@ -109,9 +108,11 @@
       "name": "Slaapkamer 2",
       "description": "Een beschrijving van de keuken",
       "temperature": 20,
-      "lighting": 10,
+      "lighting": 6,
       "music": 10,
-      "curtains": false
+      "curtains": false,
+      "top": 300,
+      "left": 150
     },
     {
       "id": 33,
@@ -119,9 +120,11 @@
       "name": "Badkamer",
       "description": "Een beschrijving van de gang",
       "temperature": 20,
-      "lighting": 10,
+      "lighting": 8,
       "music": 10,
-      "curtains": false
+      "curtains": false,
+      "top": 750,
+      "left": 200
     },
     {
       "id": 34,
@@ -129,8 +132,10 @@
       "name": "Toilet",
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
-      "lighting": 10,
-      "music": 10
+      "lighting": 20,
+      "music": 10,
+      "top": 480,
+      "left": 230
     },
     {
       "id": 41,
@@ -138,7 +143,9 @@
       "name": "Zolder ruimte",
       "description": "Een beschrijving van de zolder",
       "lighting": 10,
-      "music": 10
+      "music": 10,
+      "top": 380,
+      "left": 530
     }
   ],
   "schemes": [

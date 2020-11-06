@@ -1,3 +1,8 @@
+import kelder from "./../../assets/background/bg-kelder.jpeg";
+import gelijkvloers from "./../../assets/background/bg-gelijkvloers.jpeg";
+import eersteVerdiep from "./../../assets/background/bg-1e-verdiep.jpeg";
+import zolder from "./../../assets/background/bg-zolder.jpeg";
+
 // When curtains are closed and the lighting = 0, make backgroundColor black
 // When curtains are open and the lighting = 0, make backgroundColor white
 // When curtains are open and the lighting < 1, make backgroundColor yellow
@@ -19,13 +24,13 @@ export function calculateTextColor(backgroundColor) {
 export function getBackgroundImage(floorId) {
   switch (floorId) {
     case 1:
-      return 'url("images/background/bg-kelder.jpeg")';
+      return `url(${kelder})`;
     case 2:
-      return 'url("images/background/bg-kelder.jpeg")';
+      return `url(${gelijkvloers})`;
     case 3:
-      return 'url("images/background/bg-kelder.jpeg")';
+      return `url(${eersteVerdiep})`;
     case 4:
-      return 'url("images/background/bg-kelder.jpeg")';
+      return `url(${zolder})`;
     default:
       return undefined;
   }

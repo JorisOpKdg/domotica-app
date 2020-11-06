@@ -4,7 +4,7 @@ import MusicOn from "./../../assets/images/music-on.png";
 import { useState } from "react";
 import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 
-const RoomSummaryCard = ({ room, floorId }) => {
+const RoomSummaryList = ({ room, floorId, absolutePosition }) => {
   const [backgroundColor, setBackgroundColor] = useState(
     calculateBackgroundColor(room.lighting)
   );
@@ -25,7 +25,6 @@ const RoomSummaryCard = ({ room, floorId }) => {
   return (
     <div className="col-md-6 col-lg-3">
       <div className="card mb-3 shadow-sm">
-        
         <div
           className="card-header"
           style={{ backgroundColor: `${backgroundColor}` }}
@@ -56,4 +55,4 @@ const RoomSummaryCard = ({ room, floorId }) => {
   );
 };
 
-export default RoomSummaryCard;
+export default RoomSummaryList;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRoomsAndFloor } from "./../../hooks/customHooks";
-import RoomSummaryCard from "./RoomSummaryCard";
+import RoomSummaryList from "./RoomSummaryList";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 
 // voorbeeld van destructuring vd parameter floorId
@@ -18,7 +18,7 @@ const RoomsList = (props) => {
 
       <div className="row">
         {rooms.map((room) => (
-          <RoomSummaryCard key={room.id} floorId={floor.id} room={room} />
+          <RoomSummaryList absolutePosition={false} key={room.id} floorId={floor.id} room={room} />
         ))}
       </div>
     </div>
