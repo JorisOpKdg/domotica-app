@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { getFloors } from "../../api/callFloors";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { FloorContext } from './../../contexts/FloorContext';
+import SpinnerPage from './SpinnerPage';
 
 const StartPage = () => {
-  const [floors, setFloors] = useState([]);
-
-  useEffect(() => {
-    getFloors().then((nextFloors) => setFloors(nextFloors));
-  },[]);
+  const {floors, loading} = useContext(FloorContext)
 
   return (
     <div className="container py-5 my-5">
       <div className="row">
-        {floors &&
+        {loading && <SpinnerPage />}
+        {!loading && floors &&
           floors.map((floor) => (
             <div className="col-md-6 col-lg-3">
               <div className="card mb-3 shadow-sm">

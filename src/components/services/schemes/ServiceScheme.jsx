@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { deleteScheme } from "./../../../api/callSchemes";
 import { useHistory } from "react-router-dom";
+import { SchemeContext } from "./../../../contexts/SchemeContext";
 
-const ServiceScheme = ({room, scheme}) => {
+const ServiceScheme = ({ room, scheme }) => {
   const history = useHistory();
+  const { deleteScheme } = useContext(SchemeContext);
 
   const deleteHandler = async () => {
-    console.log("deleteHandler clicked");
-    await deleteScheme(scheme.id);
-
+    deleteScheme(scheme);
     history.push(`/room-detail/${room.floorid}/${room.id}`);
   };
 

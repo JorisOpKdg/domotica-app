@@ -6,8 +6,13 @@ import { getBackgroundImage } from "./roomUtilities";
 
 const RoomsMap = (props) => {
   const { floorId } = props.match.params;
+  const { rooms, reloadRooms } = useContect(RoomContext);
+  const { floor, getFloor } = useContext(FloorContext);
 
-  const { rooms, floor } = useRoomsAndFloor(floorId);
+  useEffect(() => {
+    reloadRooms(floorId);
+    getFloor(floorId);
+  }, [floorId]);
 
   if (!(rooms && floor)) return null;
 

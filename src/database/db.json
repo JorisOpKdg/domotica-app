@@ -150,28 +150,28 @@
   ],
   "schemes": [
     {
+      "id": 1,
       "roomid": "22",
       "service": "curtains",
       "amount": "Open",
       "start": "14:00",
-      "end": "09:00",
-      "id": 6
+      "end": "09:00"
     },
     {
+      "id": 2,
       "roomId": "21",
       "service": "temperature",
       "amount": "10",
       "start": "12:00",
-      "end": "15:00",
-      "id": 7
+      "end": "15:00"
     },
     {
+      "id": 3,
       "roomId": "22",
       "service": "temperature",
       "amount": "15",
       "start": "14:00",
-      "end": "20:00",
-      "id": 8
+      "end": "20:00"
     }
   ]
 }

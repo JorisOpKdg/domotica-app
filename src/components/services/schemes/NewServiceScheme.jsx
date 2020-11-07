@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { postScheme } from "../../../api/callSchemes";
+import React, { useState, useEffect, useContext } from "react";
 import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
-import { getRoom } from "../../../api/callRooms";
 import FormElement from "./FormElement";
-import {
-  createValues,
-  createTitle,
-  getMinMax,
-  getHours,
-} from "./../serviceUtilities";
+import { SchemeContext } from "./../../../contexts/SchemeContext";
 
 const NewServiceScheme = ({ location }) => {
   const params = QueryString.parse(location.search);
   const history = useHistory();
+  const { postScheme } = useContext(SchemeContext);
 
   const [configInfo, setConfigInfo] = useState({
     hours: [],
@@ -53,11 +47,10 @@ const NewServiceScheme = ({ location }) => {
     setScheme({ ...scheme, end: e.target.value });
   };
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     postScheme(scheme);
-    let floorid;
-    getRoom(scheme.roomId).then((room) => (floorid = room.floorid));
-    history.push(`/room-detail/${floorid}/${scheme.roomid}`);
+    history.push(`/room-detail/${scheme.roomid}`);
   };
 
   return (
@@ -101,55 +94,3 @@ const NewServiceScheme = ({ location }) => {
 };
 
 export default NewServiceScheme;
-
-/*
-<div className="form-group col-md-4 pr-3">
-            <label className="mr-3 " htmlFor="start">
-              Start:
-            </label>
-            <select
-              className="form-control mr-5"
-              id="start"
-              name="start"
-              onChange={startHandler}
-              value={scheme.start}
-            >
-              {configInfo.hours &&
-                configInfo.hours.map((hour) => <option>{hour}</option>)}
-            </select>
-          </div>
-
-          <div className="form-group col-md-4 pr-3">
-            <label className="mr-3 " htmlFor="end">
-              Eind:
-            </label>
-            <select
-              className="form-control"
-              id="end"
-              name="end"
-              onChange={endHandler}
-              value={scheme.end}
-            >
-              {configInfo.hours &&
-                configInfo.hours.map((hour) => <option>{hour}</option>)}
-            </select>
-          </div>
-
-          <div className="form-group col-md-4 pr-3">
-            <label className="mr-3 " htmlFor="amount">
-              Hoeveelheid:
-            </label>
-            <select
-              className="form-control"
-              id="amount"
-              name="amount"
-              onChange={valueHandler}
-              value={scheme.amount}
-            >
-              {configInfo.values &&
-                configInfo.values.map((value) => (
-                  <option key={value}>{value}</option>
-                ))}
-            </select>
-          </div>
-*/

@@ -4,7 +4,7 @@ import MusicOn from "./../../assets/images/music-on.png";
 import { useState } from "react";
 import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 
-const RoomSummaryList = ({ room, floorId, absolutePosition }) => {
+const RoomSummaryList = ({ room, floorId }) => {
   const [backgroundColor, setBackgroundColor] = useState(
     calculateBackgroundColor(room.lighting)
   );

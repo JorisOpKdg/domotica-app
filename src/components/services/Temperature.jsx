@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ServiceScheme from "./schemes/ServiceScheme";
-import { putRoom } from "../../api/callRooms";
-import { deleteScheme, getSchemes } from "../../api/callSchemes";
 import ServiceCardNewScheme from "./cards/ServiceCardNewScheme";
 import { createTitle } from "./serviceUtilities";
 import ServiceCard from "./cards/ServiceCard";
@@ -9,31 +7,23 @@ import ServiceCardHeader from "./cards/ServiceCardHeader";
 import ServiceCardSlider from "./cards/ServiceCardSlider";
 import ServiceCardBody from "./cards/ServiceCardBody";
 
-const Temperature = (props) => {
+const Temperature = () => {
   const service = "temperature";
   const title = createTitle(service);
   const min = 0;
   const max = 30;
-  const [schemes, setSchemes] = useState();
-  const [room, setRoom] = useState(props.room);
+  const { room, putRoom } = useContext(RoomContext);
+  const { schemes, getSchemes } = useContext(SchemeContext);
 
   useEffect(() => {
-    getSchemes(room.id, "temperature").then((nextSchemes) =>
-      setSchemes(nextSchemes)
-    );
-  }, [room.id]);
+    getSchemes(room.id, service);
+  }, [room.id, service]);
 
-  const temperatureHandler = (e) => {
-    setRoom((previousRoom) => ({
+  const temperatureHandler = () => {
+    putRoom((previousRoom) => ({
       ...previousRoom,
-      temperature: e.target.value,
+      curtains: !previousRoom.curtains,
     }));
-
-    putRoom(room);
-  };
-
-  const deleteHandler = async () => {
-    await deleteScheme(props.scheme.id);
   };
 
   return (
@@ -48,7 +38,6 @@ const Temperature = (props) => {
         <ServiceCardNewScheme
           room={room}
           service={service}
-          deleteHandler={deleteHandler}
         />
         {schemes && schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
       </ServiceCardBody>

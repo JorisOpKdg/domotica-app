@@ -28,8 +28,7 @@ const RoomSummaryMap = ({ room, floorId }) => {
     <Link
       id={room.id}
       to={`/room-detail/${floorId}/${room.id}`}
-      style={{textDecoration: "none"}}
-      
+      style={{ textDecoration: "none" }}
     >
       <div
         onChange={backgroundColorHandler}
@@ -48,10 +47,13 @@ const RoomSummaryMap = ({ room, floorId }) => {
           {room.name}
         </h4>
         {room.temperature !== undefined ? (
-          <h4 onChange={textColorHandler} style={{color: textColor}}>{`${room.temperature}°`}</h4>
+          <h4
+            onChange={textColorHandler}
+            style={{ color: textColor }}
+          >{`${room.temperature}°`}</h4>
         ) : null}
-        <div style={{backgroundColor: "000"}}>
-        <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
+        <div style={{ backgroundColor: "000" }}>
+          <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
         </div>
       </div>
     </Link>

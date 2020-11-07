@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { deleteScheme, getSchemes } from "../../api/callSchemes";
-import { putRoom } from "../../api/callRooms";
+import React, { useContext, useEffect, useState } from "react";
 import ServiceCardNewScheme from "./cards/ServiceCardNewScheme";
 import ServiceScheme from "./schemes/ServiceScheme";
 import ServiceCard from "./cards/ServiceCard";
@@ -8,30 +6,24 @@ import ServiceCardHeader from "./cards/ServiceCardHeader";
 import ServiceCardBody from "./cards/ServiceCardBody";
 import ServiceCardCheckBox from "./cards/ServiceCardCheckBox";
 import { createTitle } from "./serviceUtilities";
+import { SchemeContext } from "./../../contexts/SchemeContext";
+import { RoomContext } from "./../../contexts/RoomContext";
 
-const Curtains = (props) => {
+const Curtains = () => {
   const service = "curtains";
   const title = createTitle(service);
-  const [schemes, setSchemes] = useState();
-  const [room, setRoom] = useState(props.room);
+  const { room, putRoom } = useContext(RoomContext);
+  const { schemes, getSchemes} = useContext(SchemeContext);
 
   useEffect(() => {
-    getSchemes(room.id, "curtains").then((nextSchemes) =>
-      setSchemes(nextSchemes)
-    );
-  }, [room.id]);
+    getSchemes(room.id, service);
+  }, [room.id, service]);
 
-  const curtainHandler = (e) => {
-    setRoom((previousRoom) => ({
+  const curtainHandler = () => {
+    putRoom((previousRoom) => ({
       ...previousRoom,
       curtains: !previousRoom.curtains,
     }));
-
-    putRoom(room);
-  };
-
-  const deleteHandler = async () => {
-    await deleteScheme(props.scheme.id);
   };
 
   return (
@@ -45,7 +37,6 @@ const Curtains = (props) => {
         <ServiceCardNewScheme
           room={room}
           service={service}
-          deleteHandler={deleteHandler}
         />
         {schemes && schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
       </ServiceCardBody>
@@ -54,4 +45,3 @@ const Curtains = (props) => {
 };
 
 export default Curtains;
-
