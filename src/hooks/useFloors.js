@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getFloors } from "./../api/callFloors";
-import { useInterval } from './useInterval';
+import { useInterval } from "./useInterval";
 
 const useFloors = () => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const useFloors = () => {
 
   useInterval(() => {
     readAllFloors();
-  }, [2000])
+  }, [2000]);
 
   return { floors, loading, readAllFloors, reloadFloors, readFloor };
 };

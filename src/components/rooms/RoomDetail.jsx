@@ -8,10 +8,10 @@ import { RoomContext } from "./../../contexts/RoomContext";
 const RoomDetail = (props) => {
   const roomId = props.match.params.roomId;
   const { readRoom } = useContext(RoomContext);
-  const [room, setRoom] = useState(readRoom(roomId));
+  const [room, setRoom] = useState();
 
   useEffect(() => {
-    setRoom(readRoom(roomId));
+    setRoom(readRoom(+roomId));
   }, [readRoom, roomId]);
 
   return (

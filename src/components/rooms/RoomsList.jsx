@@ -9,22 +9,25 @@ const RoomsList = (props) => {
   const { readRoomsOfFloor } = useContext(RoomContext);
   const { readFloor } = useContext(FloorContext);
 
-  const [RoomsOfFloor, setRoomsOfFloor] = useState([]);
+  const [roomsOfFloor, setRoomsOfFloor] = useState([]);
   const [floor, setFloor] = useState();
 
   useEffect(() => {
-    setRoomsOfFloor(readRoomsOfFloor(floorId));
-    setFloor(readFloor(floorId));
+    const nextRooms = readRoomsOfFloor(+floorId);
+    const nextFloor = readFloor(+floorId);
+    // console.log({ nextFloor, nextRooms });
+    setRoomsOfFloor(nextRooms);
+    setFloor(nextFloor);
   }, [floorId, readFloor, readRoomsOfFloor]);
 
-  if (!(RoomsOfFloor && floor)) return null;
+  if (!(roomsOfFloor && floor)) return null;
 
   return (
     <div className="container">
       <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
 
       <div className="row">
-        {RoomsOfFloor.map((room) => (
+        {roomsOfFloor.map((room) => (
           <RoomSummaryList
             absolutePosition={false}
             key={room.id}

@@ -28,7 +28,7 @@
   "rooms": [
     {
       "id": 11,
-      "floorid": 1,
+      "floorId": 1,
       "name": "Wijnkelder",
       "description": "Een beschrijving van de wijnkelder.",
       "lighting": 10,
@@ -40,7 +40,7 @@
     },
     {
       "id": 12,
-      "floorid": 1,
+      "floorId": 1,
       "name": "Nutskamer",
       "description": "Een beschrijving van de ruimte met boiler, electriciteitsmeter en waterstandmeter.",
       "lighting": 10,
@@ -51,7 +51,7 @@
     },
     {
       "id": 21,
-      "floorid": 2,
+      "floorId": 2,
       "name": "Woonkamer",
       "description": "Een beschrijving van de woonkamer",
       "temperature": 10,
@@ -65,7 +65,7 @@
     },
     {
       "id": 22,
-      "floorid": 2,
+      "floorId": 2,
       "name": "Keuken",
       "description": "Een beschrijving van de keuken",
       "temperature": 20,
@@ -79,7 +79,7 @@
     },
     {
       "id": 23,
-      "floorid": 2,
+      "floorId": 2,
       "name": "Gang",
       "description": "Een beschrijving van de gang",
       "temperature": 20,
@@ -91,7 +91,7 @@
     },
     {
       "id": 24,
-      "floorid": 2,
+      "floorId": 2,
       "name": "Gasten toilet",
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
@@ -104,7 +104,7 @@
     },
     {
       "id": 31,
-      "floorid": 3,
+      "floorId": 3,
       "name": "Slaapkamer 1",
       "description": "Een beschrijving van de woonkamer",
       "temperature": 20,
@@ -118,7 +118,7 @@
     },
     {
       "id": 32,
-      "floorid": 3,
+      "floorId": 3,
       "name": "Slaapkamer 2",
       "description": "Een beschrijving van de keuken",
       "temperature": 20,
@@ -132,7 +132,7 @@
     },
     {
       "id": 33,
-      "floorid": 3,
+      "floorId": 3,
       "name": "Badkamer",
       "description": "Een beschrijving van de gang",
       "temperature": 20,
@@ -146,7 +146,7 @@
     },
     {
       "id": 34,
-      "floorid": 3,
+      "floorId": 3,
       "name": "Toilet",
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
@@ -159,7 +159,7 @@
     },
     {
       "id": 41,
-      "floorid": 4,
+      "floorId": 4,
       "name": "Zolder ruimte",
       "description": "Een beschrijving van de zolder",
       "lighting": 10,

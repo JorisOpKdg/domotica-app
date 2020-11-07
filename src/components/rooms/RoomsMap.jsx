@@ -14,8 +14,8 @@ const RoomsMap = (props) => {
   const [floor, setFloor] = useState();
 
   useEffect(() => {
-    setRoomsOfFloor(readRoomsOfFloor(floorId));
-    setFloor(readFloor(floorId));
+    setRoomsOfFloor(readRoomsOfFloor(+floorId));
+    setFloor(readFloor(+floorId));
   }, [floorId, readFloor, readRoomsOfFloor]);
 
   if (!(RoomsOfFloor && floor)) return null;

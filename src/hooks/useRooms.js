@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getRooms, postRoom, putRoom } from "./../api/callRooms";
-import { useInterval } from './useInterval';
+import { useInterval } from "./useInterval";
 
 const useRooms = () => {
   const [loading, setLoading] = useState(false);
@@ -9,13 +9,14 @@ const useRooms = () => {
 
   const readAllRooms = async () => {
     setLoading(true);
-    getRooms((rooms) => setRooms(rooms));
+    getRooms().then((rooms) => setRooms(rooms));
     setLoading(false);
   };
 
   const reloadRooms = () => readAllRooms();
 
   const readRoomsOfFloor = (floorId) => {
+    console.log({ floorId, rooms });
     return rooms.filter((room) => room.floorId === floorId);
   };
 
@@ -24,8 +25,8 @@ const useRooms = () => {
   };
 
   const instantiateCurrentRoom = (roomId) => {
-    setCurrentROom(readRoom(roomId))
-  }
+    setCurrentROom(readRoom(roomId));
+  };
 
   const createRoom = async (room) => {
     setLoading(true);
@@ -49,7 +50,7 @@ const useRooms = () => {
 
   useInterval(() => {
     readAllRooms();
-  }, [2000])
+  }, [2000]);
 
   return {
     rooms,
@@ -61,7 +62,7 @@ const useRooms = () => {
     readRoom,
     createRoom,
     updateRoom,
-    instantiateCurrentRoom
+    instantiateCurrentRoom,
   };
 };
 
