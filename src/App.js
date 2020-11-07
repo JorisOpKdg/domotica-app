@@ -17,6 +17,9 @@ import {
   roomDetailRoute,
   newServiceSchemeRoute,
 } from "./routes";
+import FloorContextProvider from "./contexts/FloorContext";
+import RoomContextProvider from "./contexts/RoomContext";
+import SchemeContextProvider from "./contexts/SchemeContext";
 
 class App extends Component {
   state = {};
@@ -24,18 +27,27 @@ class App extends Component {
     return (
       <>
         <ThemeContextProvider>
-          <BrowserRouter>
-            <Navbar />
-            <Switch>
-              <Route exact path={homeRoute} component={StartPage} />
-              <Route path={roomsListRoute} component={RoomsList} />
-              <Route path={roomsMapRoute} component={RoomsMap} />
-              <Route path={roomDetailRoute} component={RoomDetail} />
-              <Route path={newServiceSchemeRoute}component={NewServiceScheme}/>
-              <Route path={settingsRoute} component={Settings} />
-            </Switch>
-            <Footer />
-          </BrowserRouter>
+          <FloorContextProvider>
+            <RoomContextProvider>
+              <SchemeContextProvider>
+                <BrowserRouter>
+                  <Navbar />
+                  <Switch>
+                    <Route exact path={homeRoute} component={StartPage} />
+                    <Route path={roomsListRoute} component={RoomsList} />
+                    <Route path={roomsMapRoute} component={RoomsMap} />
+                    <Route path={roomDetailRoute} component={RoomDetail} />
+                    <Route
+                      path={newServiceSchemeRoute}
+                      component={NewServiceScheme}
+                    />
+                    <Route path={settingsRoute} component={Settings} />
+                  </Switch>
+                  <Footer />
+                </BrowserRouter>
+              </SchemeContextProvider>
+            </RoomContextProvider>
+          </FloorContextProvider>
         </ThemeContextProvider>
       </>
     );

@@ -14,7 +14,7 @@ const Settings = () => {
             id="darkSwitch"
             onClick={toggleTheme}
           />
-          <label className="custom-control-label" for="darkSwitch">
+          <label className="custom-control-label" htmlFor="darkSwitch">
             Light Mode
           </label>
         </div>
