@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ServiceScheme from "./schemes/ServiceScheme";
 import ServiceCardNewScheme from "./cards/ServiceCardNewScheme";
 import { createTitle } from "./serviceUtilities";
@@ -6,23 +6,27 @@ import ServiceCard from "./cards/ServiceCard";
 import ServiceCardHeader from "./cards/ServiceCardHeader";
 import ServiceCardSlider from "./cards/ServiceCardSlider";
 import ServiceCardBody from "./cards/ServiceCardBody";
+import { SchemeContext } from "./../../contexts/SchemeContext";
+import { RoomContext } from "./../../contexts/RoomContext";
 
-const Music = () => {
-  const service = "music";
-  const title = createTitle(service);
-  const min = 0;
-  const max = 20;
-  const { room, putRoom } = useContext(RoomContext);
-  const { schemes, getSchemes } = useContext(SchemeContext);
+const service = "music";
+const title = createTitle(service);
+const min = 0;
+const max = 20;
+
+const Music = ({ room }) => {
+  const { readSchemesOfRoomWithService } = useContext(SchemeContext);
+  const { updateRoom } = useContext(RoomContext);
+  const [SchemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
 
   useEffect(() => {
-    getSchemes(room.id, service);
-  }, [room.id, service]);
+    setSchemesOfRoomWithService(readSchemesOfRoomWithService(room.id, service));
+  }, [readSchemesOfRoomWithService, room.id]);
 
-  const musicHandler = () => {
-    putRoom((previousRoom) => ({
+  const musicHandler = (e) => {
+    updateRoom((previousRoom) => ({
       ...previousRoom,
-      curtains: !previousRoom.curtains,
+      Lighting: e.target.value,
     }));
   };
 
@@ -31,15 +35,14 @@ const Music = () => {
       <ServiceCardHeader title={title} value={room.music} />
       <ServiceCardBody>
         <ServiceCardSlider clickHandler={musicHandler} min={min} max={max} />
-        <ServiceCardNewScheme
-          room={room}
-          service={service}
-        />
-        {schemes && schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
+        <ServiceCardNewScheme room={room.id} service={service} />
+        {SchemesOfRoomWithService &&
+          SchemesOfRoomWithService.map((scheme) => (
+            <ServiceScheme roomId={room.id} scheme={scheme} />
+          ))}
       </ServiceCardBody>
     </ServiceCard>
   );
 };
 
 export default Music;
-

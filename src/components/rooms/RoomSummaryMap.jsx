@@ -4,7 +4,7 @@ import MusicOff from "./../../assets/images/music-off.png";
 import MusicOn from "./../../assets/images/music-on.png";
 import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 
-const RoomSummaryMap = ({ room, floorId }) => {
+const RoomSummaryMap = ({ room }) => {
   const [backgroundColor, setBackgroundColor] = useState(
     calculateBackgroundColor(room.lighting)
   );
@@ -27,7 +27,7 @@ const RoomSummaryMap = ({ room, floorId }) => {
   return (
     <Link
       id={room.id}
-      to={`/room-detail/${floorId}/${room.id}`}
+      to={`/room-detail/${room.id}`}
       style={{ textDecoration: "none" }}
     >
       <div
@@ -36,8 +36,8 @@ const RoomSummaryMap = ({ room, floorId }) => {
           position: "absolute",
           top: `${room.top}px`,
           left: `${room.left}px`,
-          width: "180px",
-          height: "140px",
+          width: `${room.width}px`,
+          height: `${room.height}px`,
           backgroundColor: `${backgroundColor}`,
           border: "black solid",
           padding: "10px",

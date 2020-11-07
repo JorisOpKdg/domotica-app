@@ -1,27 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import RoomSummaryList from "./RoomSummaryList";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 import { FloorContext } from "./../../contexts/FloorContext";
-import { RoomContext } from './../../contexts/RoomContext';
+import { RoomContext } from "./../../contexts/RoomContext";
 
 const RoomsList = (props) => {
   const { floorId } = props.match.params;
-  const { rooms, reloadRooms } = useContect(RoomContext);
-  const { floor, getFloor } = useContext(FloorContext);
+  const { readRoomsOfFloor } = useContext(RoomContext);
+  const { readFloor } = useContext(FloorContext);
+
+  const [RoomsOfFloor, setRoomsOfFloor] = useState([]);
+  const [floor, setFloor] = useState();
 
   useEffect(() => {
-    reloadRooms(floorId);
-    getFloor(floorId);
-  }, [floorId]);
+    setRoomsOfFloor(readRoomsOfFloor(floorId));
+    setFloor(readFloor(floorId));
+  }, [floorId, readFloor, readRoomsOfFloor]);
 
-  if (!(rooms && floor)) return null;
+  if (!(RoomsOfFloor && floor)) return null;
 
   return (
     <div className="container">
       <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
 
       <div className="row">
-        {rooms.map((room) => (
+        {RoomsOfFloor.map((room) => (
           <RoomSummaryList
             absolutePosition={false}
             key={room.id}

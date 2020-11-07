@@ -3,11 +3,17 @@ import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
 import FormElement from "./FormElement";
 import { SchemeContext } from "./../../../contexts/SchemeContext";
+import {
+  getMinMax,
+  getHours,
+  createValues,
+  createTitle,
+} from "./../serviceUtilities";
 
 const NewServiceScheme = ({ location }) => {
   const params = QueryString.parse(location.search);
   const history = useHistory();
-  const { postScheme } = useContext(SchemeContext);
+  const { createScheme } = useContext(SchemeContext);
 
   const [configInfo, setConfigInfo] = useState({
     hours: [],
@@ -49,7 +55,7 @@ const NewServiceScheme = ({ location }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    postScheme(scheme);
+    createScheme(scheme);
     history.push(`/room-detail/${scheme.roomid}`);
   };
 

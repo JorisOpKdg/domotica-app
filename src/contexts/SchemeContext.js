@@ -1,4 +1,5 @@
 import React, { createContext } from "react";
+import useSchemes from './../hooks/useSchemes';
 
 export const SchemeContext = createContext();
 
@@ -6,21 +7,23 @@ const SchemeContextProvider = ({ children }) => {
   const {
     schemes,
     loading,
-    getSchemes,
+    readAllSchemes,
     reloadSchemes,
-    postScheme,
-    deleteScheme,
-  } = useRooms();
+    readSchemesOfRoomWithService,
+    createScheme,
+    removeScheme,
+  } = useSchemes();
 
   return (
     <SchemeContext.Provider
       value={{
         schemes,
         loading,
-        getSchemes,
+        readAllSchemes,
         reloadSchemes,
-        postScheme,
-        deleteScheme,
+        readSchemesOfRoomWithService,
+        createScheme,
+        removeScheme,
       }}
     >
       {children}

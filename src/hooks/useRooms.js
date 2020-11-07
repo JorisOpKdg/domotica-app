@@ -1,54 +1,68 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { DB_URL } from "../database/db";
+import { getRooms, postRoom, putRoom } from "./../api/callRooms";
+import { useInterval } from './useInterval';
 
 const useRooms = () => {
   const [loading, setLoading] = useState(false);
-  const [rooms, setRooms] = useState();
-  const [room, setRoom] = useState();
+  const [rooms, setRooms] = useState([]);
+  const [currentRoom, setCurrentROom] = useState();
 
-  const getRooms = async (floorId) => {
+  const readAllRooms = async () => {
     setLoading(true);
-    try {
-      const response = await axios.get(`${DB_URL}/rooms?floorid=${floorId}`);
-      setRooms(response.data);
-    } catch (error) {
-      console.error("Could not load rooms:" + error);
-    }  
+    getRooms((rooms) => setRooms(rooms));
     setLoading(false);
+  };
+
+  const reloadRooms = () => readAllRooms();
+
+  const readRoomsOfFloor = (floorId) => {
+    return rooms.filter((room) => room.floorId === floorId);
+  };
+
+  const readRoom = async (roomId) => {
+    return rooms.find((room) => room.id === roomId);
+  };
+
+  const instantiateCurrentRoom = (roomId) => {
+    setCurrentROom(readRoom(roomId))
   }
 
-  const reloadRooms = (floorId) => getRooms(floorId);
-
-  const getRoom = async (roomId) => {
-      setRoom(rooms.find(room => room.id === roomId));
-  }
-
-  const putRoom = (room) => {
+  const createRoom = async (room) => {
     setLoading(true);
-    const { name, description, temperature, lighting, music, curtains } = room;
-    try {
-      const response = await axios.put(`${DB_URL}/rooms/${room.id}`, {
-        name,
-        description,
-        temperature,
-        lighting,
-        music,
-        curtains,
-      });
-      reloadRooms();
-    } catch (error) {
-      console.error("Could not update room:" + error);
-    } 
+    postRoom(room).then((room) =>
+      setRooms((previousRooms) => [...previousRooms, room])
+    );
     setLoading(false);
-  }
+  };
+
+  const updateRoom = async (room) => {
+    setLoading(true);
+    putRoom(room).then((room) =>
+      setRooms((previousRooms) => [...previousRooms, room])
+    );
+    setLoading(false);
+  };
 
   useEffect(() => {
-    getRooms(floorId);
-  }, [floorId]);
-  
+    readAllRooms();
+  }, []);
 
-  return { rooms, room, loading , getRooms, reloadRooms, getRoom, putRoom};
+  useInterval(() => {
+    readAllRooms();
+  }, [2000])
+
+  return {
+    rooms,
+    currentRoom,
+    loading,
+    readAllRooms,
+    reloadRooms,
+    readRoomsOfFloor,
+    readRoom,
+    createRoom,
+    updateRoom,
+    instantiateCurrentRoom
+  };
 };
 
 export default useRooms;

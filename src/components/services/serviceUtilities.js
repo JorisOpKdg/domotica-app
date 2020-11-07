@@ -28,7 +28,7 @@ export const getHours = [
 
 export function createValues(min, max) {
   let values = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = min; i < max; i++) {
     values.push(i.toString());
   }
   return values;

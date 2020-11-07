@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { DB_URL } from "../database/db";
+import { getFloors } from "./../api/callFloors";
+import { useInterval } from './useInterval';
 
 const useFloors = () => {
   const [loading, setLoading] = useState(false);
-  const [floors, setFloors] = useState();
-  const [floor, setFloor] = useState();
+  const [floors, setFloors] = useState([]);
 
-  const getFloors = async () => {
+  const readAllFloors = async () => {
     setLoading(true);
-    try {
-      const response = await axios.get(`${DB_URL}/floors`);
-      setFloors(response.data);
-    } catch (error) {
-      console.error("Could not load floors:" + error);
-    }
+    getFloors().then((floors) => setFloors(floors));
     setLoading(false);
   };
 
-  const getFloor = (floorId) => {
-    setFloor(floors.find(floor => floor.id === floorId));
+  const reloadFloors = () => readAllFloors();
+
+  const readFloor = (floorId) => {
+    return floors.find((floor) => floor.id === floorId);
   };
 
   useEffect(() => {
-    getFloors();
+    readAllFloors();
   }, []);
 
-  return { floors, floor, loading, getFloors, getFloor };
+  useInterval(() => {
+    readAllFloors();
+  }, [2000])
+
+  return { floors, loading, readAllFloors, reloadFloors, readFloor };
 };
 
 export default useFloors;

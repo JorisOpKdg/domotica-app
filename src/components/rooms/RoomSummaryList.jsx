@@ -4,7 +4,7 @@ import MusicOn from "./../../assets/images/music-on.png";
 import { useState } from "react";
 import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 
-const RoomSummaryList = ({ room, floorId }) => {
+const RoomSummaryList = ({ room }) => {
   const [backgroundColor, setBackgroundColor] = useState(
     calculateBackgroundColor(room.lighting)
   );
@@ -45,7 +45,7 @@ const RoomSummaryList = ({ room, floorId }) => {
           <Link
             id={room.id}
             className="btn btn-lg btn-block btn-outline-dark mt-3"
-            to={`/room-detail/${floorId}/${room.id}`}
+            to={`/room-detail/${room.id}`}
           >
             Details
           </Link>

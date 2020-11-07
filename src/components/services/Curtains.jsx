@@ -9,18 +9,20 @@ import { createTitle } from "./serviceUtilities";
 import { SchemeContext } from "./../../contexts/SchemeContext";
 import { RoomContext } from "./../../contexts/RoomContext";
 
-const Curtains = () => {
-  const service = "curtains";
-  const title = createTitle(service);
-  const { room, putRoom } = useContext(RoomContext);
-  const { schemes, getSchemes} = useContext(SchemeContext);
+const service = "curtains";
+const title = createTitle(service);
+
+const Curtains = ({ room }) => {
+  const { readSchemesOfRoomWithService } = useContext(SchemeContext);
+  const { updateRoom } = useContext(RoomContext);
+  const [SchemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
 
   useEffect(() => {
-    getSchemes(room.id, service);
-  }, [room.id, service]);
+    setSchemesOfRoomWithService(readSchemesOfRoomWithService(room.id, service));
+  }, [readSchemesOfRoomWithService, room.id]);
 
   const curtainHandler = () => {
-    putRoom((previousRoom) => ({
+    updateRoom((previousRoom) => ({
       ...previousRoom,
       curtains: !previousRoom.curtains,
     }));
@@ -34,11 +36,11 @@ const Curtains = () => {
       />
       <ServiceCardBody>
         <ServiceCardCheckBox clickHandler={curtainHandler} />
-        <ServiceCardNewScheme
-          room={room}
-          service={service}
-        />
-        {schemes && schemes.map((scheme) => <ServiceScheme scheme={scheme} />)}
+        <ServiceCardNewScheme room={room.id} service={service} />
+        {SchemesOfRoomWithService &&
+          SchemesOfRoomWithService.map((scheme) => (
+            <ServiceScheme roomId={room.id} scheme={scheme} />
+          ))}
       </ServiceCardBody>
     </ServiceCard>
   );

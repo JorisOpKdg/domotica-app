@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import RoomSummaryMap from "./RoomSummaryMap";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
-import { useRoomsAndFloor } from "./../../hooks/customHooks";
 import { getBackgroundImage } from "./roomUtilities";
+import { RoomContext } from './../../contexts/RoomContext';
+import { FloorContext } from './../../contexts/FloorContext';
 
 const RoomsMap = (props) => {
   const { floorId } = props.match.params;
-  const { rooms, reloadRooms } = useContect(RoomContext);
-  const { floor, getFloor } = useContext(FloorContext);
+  const { readRoomsOfFloor } = useContext(RoomContext);
+  const { readFloor } = useContext(FloorContext);
+
+  const [RoomsOfFloor, setRoomsOfFloor] = useState([]);
+  const [floor, setFloor] = useState();
 
   useEffect(() => {
-    reloadRooms(floorId);
-    getFloor(floorId);
-  }, [floorId]);
+    setRoomsOfFloor(readRoomsOfFloor(floorId));
+    setFloor(readFloor(floorId));
+  }, [floorId, readFloor, readRoomsOfFloor]);
 
-  if (!(rooms && floor)) return null;
+  if (!(RoomsOfFloor && floor)) return null;
 
   return (
     <div className="container">
@@ -30,11 +34,9 @@ const RoomsMap = (props) => {
           position: "relative",
         }}
       >
-        {rooms.map((room) => (
+        {RoomsOfFloor.map((room) => (
           <RoomSummaryMap
-            absolutePosition={true}
             key={room.id}
-            floorId={floor.id}
             room={room}
           />
         ))}
