@@ -17,10 +17,11 @@ const max = 20;
 const Music = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
-  const [SchemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
+  const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
 
   useEffect(() => {
-    setSchemesOfRoomWithService(readSchemesOfRoomWithService(room.id, service));
+    const schemes = readSchemesOfRoomWithService(room.id.toString(), service);
+    setSchemesOfRoomWithService(schemes);
   }, [readSchemesOfRoomWithService, room.id]);
 
   const musicHandler = (e) => {
@@ -35,10 +36,10 @@ const Music = ({ room }) => {
       <ServiceCardHeader title={title} value={room.music} />
       <ServiceCardBody>
         <ServiceCardSlider clickHandler={musicHandler} min={min} max={max} />
-        <ServiceCardNewScheme room={room.id} service={service} />
-        {SchemesOfRoomWithService &&
-          SchemesOfRoomWithService.map((scheme) => (
-            <ServiceScheme roomId={room.id} scheme={scheme} />
+        <ServiceCardNewScheme roomId={room.id} service={service} />
+        {schemesOfRoomWithService &&
+          schemesOfRoomWithService.map((scheme) => (
+            <ServiceScheme key={scheme.id} roomId={room.id} scheme={scheme} />
           ))}
       </ServiceCardBody>
     </ServiceCard>

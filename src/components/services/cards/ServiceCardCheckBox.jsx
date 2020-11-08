@@ -11,7 +11,7 @@ const ServiceCardCheckBox = ({clickHandler}) => {
             onClick={clickHandler}
             id="curtainSwitch"
           />
-          <label className="custom-control-label" for="curtainSwitch">
+          <label className="custom-control-label" htmlFor="curtainSwitch">
             Aan/Uit
           </label>
         </div>

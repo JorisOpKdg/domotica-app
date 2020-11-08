@@ -5,7 +5,7 @@ import { FloorContext } from "./../../contexts/FloorContext";
 import { RoomContext } from "./../../contexts/RoomContext";
 
 const RoomsList = (props) => {
-  const { floorId } = props.match.params;
+  const floorId = props.match.params.floorId;
   const { readRoomsOfFloor } = useContext(RoomContext);
   const { readFloor } = useContext(FloorContext);
 
@@ -13,11 +13,8 @@ const RoomsList = (props) => {
   const [floor, setFloor] = useState();
 
   useEffect(() => {
-    const nextRooms = readRoomsOfFloor(+floorId);
-    const nextFloor = readFloor(+floorId);
-    // console.log({ nextFloor, nextRooms });
-    setRoomsOfFloor(nextRooms);
-    setFloor(nextFloor);
+    setRoomsOfFloor(readRoomsOfFloor(+floorId));
+    setFloor(readFloor(+floorId));
   }, [floorId, readFloor, readRoomsOfFloor]);
 
   if (!(roomsOfFloor && floor)) return null;
@@ -26,7 +23,7 @@ const RoomsList = (props) => {
     <div className="container">
       <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
 
-      <div className="row">
+      <div className="card-deck">
         {roomsOfFloor.map((room) => (
           <RoomSummaryList
             absolutePosition={false}

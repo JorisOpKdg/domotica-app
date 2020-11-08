@@ -6,7 +6,6 @@ export const RoomContext = createContext();
 const RoomContextProvider = ({ children }) => {
   const {
     rooms,
-    currentRoom,
     loading,
     readAllRooms,
     reloadRooms,
@@ -14,22 +13,19 @@ const RoomContextProvider = ({ children }) => {
     readRoom,
     createRoom,
     updateRoom,
-    instantiateCurrentRoom
   } = useRooms();
 
   return (
     <RoomContext.Provider
       value={{
         rooms,
-    currentRoom,
-    loading,
-    readAllRooms,
-    reloadRooms,
-    readRoomsOfFloor,
-    readRoom,
-    createRoom,
-    updateRoom,
-    instantiateCurrentRoom
+        loading,
+        readAllRooms,
+        reloadRooms,
+        readRoomsOfFloor,
+        readRoom,
+        createRoom,
+        updateRoom,
       }}
     >
       {children}

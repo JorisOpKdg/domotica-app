@@ -5,7 +5,6 @@ import { useInterval } from "./useInterval";
 const useRooms = () => {
   const [loading, setLoading] = useState(false);
   const [rooms, setRooms] = useState([]);
-  const [currentRoom, setCurrentROom] = useState();
 
   const readAllRooms = async () => {
     setLoading(true);
@@ -16,16 +15,11 @@ const useRooms = () => {
   const reloadRooms = () => readAllRooms();
 
   const readRoomsOfFloor = (floorId) => {
-    console.log({ floorId, rooms });
     return rooms.filter((room) => room.floorId === floorId);
   };
 
-  const readRoom = async (roomId) => {
-    return rooms.find((room) => room.id === roomId);
-  };
-
-  const instantiateCurrentRoom = (roomId) => {
-    setCurrentROom(readRoom(roomId));
+  const readRoom = (roomId) => {
+    return rooms.find((room) => room.id === +roomId);
   };
 
   const createRoom = async (room) => {
@@ -48,13 +42,14 @@ const useRooms = () => {
     readAllRooms();
   }, []);
 
+  
   useInterval(() => {
     readAllRooms();
-  }, [2000]);
+  }, [5000]);
+
 
   return {
     rooms,
-    currentRoom,
     loading,
     readAllRooms,
     reloadRooms,
@@ -62,7 +57,6 @@ const useRooms = () => {
     readRoom,
     createRoom,
     updateRoom,
-    instantiateCurrentRoom,
   };
 };
 

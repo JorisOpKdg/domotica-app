@@ -31,29 +31,34 @@ const RoomSummaryMap = ({ room }) => {
       style={{ textDecoration: "none" }}
     >
       <div
-        onChange={backgroundColorHandler}
         style={{
           position: "absolute",
           top: `${room.top}px`,
           left: `${room.left}px`,
           width: `${room.width}px`,
           height: `${room.height}px`,
-          backgroundColor: `${backgroundColor}`,
           border: "black solid",
-          padding: "10px",
+          backgroundColor: "white",
         }}
       >
-        <h4 style={{ color: `${textColor}` }} onChange={textColorHandler}>
-          {room.name}
-        </h4>
-        {room.temperature !== undefined ? (
-          <h4
-            onChange={textColorHandler}
-            style={{ color: textColor }}
-          >{`${room.temperature}°`}</h4>
-        ) : null}
-        <div style={{ backgroundColor: "000" }}>
-          <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
+        <div
+          onChange={backgroundColorHandler}
+          style={{ backgroundColor: `${backgroundColor}`, padding: "10px" }}
+        >
+          <h4 style={{ color: `${textColor}` }} onChange={textColorHandler}>
+            {room.name}
+          </h4>
+        </div>
+        <div style={{ padding: "10px", backgroundColor: "fff" }}>
+          {room.temperature !== undefined ? (
+            <h4 style={{ color: "000" }}>{`${room.temperature}°`}</h4>
+          ) : null}
+          {room.music !== undefined ? (
+            <img
+              src={room.music < 1 ? MusicOff : MusicOn}
+              alt="Music icon"
+            ></img>
+          ) : null}
         </div>
       </div>
     </Link>

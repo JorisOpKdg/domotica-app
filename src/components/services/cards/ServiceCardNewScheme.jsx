@@ -11,7 +11,7 @@ const ServiceCardNewScheme = ({ roomId, service }) => {
         <div className="col-4">
           <Link
             className="btn btn-dark float-right mr-3"
-            to={`/new-smart-scheme?roomId=${roomId}&service=${service}`}
+            to={`/new-service-scheme?roomId=${roomId}&service=${service}`}
           >
             Nieuw
           </Link>

@@ -3,7 +3,7 @@ export const DB_URL = "http://localhost:3001";
 
 
 //TODO
-// Background afb regelen en x,y coordinaten
-// Navbar met bootsrap componenten
-// Authorisatie
-// loader spinner toevoegen
+// bugs met post en delete schemes
+// Settingspage wil de waarde niet instellen in de checkbox en listvieuw veranderd niet
+// RoomsViewNavbar wil geen titel tonen
+

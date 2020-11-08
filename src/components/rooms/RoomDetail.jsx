@@ -4,15 +4,18 @@ import Lighting from "../services/Lighting";
 import Music from "../services/Music";
 import Curtains from "../services/Curtains";
 import { RoomContext } from "./../../contexts/RoomContext";
+import SpinnerPage from "./../layout/SpinnerPage";
 
 const RoomDetail = (props) => {
-  const roomId = props.match.params.roomId;
+  const roomId  = props.match.params.roomId;
   const { readRoom } = useContext(RoomContext);
   const [room, setRoom] = useState();
 
   useEffect(() => {
     setRoom(readRoom(+roomId));
   }, [readRoom, roomId]);
+
+  if (room === undefined) return <SpinnerPage />;
 
   return (
     <div className="container mt-5">

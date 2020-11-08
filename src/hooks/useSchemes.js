@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getSchemes, postScheme, deleteScheme } from "./../api/callSchemes";
 import { useInterval } from './useInterval';
 
-const useSchemes = (roomId, service) => {
+const useSchemes = () => {
   const [loading, setLoading] = useState(false);
   const [schemes, setSchemes] = useState();
 
@@ -40,9 +40,11 @@ const useSchemes = (roomId, service) => {
     readAllSchemes();
   }, []);
 
+  
   useInterval(() => {
     readAllSchemes();
-  }, [2000])
+  }, [5000])
+
 
   return {
     schemes,

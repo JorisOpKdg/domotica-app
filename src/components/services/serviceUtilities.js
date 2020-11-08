@@ -28,7 +28,7 @@ export const getHours = [
 
 export function createValues(min, max) {
   let values = [];
-  for (let i = min; i < max; i++) {
+  for (let i = min; i < max + 1; i++) {
     values.push(i.toString());
   }
   return values;
@@ -56,16 +56,17 @@ export function createTitle(service) {
 }
 
 export function getMinMax(service) {
+  console.log("service in getMinMax function: " + service);
   let minmax;
   switch (service) {
     case "temperature":
-      minmax = {min: 0,max: 30};
+      minmax = {min: 1,max: 30};
       break;
     case "music":
-      minmax = {min: 0, max:  20};
+      minmax = {min: 1, max:  20};
       break;
     case "lighting":
-      minmax = {min: 0, max:  20};
+      minmax = {min: 1, max:  20};
       break;
     default:
       minmax = null;

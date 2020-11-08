@@ -33,10 +33,10 @@
       "description": "Een beschrijving van de wijnkelder.",
       "lighting": 10,
       "music": 10,
-      "top": 450,
-      "left": 245,
-      "width": "180px",
-      "height": "140px"
+      "top": 440,
+      "left": 240,
+      "width": 200,
+      "height": 200
     },
     {
       "id": 12,
@@ -44,10 +44,10 @@
       "name": "Nutskamer",
       "description": "Een beschrijving van de ruimte met boiler, electriciteitsmeter en waterstandmeter.",
       "lighting": 10,
-      "top": 450,
-      "left": 810,
-      "width": "180px",
-      "height": "140px"
+      "top": 330,
+      "left": 787,
+      "width": 300,
+      "height": 300
     },
     {
       "id": 21,
@@ -58,10 +58,10 @@
       "lighting": 0,
       "music": 0,
       "curtains": false,
-      "top": 350,
-      "left": 430,
-      "width": "180px",
-      "height": "140px"
+      "top": 280,
+      "left": 390,
+      "width": 300,
+      "height": 250
     },
     {
       "id": 22,
@@ -73,9 +73,9 @@
       "music": 10,
       "curtains": true,
       "top": 770,
-      "left": 560,
-      "width": "180px",
-      "height": "140px"
+      "left": 570,
+      "width": 150,
+      "height": 155
     },
     {
       "id": 23,
@@ -85,9 +85,9 @@
       "temperature": 20,
       "lighting": 3,
       "top": 620,
-      "left": 260,
-      "width": "180px",
-      "height": "140px"
+      "left": 230,
+      "width": 220,
+      "height": 155
     },
     {
       "id": 24,
@@ -97,10 +97,10 @@
       "temperature": 20,
       "lighting": 20,
       "music": 10,
-      "top": 810,
+      "top": 800,
       "left": 200,
-      "width": "180px",
-      "height": "140px"
+      "width": 180,
+      "height": 155
     },
     {
       "id": 31,
@@ -111,10 +111,10 @@
       "lighting": 3,
       "music": 10,
       "curtains": false,
-      "top": 810,
-      "left": 500,
-      "width": "180px",
-      "height": "140px"
+      "top": 685,
+      "left": 490,
+      "width": 300,
+      "height": 300
     },
     {
       "id": 32,
@@ -125,10 +125,10 @@
       "lighting": 6,
       "music": 10,
       "curtains": false,
-      "top": 300,
-      "left": 150,
-      "width": "180px",
-      "height": "140px"
+      "top": 240,
+      "left": 130,
+      "width": 220,
+      "height": 200
     },
     {
       "id": 33,
@@ -141,8 +141,8 @@
       "curtains": false,
       "top": 750,
       "left": 200,
-      "width": "180px",
-      "height": "140px"
+      "width": 160,
+      "height": 155
     },
     {
       "id": 34,
@@ -153,9 +153,9 @@
       "lighting": 20,
       "music": 10,
       "top": 480,
-      "left": 230,
-      "width": "180px",
-      "height": "140px"
+      "left": 242,
+      "width": 150,
+      "height": 155
     },
     {
       "id": 41,
@@ -164,16 +164,16 @@
       "description": "Een beschrijving van de zolder",
       "lighting": 10,
       "music": 10,
-      "top": 380,
-      "left": 530,
-      "width": "180px",
-      "height": "140px"
+      "top": 323,
+      "left": 353,
+      "width": 400,
+      "height": 200
     }
   ],
   "schemes": [
     {
       "id": 1,
-      "roomid": "22",
+      "roomId": "22",
       "service": "curtains",
       "amount": "Open",
       "start": "14:00",
@@ -194,6 +194,149 @@
       "amount": "15",
       "start": "14:00",
       "end": "20:00"
+    },
+    {
+      "roomId": "41",
+      "service": "lighting",
+      "amount": 0,
+      "start": "14:00",
+      "end": "14:00",
+      "id": 4
+    },
+    {
+      "roomId": "21",
+      "service": "temperature",
+      "amount": 0,
+      "start": "13:00",
+      "end": "12:00",
+      "id": 5
+    },
+    {
+      "roomId": "21",
+      "service": "temperature",
+      "amount": 0,
+      "start": "12:00",
+      "end": "18:00",
+      "id": 6
+    },
+    {
+      "roomId": "21",
+      "service": "temperature",
+      "amount": 0,
+      "start": "15:00",
+      "end": "16:00",
+      "id": 7
+    },
+    {
+      "roomId": "21",
+      "service": "temperature",
+      "amount": 0,
+      "start": "14:00",
+      "end": "",
+      "id": 8
+    },
+    {
+      "roomId": "21",
+      "service": "temperature",
+      "amount": 0,
+      "start": "10:00",
+      "end": "09:00",
+      "id": 9
+    },
+    {
+      "roomId": "11",
+      "service": "lighting",
+      "amount": 0,
+      "start": "14:00",
+      "end": "10:00",
+      "id": 10
+    },
+    {
+      "roomId": "11",
+      "service": "lighting",
+      "amount": 0,
+      "start": "13:00",
+      "end": "17:00",
+      "id": 11
+    },
+    {
+      "roomId": "41",
+      "service": "lighting",
+      "amount": 0,
+      "start": "16:00",
+      "end": "15:00",
+      "id": 12
+    },
+    {
+      "roomId": "21",
+      "service": "temperature",
+      "amount": "18",
+      "start": "13:00",
+      "end": "10:00",
+      "id": 13
+    },
+    {
+      "roomId": "11",
+      "service": "lighting",
+      "amount": "14",
+      "start": "11:00",
+      "end": "13:00",
+      "id": 14
+    },
+    {
+      "roomId": "11",
+      "service": "lighting",
+      "amount": "13",
+      "start": "13:00",
+      "end": "14:00",
+      "id": 15
+    },
+    {
+      "roomId": "11",
+      "service": "lighting",
+      "amount": "16",
+      "start": "09:00",
+      "end": "13:00",
+      "id": 16
+    },
+    {
+      "roomId": "22",
+      "service": "temperature",
+      "amount": "11",
+      "start": "08:00",
+      "end": "11:00",
+      "id": 17
+    },
+    {
+      "roomId": "22",
+      "service": "curtains",
+      "amount": 0,
+      "start": "",
+      "end": "",
+      "id": 18
+    },
+    {
+      "roomId": "11",
+      "service": "lighting",
+      "amount": "14",
+      "start": "15:00",
+      "end": "14:00",
+      "id": 19
+    },
+    {
+      "roomId": "11",
+      "service": "lighting",
+      "amount": "17",
+      "start": "13:00",
+      "end": "17:00",
+      "id": 20
+    },
+    {
+      "roomId": "22",
+      "amount": "Dicht",
+      "start": "14:00",
+      "end": "14:00",
+      "id": 21
     }
   ]
 }

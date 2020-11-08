@@ -2,11 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import RoomSummaryMap from "./RoomSummaryMap";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 import { getBackgroundImage } from "./roomUtilities";
-import { RoomContext } from './../../contexts/RoomContext';
-import { FloorContext } from './../../contexts/FloorContext';
+import { RoomContext } from "./../../contexts/RoomContext";
+import { FloorContext } from "./../../contexts/FloorContext";
 
 const RoomsMap = (props) => {
-  const { floorId } = props.match.params;
+  const floorId = props.match.params.floorId;
   const { readRoomsOfFloor } = useContext(RoomContext);
   const { readFloor } = useContext(FloorContext);
 
@@ -35,10 +35,7 @@ const RoomsMap = (props) => {
         }}
       >
         {RoomsOfFloor.map((room) => (
-          <RoomSummaryMap
-            key={room.id}
-            room={room}
-          />
+          <RoomSummaryMap key={room.id} room={room} />
         ))}
       </div>
     </div>

@@ -11,8 +11,8 @@ import {
 } from "./../serviceUtilities";
 
 const NewServiceScheme = ({ location }) => {
-  const params = QueryString.parse(location.search);
   const history = useHistory();
+  const params = QueryString.parse(location.search);
   const { createScheme } = useContext(SchemeContext);
 
   const [configInfo, setConfigInfo] = useState({
@@ -29,17 +29,20 @@ const NewServiceScheme = ({ location }) => {
   });
 
   useEffect(() => {
-    const minmax = getMinMax(scheme.service);
+    console.log("Service in UseEffect: " + params.service)
+    const minmax = getMinMax(params.service);
+    console.log("minmax: " + minmax);
     const hours = getHours;
     let values;
 
     if (minmax !== null) {
-      values = createValues(minmax[0], minmax[1]);
+      values = createValues(minmax.min, minmax.max);
     } else {
       values = ["Open", "Dicht"];
     }
+    console.log("values: " + values);
     setConfigInfo({ hours, values });
-  }, [scheme.service]);
+  }, [params.service]);
 
   const valueHandler = (e) => {
     setScheme({ ...scheme, amount: e.target.value });
@@ -55,13 +58,12 @@ const NewServiceScheme = ({ location }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    createScheme(scheme);
-    history.push(`/room-detail/${scheme.roomid}`);
+    createScheme(scheme).then(history.push(`/room-detail/${params.roomId}`));
   };
 
   return (
     <div className="container">
-      <h1 className="mt-5">{scheme && createTitle(scheme.service)}</h1>
+      <h1 className="mt-5">{scheme && createTitle(params.service)}</h1>
       <h2 className="mb-5">Maak een nieuw slim schema</h2>
       <form onSubmit={submitHandler}>
         <div className="form-row">
