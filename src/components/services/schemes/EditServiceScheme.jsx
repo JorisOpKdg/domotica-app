@@ -1,30 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
-import * as QueryString from "query-string";
 import { useHistory } from "react-router-dom";
 import FormElement from "./FormElement";
 import { SchemeContext } from "./../../../contexts/SchemeContext";
 import { getConfigInfo, createTitle } from "./../serviceUtilities";
 
-const NewServiceScheme = ({ location }) => {
+const EditServiceScheme = (props) => {
+  const schemeId = props.match.params.schemeId;
   const history = useHistory();
-  const params = QueryString.parse(location.search);
-  const { createScheme } = useContext(SchemeContext);
+  const { readScheme, updateScheme } = useContext(SchemeContext);
 
+  const [scheme, setScheme] = useState();
   const [configInfo, setConfigInfo] = useState();
 
-  const [scheme, setScheme] = useState({
-    roomId: params.roomId,
-    service: params.service,
-    amount: 0,
-    start: "",
-    end: "",
-  });
-
   useEffect(() => {
-    const newConfig = getConfigInfo(params.service);
-    console.log("configinfo in New Service Scheme: " + newConfig)
-    setConfigInfo(newConfig);
-  }, [params.service]);
+    const newScheme = readScheme(schemeId);
+    console.log("opgeladen scheme" + newScheme);
+    setScheme(newScheme);
+    setConfigInfo(getConfigInfo(newScheme.service));
+  }, [readScheme, schemeId]);
 
   const valueHandler = (e) => {
     setScheme({ ...scheme, amount: e.target.value });
@@ -40,34 +33,34 @@ const NewServiceScheme = ({ location }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    createScheme(scheme).then(history.push(`/room-detail/${params.roomId}`));
+    updateScheme(scheme).then(history.push(`/room-detail/${scheme.roomId}`));
   };
 
   return (
     <div className="container">
-      <h1 className="mt-5">{scheme && createTitle(params.service)}</h1>
-      <h2 className="mb-5">Maak een nieuw slim schema</h2>
+      <h1 className="mt-5">{scheme && createTitle(scheme.service)}</h1>
+      <h2 className="mb-5">Pas je slim schema aan</h2>
       <form onSubmit={submitHandler}>
         <div className="form-row">
           <FormElement
             title="Start:"
             changeHandler={startHandler}
             optionValues={configInfo && configInfo.hours}
-            value={scheme.start}
+            value={scheme && scheme.start}
             type="start"
           />
           <FormElement
             title="Einde:"
             changeHandler={endHandler}
             optionValues={configInfo && configInfo.hours}
-            value={scheme.end}
+            value={scheme && scheme.end}
             type="end"
           />
           <FormElement
             title="Hoeveelheid:"
             changeHandler={valueHandler}
             optionValues={configInfo && configInfo.values}
-            value={scheme.amount}
+            value={scheme && scheme.amount}
             type="amount"
           />
         </div>
@@ -83,4 +76,4 @@ const NewServiceScheme = ({ location }) => {
   );
 };
 
-export default NewServiceScheme;
+export default EditServiceScheme;

@@ -25,7 +25,7 @@ const useFloors = () => {
   
   useInterval(() => {
     readAllFloors();
-  }, [5000]);
+  }, [2000]);
   
 
   return { floors, loading, readAllFloors, reloadFloors, readFloor };

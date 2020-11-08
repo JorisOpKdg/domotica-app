@@ -1,16 +1,17 @@
 import React, { createContext } from "react";
-import useSchemes from './../hooks/useSchemes';
+import useSchemes from "./../hooks/useSchemes";
 
 export const SchemeContext = createContext();
 
 const SchemeContextProvider = ({ children }) => {
   const {
     schemes,
-    loading,
     readAllSchemes,
     reloadSchemes,
     readSchemesOfRoomWithService,
+    readScheme,
     createScheme,
+    updateScheme,
     removeScheme,
   } = useSchemes();
 
@@ -18,11 +19,12 @@ const SchemeContextProvider = ({ children }) => {
     <SchemeContext.Provider
       value={{
         schemes,
-        loading,
         readAllSchemes,
         reloadSchemes,
         readSchemesOfRoomWithService,
+        readScheme,
         createScheme,
+        updateScheme,
         removeScheme,
       }}
     >

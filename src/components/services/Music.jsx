@@ -25,10 +25,10 @@ const Music = ({ room }) => {
   }, [readSchemesOfRoomWithService, room.id]);
 
   const musicHandler = (e) => {
-    updateRoom((previousRoom) => ({
-      ...previousRoom,
-      Lighting: e.target.value,
-    }));
+    updateRoom({
+      ...room,
+      music: e.target.value,
+    });
   };
 
   return (

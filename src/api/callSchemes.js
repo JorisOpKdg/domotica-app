@@ -15,15 +15,8 @@ export async function getSchemes() {
 }
 
 export async function postScheme(scheme) {
-  const { roomId, service, amount, start, end } = scheme;
   try {
-    const response = await axios.post(`${DB_URL}/schemes`, {
-      roomId,
-      service,
-      amount,
-      start,
-      end,
-    });
+    const response = await axios.post(`${DB_URL}/schemes`, scheme);
     if (response.status >= 200 && response.status <= 299) {
       return response.data;
     } else {
@@ -31,6 +24,19 @@ export async function postScheme(scheme) {
     }
   } catch (error) {
     console.error("Could not create new todo:" + error);
+  }
+}
+
+export async function putScheme(id, ...scheme) {
+  try {
+    const response = await axios.put(`${DB_URL}/schemes/${id}`, scheme);
+    if (response.status >= 200 && response.status <= 299) {
+      return response.data;
+    } else {
+      throw Error(response.statusText);
+    }
+  } catch (error) {
+    console.error("Could not update scheme:" + error);
   }
 }
 

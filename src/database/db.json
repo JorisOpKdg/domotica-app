@@ -4,25 +4,40 @@
       "id": 1,
       "name": "Kelder",
       "image": "/images/kelder.jpg",
-      "rooms": [11, 12]
+      "rooms": [
+        11,
+        12
+      ]
     },
     {
       "id": 2,
       "name": "Gelijkvloers",
       "image": "/images/gelijkvloers.jpg",
-      "rooms": [21, 22, 23, 24]
+      "rooms": [
+        21,
+        22,
+        23,
+        24
+      ]
     },
     {
       "id": 3,
       "name": "1e verdiep",
       "image": "/images/eerste-verdiep.jpg",
-      "rooms": [31, 32, 33, 34]
+      "rooms": [
+        31,
+        32,
+        33,
+        34
+      ]
     },
     {
       "id": 4,
       "name": "Zolder",
       "image": "/images/zolder.jpg",
-      "rooms": [41]
+      "rooms": [
+        41
+      ]
     }
   ],
   "rooms": [
@@ -78,16 +93,16 @@
       "height": 155
     },
     {
-      "id": 23,
       "floorId": 2,
       "name": "Gang",
       "description": "Een beschrijving van de gang",
-      "temperature": 20,
-      "lighting": 3,
+      "temperature": "23",
+      "lighting": "19",
       "top": 620,
       "left": 230,
       "width": 220,
-      "height": 155
+      "height": 155,
+      "id": 23
     },
     {
       "id": 24,
@@ -96,7 +111,6 @@
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
       "lighting": 20,
-      "music": 10,
       "top": 800,
       "left": 200,
       "width": 180,
@@ -145,17 +159,16 @@
       "height": 155
     },
     {
-      "id": 34,
       "floorId": 3,
       "name": "Toilet",
       "description": "Een beschrijving van de gasten toilet",
       "temperature": 20,
-      "lighting": 20,
-      "music": 10,
+      "lighting": "22",
       "top": 480,
       "left": 242,
       "width": 150,
-      "height": 155
+      "height": 155,
+      "id": 34
     },
     {
       "id": 41,
@@ -180,68 +193,12 @@
       "end": "09:00"
     },
     {
-      "id": 2,
       "roomId": "21",
       "service": "temperature",
-      "amount": "10",
-      "start": "12:00",
-      "end": "15:00"
-    },
-    {
-      "id": 3,
-      "roomId": "22",
-      "service": "temperature",
-      "amount": "15",
-      "start": "14:00",
-      "end": "20:00"
-    },
-    {
-      "roomId": "41",
-      "service": "lighting",
-      "amount": 0,
-      "start": "14:00",
-      "end": "14:00",
-      "id": 4
-    },
-    {
-      "roomId": "21",
-      "service": "temperature",
-      "amount": 0,
+      "amount": "8",
       "start": "13:00",
       "end": "12:00",
       "id": 5
-    },
-    {
-      "roomId": "21",
-      "service": "temperature",
-      "amount": 0,
-      "start": "12:00",
-      "end": "18:00",
-      "id": 6
-    },
-    {
-      "roomId": "21",
-      "service": "temperature",
-      "amount": 0,
-      "start": "15:00",
-      "end": "16:00",
-      "id": 7
-    },
-    {
-      "roomId": "21",
-      "service": "temperature",
-      "amount": 0,
-      "start": "14:00",
-      "end": "",
-      "id": 8
-    },
-    {
-      "roomId": "21",
-      "service": "temperature",
-      "amount": 0,
-      "start": "10:00",
-      "end": "09:00",
-      "id": 9
     },
     {
       "roomId": "11",
@@ -258,14 +215,6 @@
       "start": "13:00",
       "end": "17:00",
       "id": 11
-    },
-    {
-      "roomId": "41",
-      "service": "lighting",
-      "amount": 0,
-      "start": "16:00",
-      "end": "15:00",
-      "id": 12
     },
     {
       "roomId": "21",
@@ -337,6 +286,14 @@
       "start": "14:00",
       "end": "14:00",
       "id": 21
+    },
+    {
+      "roomId": "23",
+      "service": "temperature",
+      "amount": "11",
+      "start": "08:00",
+      "end": "04:00",
+      "id": 22
     }
   ]
 }

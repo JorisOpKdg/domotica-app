@@ -14,7 +14,7 @@ const StartPage = () => {
               <div className="col-md-6 col-lg-3">
                 <div className="card mb-3 shadow-sm">
                   <img
-                    class="card-img-top"
+                    className="card-img-top"
                     src={floor.image}
                     alt="Card cap"
                   ></img>

@@ -1,0 +1,128 @@
+import React, { Component } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import DarkLogo from "./../../assets/logo/logo-dark.png";
+import LightLogo from "./../../assets/logo/logo-light.png";
+import { getFloors } from "../../api/callFloors";
+
+// Dit is een voorbeeld van een class component zonder hooks
+class Menu extends Component {
+  static contextType = ThemeContext;
+
+  state = {
+    floors: [],
+  };
+
+  componentDidMount() {
+    getFloors().then((floors) => this.setState({ floors: floors }));
+  }
+
+  render() {
+    const { isLightTheme, light, dark } = this.context;
+    const theme = isLightTheme ? light : dark;
+
+    return (
+      <Navbar
+        bg={theme.bg}
+        variant={theme.nav}
+        expand="lg"
+        className="p-3 mb-3  border-bottom shadow-sm"
+      >
+        <Navbar.Brand className="ml-3" href="/">
+          <img
+            id="logo"
+            src={isLightTheme ? DarkLogo : LightLogo}
+            alt="Logo"
+          ></img>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarSupportedContent" />
+        <Navbar.Collapse id="navbarSupportedContent">
+          <Nav className="mr-auto">
+            {this.state.floors &&
+              this.state.floors.map((floor) => (
+                <li className="nav-item">
+                  <Nav.Link
+                    key={floor.id}
+                    className="nav-link"
+                    href={`/rooms-list/${floor.id}`}
+                  >
+                    {floor.name}
+                  </Nav.Link>
+                </li>
+              ))}
+            <Nav.Link
+              id="instellingen-nav"
+              className="nav-link"
+              href="/settings/"
+            >
+              Instellingen
+            </Nav.Link>
+          </Nav>
+          <Form inline>
+            <Button
+              variant={`outline-${theme.btn}`}
+              className="mr-3 my-2 my-sm-0"
+            >
+              Inloggen
+            </Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
+}
+
+export default Menu;
+
+/*
+ <nav
+        className={`navbar navbar-expand-lg navbar-${theme.nav} bg-${theme.bg} p-3 mb-3  border-bottom shadow-sm`}
+      >
+        <Link key="navbar-logo" className="navbar-brand ml-3" to="/">
+          <img
+            id="logo"
+            src={isLightTheme ? DarkLogo : LightLogo}
+            alt="Logo"
+          ></img>
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            {this.state.floors &&
+              this.state.floors.map((floor) => (
+                <li className="nav-item">
+                  <Link
+                    key={floor.id}
+                    className="nav-link"
+                    to={`/rooms-list/${floor.id}`}
+                  >
+                    {floor.name}
+                  </Link>
+                </li>
+              ))}
+            <li>
+              <Link id="instellingen-nav" className="nav-link" to="/settings/">
+                Instellingen
+              </Link>
+            </li>
+          </ul>
+          <button className="btn btn-outline-light mr-3 my-2 my-sm-0" type="submit">
+            Inloggen
+          </button>
+        </div>
+      </nav>
+      */

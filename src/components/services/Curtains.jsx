@@ -23,10 +23,10 @@ const Curtains = ({ room }) => {
   }, [readSchemesOfRoomWithService, room.id]);
 
   const curtainHandler = () => {
-    updateRoom((previousRoom) => ({
-      ...previousRoom,
-      curtains: !previousRoom.curtains,
-    }));
+    updateRoom({
+      ...room,
+      curtains: !room.curtains,
+    });
   };
 
   return (

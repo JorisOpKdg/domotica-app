@@ -28,7 +28,7 @@ const Settings = () => {
             className="custom-control-input"
             id="darkSwitch"
             onClick={toggleTheme}
-            value={isLightTheme}
+            checked={isLightTheme}
           />
           <label className="custom-control-label" htmlFor="darkSwitch">
             Light Mode
@@ -43,10 +43,10 @@ const Settings = () => {
             className="custom-control-input"
             id="tempSwitch"
             onClick={toggleTemperature}
-            value={isLightTheme}
+            checked={showTemperature}
           />
           <label className="custom-control-label" htmlFor="tempSwitch">
-            Verberg temperatuur
+            Toon temperatuur
           </label>
         </div>
       </form>
@@ -57,10 +57,10 @@ const Settings = () => {
             className="custom-control-input"
             id="musicSwitch"
             onClick={toggleMusic}
-            value={showMusic}
+            checked={showMusic}
           />
           <label className="custom-control-label" htmlFor="musicSwitch">
-            Verberg muziek
+            Toon muziek
           </label>
         </div>
       </form>

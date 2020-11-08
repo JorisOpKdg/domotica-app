@@ -28,7 +28,7 @@ const RoomSummaryList = ({ room }) => {
   return (
     <div
       className="card mb-3 shadow-sm text-center"
-      style={{ maxWidth: "16rem" , minWidth: "14rem"}}
+      style={{ maxWidth: "16rem", minWidth: "14rem" }}
     >
       <div
         className="card-header"
@@ -36,7 +36,7 @@ const RoomSummaryList = ({ room }) => {
         onChange={backgroundColorHandler}
       >
         <h4
-          style={{ color: `${textColor}`, fontSize: fontSize }}
+          style={{ color: `${textColor}`, fontSize: `${fontSize}px` }}
           onChange={textColorHandler}
         >
           {room.name}
@@ -45,14 +45,16 @@ const RoomSummaryList = ({ room }) => {
 
       <div className="card-body">
         {room.temperature !== undefined && showTemperature ? (
-          <h4 style={{ fontSize: fontSize }}>{`${room.temperature}°`}</h4>
+          <h4
+            style={{ fontSize: `${fontSize}px` }}
+          >{`${room.temperature}°`}</h4>
         ) : null}
 
         {room.music !== undefined && showMusic ? (
           <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
         ) : null}
       </div>
-      
+
       <div className="card-footer">
         <Link
           id={room.id}

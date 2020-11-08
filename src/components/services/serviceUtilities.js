@@ -60,16 +60,30 @@ export function getMinMax(service) {
   let minmax;
   switch (service) {
     case "temperature":
-      minmax = {min: 1,max: 30};
+      minmax = { min: 1, max: 30 };
       break;
     case "music":
-      minmax = {min: 1, max:  20};
+      minmax = { min: 1, max: 20 };
       break;
     case "lighting":
-      minmax = {min: 1, max:  20};
+      minmax = { min: 1, max: 20 };
       break;
     default:
       minmax = null;
   }
   return minmax;
+}
+
+export function getConfigInfo(service) {
+  const minmax = getMinMax(service);
+  const hours = getHours;
+  let values;
+
+  if (minmax !== null) {
+    values = createValues(minmax.min, minmax.max);
+  } else {
+    values = ["Open", "Dicht"];
+  }
+
+  return { hours, values };
 }

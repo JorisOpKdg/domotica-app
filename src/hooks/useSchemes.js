@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
-import { getSchemes, postScheme, deleteScheme } from "./../api/callSchemes";
-import { useInterval } from './useInterval';
+import { getSchemes, putScheme, postScheme, deleteScheme } from "./../api/callSchemes";
+import { useInterval } from "./useInterval";
 
 const useSchemes = () => {
-  const [loading, setLoading] = useState(false);
   const [schemes, setSchemes] = useState();
 
   const readAllSchemes = async () => {
-    setLoading(true);
     getSchemes().then((response) => setSchemes(response));
-    setLoading(false);
   };
 
   const reloadSchemes = () => readAllSchemes();
@@ -20,39 +17,42 @@ const useSchemes = () => {
     );
   };
 
+  const readScheme = (schemeId) => {
+    return schemes.find((scheme) => scheme.id === +schemeId);
+  };
+
   const createScheme = async (scheme) => {
-    setLoading(true);
     postScheme(scheme).then((response) =>
       setSchemes((previousSchemes) => [...previousSchemes, response])
     );
-    setLoading(false);
   };
 
-  const removeScheme = async (scheme) => {
-    setLoading(true);
-    deleteScheme(scheme).then((response) =>
-      console.log("scheme succesfully deleted: " + response)
+  const updateScheme = async (scheme) => {
+    putScheme(scheme).then((scheme) =>
+      setSchemes((previousSchemes) => [...previousSchemes, scheme])
     );
-    setLoading(false);
+  };
+
+  const removeScheme = async (schemeId) => {
+    deleteScheme(schemeId).then(() => reloadSchemes());
   };
 
   useEffect(() => {
     readAllSchemes();
   }, []);
 
-  
   useInterval(() => {
     readAllSchemes();
-  }, [5000])
-
+  }, [2000]);
 
   return {
     schemes,
-    loading,
     readAllSchemes,
     reloadSchemes,
     readSchemesOfRoomWithService,
+    readScheme,
     createScheme,
+    updateScheme,
     removeScheme,
   };
 };

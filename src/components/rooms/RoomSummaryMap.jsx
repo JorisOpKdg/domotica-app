@@ -37,13 +37,19 @@ const RoomSummaryMap = ({ room }) => {
           left: `${room.left}px`,
           width: `${room.width}px`,
           height: `${room.height}px`,
-          border: "black solid",
           backgroundColor: "white",
+          boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+          borderRadius: "15px",
         }}
       >
         <div
           onChange={backgroundColorHandler}
-          style={{ backgroundColor: `${backgroundColor}`, padding: "10px" }}
+          style={{
+            backgroundColor: `${backgroundColor}`,
+            padding: "10px",
+            borderRadius: "15px 15px 0 0",
+          }}
         >
           <h4 style={{ color: `${textColor}` }} onChange={textColorHandler}>
             {room.name}

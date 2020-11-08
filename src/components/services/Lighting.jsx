@@ -25,10 +25,10 @@ const Lighting = ({ room }) => {
   }, [readSchemesOfRoomWithService, room.id]);
 
   const lightingHandler = (e) => {
-    updateRoom((previousRoom) => ({
-      ...previousRoom,
-      Lighting: e.target.value,
-    }));
+    updateRoom({
+      ...room,
+      lighting: e.target.value,
+    });
   };
 
   return (

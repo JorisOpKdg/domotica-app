@@ -22,7 +22,7 @@ const RoomsMap = (props) => {
 
   return (
     <div className="container">
-      <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
+      <RoomsViewNavbar floorId={floor.id} floorName={floor.name} />
 
       <div
         style={{

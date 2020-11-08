@@ -14,17 +14,10 @@ export async function getRooms() {
   }
 }
 
+/*
 export async function postRoom(room) {
-  const { name, description, temperature, lighting, music, curtains } = room;
   try {
-    const response = await axios.post(`${DB_URL}/rooms`, {
-      name,
-      description,
-      temperature,
-      lighting,
-      music,
-      curtains,
-    });
+    const response = await axios.post(`${DB_URL}/rooms`, room);
     if (response.status >= 200 && response.status <= 299) {
       return response.data;
     } else {
@@ -34,18 +27,11 @@ export async function postRoom(room) {
     console.error("Could not post room:" + error);
   }
 }
+*/
 
-export async function putRoom(room) {
-  const { name, description, temperature, lighting, music, curtains } = room;
+export async function putRoom({ id, ...room }) {
   try {
-    const response = await axios.put(`${DB_URL}/rooms/${room.id}`, {
-      name,
-      description,
-      temperature,
-      lighting,
-      music,
-      curtains,
-    });
+    const response = await axios.put(`${DB_URL}/rooms/${id}`, room);
     if (response.status >= 200 && response.status <= 299) {
       return response.data;
     } else {

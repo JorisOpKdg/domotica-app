@@ -15,6 +15,7 @@ const useRooms = () => {
   const reloadRooms = () => readAllRooms();
 
   const readRoomsOfFloor = (floorId) => {
+    console.log({ rooms, floorId });
     return rooms.filter((room) => room.floorId === floorId);
   };
 
@@ -22,6 +23,7 @@ const useRooms = () => {
     return rooms.find((room) => room.id === +roomId);
   };
 
+  /*
   const createRoom = async (room) => {
     setLoading(true);
     postRoom(room).then((room) =>
@@ -29,6 +31,7 @@ const useRooms = () => {
     );
     setLoading(false);
   };
+  */
 
   const updateRoom = async (room) => {
     setLoading(true);
@@ -42,11 +45,9 @@ const useRooms = () => {
     readAllRooms();
   }, []);
 
-  
   useInterval(() => {
     readAllRooms();
-  }, [5000]);
-
+  }, [2000]);
 
   return {
     rooms,
@@ -55,7 +56,6 @@ const useRooms = () => {
     reloadRooms,
     readRoomsOfFloor,
     readRoom,
-    createRoom,
     updateRoom,
   };
 };

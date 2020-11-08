@@ -25,10 +25,10 @@ const Temperature = ({ room }) => {
   }, [readSchemesOfRoomWithService, room.id]);
 
   const temperatureHandler = (e) => {
-    updateRoom((previousRoom) => ({
-      ...previousRoom,
-      Lighting: e.target.value,
-    }));
+    updateRoom({
+      ...room,
+      temperature: e.target.value,
+    });
   };
 
   return (

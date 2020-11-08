@@ -11,7 +11,6 @@ const RoomContextProvider = ({ children }) => {
     reloadRooms,
     readRoomsOfFloor,
     readRoom,
-    createRoom,
     updateRoom,
   } = useRooms();
 
@@ -24,7 +23,6 @@ const RoomContextProvider = ({ children }) => {
         reloadRooms,
         readRoomsOfFloor,
         readRoom,
-        createRoom,
         updateRoom,
       }}
     >

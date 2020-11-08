@@ -21,7 +21,7 @@ const RoomsList = (props) => {
 
   return (
     <div className="container">
-      <RoomsViewNavbar floorId={floor.id} floorName={floor.floorName} />
+      <RoomsViewNavbar floorId={floor.id} floorName={floor.name} />
 
       <div className="card-deck">
         {roomsOfFloor.map((room) => (
