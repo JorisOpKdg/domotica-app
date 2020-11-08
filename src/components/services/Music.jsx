@@ -31,6 +31,8 @@ const Music = ({ room }) => {
     });
   };
 
+  if (!schemesOfRoomWithService) return null; 
+  
   return (
     <ServiceCard>
       <ServiceCardHeader title={title} value={room.music} />

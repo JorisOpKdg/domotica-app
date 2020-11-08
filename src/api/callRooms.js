@@ -14,21 +14,6 @@ export async function getRooms() {
   }
 }
 
-/*
-export async function postRoom(room) {
-  try {
-    const response = await axios.post(`${DB_URL}/rooms`, room);
-    if (response.status >= 200 && response.status <= 299) {
-      return response.data;
-    } else {
-      throw Error(response.statusText);
-    }
-  } catch (error) {
-    console.error("Could not post room:" + error);
-  }
-}
-*/
-
 export async function putRoom({ id, ...room }) {
   try {
     const response = await axios.put(`${DB_URL}/rooms/${id}`, room);

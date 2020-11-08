@@ -3,13 +3,10 @@ import { getRooms, putRoom } from "./../api/callRooms";
 import { useInterval } from "./useInterval";
 
 const useRooms = () => {
-  const [loading, setLoading] = useState(false);
   const [rooms, setRooms] = useState([]);
 
   const readAllRooms = async () => {
-    setLoading(true);
     getRooms().then((rooms) => setRooms(rooms));
-    setLoading(false);
   };
 
   const reloadRooms = () => readAllRooms();
@@ -34,11 +31,9 @@ const useRooms = () => {
   */
 
   const updateRoom = async (room) => {
-    setLoading(true);
     putRoom(room).then((room) =>
       setRooms((previousRooms) => [...previousRooms, room])
     );
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -51,7 +46,6 @@ const useRooms = () => {
 
   return {
     rooms,
-    loading,
     readAllRooms,
     reloadRooms,
     readRoomsOfFloor,

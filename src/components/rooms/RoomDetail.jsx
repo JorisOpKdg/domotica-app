@@ -15,7 +15,7 @@ const RoomDetail = (props) => {
     setRoom(readRoom(+roomId));
   }, [readRoom, roomId]);
 
-  if (room === undefined) return <SpinnerPage />;
+  if (room === undefined) return null;
 
   return (
     <div className="container mt-5">

@@ -14,7 +14,6 @@ const EditServiceScheme = (props) => {
 
   useEffect(() => {
     const newScheme = readScheme(schemeId);
-    console.log("opgeladen scheme" + newScheme);
     setScheme(newScheme);
     setConfigInfo(getConfigInfo(newScheme.service));
   }, [readScheme, schemeId]);

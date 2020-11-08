@@ -29,6 +29,8 @@ const Curtains = ({ room }) => {
     });
   };
 
+  if (!schemesOfRoomWithService) return null;  
+  
   return (
     <ServiceCard>
       <ServiceCardHeader

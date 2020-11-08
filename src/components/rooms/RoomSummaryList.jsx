@@ -63,6 +63,8 @@ const RoomSummaryList = ({ roomId }) => {
     });
   };
 
+  if (!room) return null;
+
   return (
     <div className="col-md-6">
       <div

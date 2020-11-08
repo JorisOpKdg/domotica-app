@@ -31,6 +31,8 @@ const Temperature = ({ room }) => {
     });
   };
 
+  if (!schemesOfRoomWithService) return null; 
+  
   return (
     <ServiceCard>
       <ServiceCardHeader title={title} value={room.temperature} />
