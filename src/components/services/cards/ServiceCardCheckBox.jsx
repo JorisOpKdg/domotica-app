@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServiceCardCheckBox = ({clickHandler}) => {
+const ServiceCardCheckBox = ({clickHandler, checkedValue}) => {
   return (
     <li className="list-group-item py-4">
       <form className="form-right my-2 my-lg-0 col-12">
@@ -10,6 +10,7 @@ const ServiceCardCheckBox = ({clickHandler}) => {
             className="custom-control-input"
             onClick={clickHandler}
             id="curtainSwitch"
+            checked={checkedValue}
           />
           <label className="custom-control-label" htmlFor="curtainSwitch">
             Aan/Uit

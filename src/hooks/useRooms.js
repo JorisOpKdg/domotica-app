@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRooms, postRoom, putRoom } from "./../api/callRooms";
+import { getRooms, putRoom } from "./../api/callRooms";
 import { useInterval } from "./useInterval";
 
 const useRooms = () => {

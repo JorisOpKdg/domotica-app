@@ -36,7 +36,7 @@ const Curtains = ({ room }) => {
         value={room.curtains ? "Open" : "Dicht"}
       />
       <ServiceCardBody>
-        <ServiceCardCheckBox clickHandler={curtainHandler} />
+        <ServiceCardCheckBox clickHandler={curtainHandler} checkedValue={room.curtains}/>
         <ServiceCardNewScheme roomId={room.id} service={service} />
         {schemesOfRoomWithService &&
           schemesOfRoomWithService.map((scheme) => (

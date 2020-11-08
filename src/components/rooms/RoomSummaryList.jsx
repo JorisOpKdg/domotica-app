@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
+import RangeSlider from "react-bootstrap-range-slider";
 import MusicOff from "./../../assets/images/music-off.png";
 import MusicOn from "./../../assets/images/music-on.png";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 import { ThemeContext } from "./../../contexts/ThemeContext";
+import { RoomContext } from "./../../contexts/RoomContext";
+import RoomsListSlider from "./RoomsListSlider";
 
-const RoomSummaryList = ({ room }) => {
+const RoomSummaryList = ({ roomId }) => {
   const { fontSize, showTemperature, showMusic } = useContext(ThemeContext);
+  const { readRoom, updateRoom } = useContext(RoomContext);
+
+  const [room, setRoom] = useState();
+
+  useEffect(() => {
+    setRoom(readRoom(roomId));
+  }, [readRoom, roomId]);
 
   const [backgroundColor, setBackgroundColor] = useState(
     calculateBackgroundColor(room.lighting)
@@ -25,44 +35,122 @@ const RoomSummaryList = ({ room }) => {
     setTextColor({ color: calculateTextColor() });
   };
 
+  const tempHandler = (e) => {
+    updateRoom({
+      ...room,
+      temperature: e.target.value,
+    });
+  };
+
+  const musicHandler = (e) => {
+    updateRoom({
+      ...room,
+      music: e.target.value,
+    });
+  };
+
+  const curtainHandler = (e) => {
+    updateRoom({
+      ...room,
+      curtains: !room.curtains,
+    });
+  };
+
+  const lightHandler = (e) => {
+    updateRoom({
+      ...room,
+      lighting: e.target.value,
+    });
+  };
+
   return (
-    <div
-      className="card mb-3 shadow-sm text-center"
-      style={{ maxWidth: "16rem", minWidth: "14rem" }}
-    >
+    <div className="col-md-6">
       <div
-        className="card-header"
-        style={{ backgroundColor: `${backgroundColor}` }}
-        onChange={backgroundColorHandler}
+        className="card mb-3 shadow-sm text-center"
+        style={{ minHeight: "20rem" }}
       >
-        <h4
-          style={{ color: `${textColor}`, fontSize: `${fontSize}px` }}
-          onChange={textColorHandler}
+        <div
+          className="card-header"
+          style={{ backgroundColor: `${backgroundColor}` }}
+          onChange={backgroundColorHandler}
         >
-          {room.name}
-        </h4>
-      </div>
-
-      <div className="card-body">
-        {room.temperature !== undefined && showTemperature ? (
           <h4
-            style={{ fontSize: `${fontSize}px` }}
-          >{`${room.temperature}°`}</h4>
-        ) : null}
+            style={{ color: `${textColor}`, fontSize: `${fontSize}px` }}
+            onChange={textColorHandler}
+          >
+            {room.name}
+          </h4>
+        </div>
 
-        {room.music !== undefined && showMusic ? (
-          <img src={room.music < 1 ? MusicOff : MusicOn} alt="Music icon"></img>
-        ) : null}
-      </div>
+        <div className="card-body">
+          {room.temperature !== undefined && showTemperature ? (
+            <RoomsListSlider
+              fontSize={fontSize}
+              title={`${room.temperature}°`}
+              value={room.temperature}
+              changeHandler={tempHandler}
+              min="0"
+              max="30"
+            />
+          ) : null}
 
-      <div className="card-footer">
-        <Link
-          id={room.id}
-          className="btn btn-lg btn-block btn-outline-dark mt-3"
-          to={`/room-detail/${room.id}`}
-        >
-          Details
-        </Link>
+          <div className="row">
+            <RoomsListSlider
+              fontSize={fontSize}
+              title="Licht"
+              value={room.lighting}
+              changeHandler={lightHandler}
+              min="0"
+              max="20"
+            />
+          </div>
+
+          {room.music !== undefined && showMusic ? (
+            <div className="row mt-5">
+              <img
+                className="col-2"
+                src={room.music < 1 ? MusicOff : MusicOn}
+                alt="Music icon"
+              ></img>
+              <form className="col-10 mt-3">
+                <RangeSlider
+                  value={room.temperature}
+                  min="0"
+                  max="20"
+                  onChange={musicHandler}
+                />
+              </form>
+            </div>
+          ) : null}
+
+          {room.curtains !== undefined ? (
+            <div className="row mt-5">
+              <h4 className="col-4">Gordijnen</h4>
+              <div className=" col-8 colcustom-control custom-switch">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  onClick={curtainHandler}
+                  id="curtainSwitch"
+                  checked={room.curtains}
+                />
+                <label className="custom-control-label" htmlFor="curtainSwitch">
+                  Aan/Uit
+                </label>
+              </div>
+            </div>
+          ) : null}
+        </div>
+
+        <div className="card-footer">
+          <Link
+            id={room.id}
+            className="btn btn-lg btn-block btn-outline-dark mt-3"
+            to={`/room-detail/${room.id}`}
+          >
+            Details
+          </Link>
+        </div>
       </div>
     </div>
   );

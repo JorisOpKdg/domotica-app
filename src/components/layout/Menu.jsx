@@ -53,20 +53,14 @@ class Menu extends Component {
                   </Nav.Link>
                 </li>
               ))}
-            <Nav.Link
-              id="instellingen-nav"
-              className="nav-link"
-              href="/settings/"
-            >
-              Instellingen
-            </Nav.Link>
           </Nav>
           <Form inline>
             <Button
               variant={`outline-${theme.btn}`}
               className="mr-3 my-2 my-sm-0"
+              href="/settings/"
             >
-              Inloggen
+              Instellingen
             </Button>
           </Form>
         </Navbar.Collapse>

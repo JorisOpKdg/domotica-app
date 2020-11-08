@@ -23,13 +23,11 @@ const RoomsList = (props) => {
     <div className="container">
       <RoomsViewNavbar floorId={floor.id} floorName={floor.name} />
 
-      <div className="card-deck">
+      <div className="row">
         {roomsOfFloor.map((room) => (
           <RoomSummaryList
-            absolutePosition={false}
             key={room.id}
-            floorId={floor.id}
-            room={room}
+            roomId={room.id}
           />
         ))}
       </div>
