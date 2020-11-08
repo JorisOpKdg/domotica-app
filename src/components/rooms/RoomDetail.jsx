@@ -4,7 +4,6 @@ import Lighting from "../services/Lighting";
 import Music from "../services/Music";
 import Curtains from "../services/Curtains";
 import { RoomContext } from "./../../contexts/RoomContext";
-import SpinnerPage from "./../layout/SpinnerPage";
 
 const RoomDetail = (props) => {
   const roomId  = props.match.params.roomId;
