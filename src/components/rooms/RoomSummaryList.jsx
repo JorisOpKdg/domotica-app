@@ -11,24 +11,24 @@ import RoomsListSlider from "./RoomsListSlider";
 const RoomSummaryList = ({ roomId }) => {
   const { fontSize, showTemperature, showMusic } = useContext(ThemeContext);
   const { readRoom, updateRoom } = useContext(RoomContext);
+  const [backgroundColor, setBackgroundColor] = useState();
 
   const [room, setRoom] = useState();
 
   useEffect(() => {
-    setRoom(readRoom(roomId));
+    const nextRoom = readRoom(roomId);
+    setRoom(nextRoom);
+    setBackgroundColor(
+      calculateBackgroundColor(nextRoom.lighting, nextRoom.curtains)
+    );
   }, [readRoom, roomId]);
 
-  const [backgroundColor, setBackgroundColor] = useState(
-    calculateBackgroundColor(room.lighting)
-  );
   const [textColor, setTextColor] = useState(
     calculateTextColor(backgroundColor)
   );
 
   const backgroundColorHandler = () => {
-    setBackgroundColor({
-      backgroundColor: calculateBackgroundColor(room.lighting, room.curtains),
-    });
+    setBackgroundColor(calculateBackgroundColor(room.lighting, room.curtains));
   };
 
   const textColorHandler = () => {
