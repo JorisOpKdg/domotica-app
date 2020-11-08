@@ -20,20 +20,11 @@ const useRooms = () => {
     return rooms.find((room) => room.id === +roomId);
   };
 
-  /*
-  const createRoom = async (room) => {
-    setLoading(true);
-    postRoom(room).then((room) =>
-      setRooms((previousRooms) => [...previousRooms, room])
-    );
-    setLoading(false);
-  };
-  */
-
   const updateRoom = async (room) => {
     putRoom(room).then((room) =>
       setRooms((previousRooms) => [...previousRooms, room])
     );
+    readAllRooms();
   };
 
   useEffect(() => {

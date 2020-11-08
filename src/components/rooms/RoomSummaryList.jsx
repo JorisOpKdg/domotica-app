@@ -12,28 +12,24 @@ const RoomSummaryList = ({ roomId }) => {
   const { fontSize, showTemperature, showMusic } = useContext(ThemeContext);
   const { readRoom, updateRoom } = useContext(RoomContext);
   const [backgroundColor, setBackgroundColor] = useState();
+  const [textColor, setTextColor] = useState();
 
   const [room, setRoom] = useState();
 
   useEffect(() => {
-    const nextRoom = readRoom(roomId);
-    setRoom(nextRoom);
-    setBackgroundColor(
-      calculateBackgroundColor(nextRoom.lighting, nextRoom.curtains)
-    );
+    setRoom(readRoom(roomId));
   }, [readRoom, roomId]);
 
-  const [textColor, setTextColor] = useState(
-    calculateTextColor(backgroundColor)
-  );
-
-  const backgroundColorHandler = () => {
-    setBackgroundColor(calculateBackgroundColor(room.lighting, room.curtains));
-  };
-
-  const textColorHandler = () => {
-    setTextColor({ color: calculateTextColor() });
-  };
+  useEffect(() => {
+    if (!room) return;
+    const nextBackground = calculateBackgroundColor(
+      room.lighting,
+      room.curtains
+    );
+    const nextTextColor = calculateTextColor(nextBackground);
+    setBackgroundColor(nextBackground);
+    setTextColor(nextTextColor);
+  }, [room]);
 
   const tempHandler = (e) => {
     updateRoom({
@@ -68,23 +64,28 @@ const RoomSummaryList = ({ roomId }) => {
   return (
     <div className="col-md-6">
       <div
-        className="card mb-3 shadow-sm text-center"
+        className="card mb-5 shadow-sm text-center"
         style={{ minHeight: "20rem" }}
       >
         <div
           className="card-header"
           style={{ backgroundColor: `${backgroundColor}` }}
-          onChange={backgroundColorHandler}
         >
-          <h4
-            style={{ color: `${textColor}`, fontSize: `${fontSize}px` }}
-            onChange={textColorHandler}
-          >
+          <h4 style={{ color: `${textColor}`, fontSize: `${fontSize}px` }}>
             {room.name}
           </h4>
         </div>
 
         <div className="card-body">
+          <RoomsListSlider
+            fontSize={fontSize}
+            title="Licht"
+            value={room.lighting}
+            changeHandler={lightHandler}
+            min="0"
+            max="20"
+          />
+
           {room.temperature !== undefined && showTemperature ? (
             <RoomsListSlider
               fontSize={fontSize}
@@ -96,25 +97,15 @@ const RoomSummaryList = ({ roomId }) => {
             />
           ) : null}
 
-          <div className="row">
-            <RoomsListSlider
-              fontSize={fontSize}
-              title="Licht"
-              value={room.lighting}
-              changeHandler={lightHandler}
-              min="0"
-              max="20"
-            />
-          </div>
-
           {room.music !== undefined && showMusic ? (
-            <div className="row mt-5">
-              <img
-                className="col-2"
-                src={room.music < 1 ? MusicOff : MusicOn}
-                alt="Music icon"
-              ></img>
-              <form className="col-10 mt-3">
+            <div className="row m-2">
+              <div className="col-3 py-3">
+                <img
+                  src={room.music < 1 ? MusicOff : MusicOn}
+                  alt="Music icon"
+                ></img>
+              </div>
+              <form className="col-9 mt-3">
                 <RangeSlider
                   value={room.temperature}
                   min="0"
@@ -126,7 +117,7 @@ const RoomSummaryList = ({ roomId }) => {
           ) : null}
 
           {room.curtains !== undefined ? (
-            <div className="row mt-5">
+            <div className="row m-2 ml-4 text-left">
               <h4 className="col-4">Gordijnen</h4>
               <div className=" col-8 colcustom-control custom-switch">
                 <input
