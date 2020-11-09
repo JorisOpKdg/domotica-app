@@ -37,7 +37,7 @@ const useRooms = () => {
 
   useInterval(() => {
     readAllRooms();
-  }, [2000]);
+  });
 
   return {
     rooms,

@@ -55,7 +55,7 @@ const useSchemes = () => {
 
   useInterval(() => {
     readAllSchemes();
-  }, [2000]);
+  });
 
   return {
     schemes,
