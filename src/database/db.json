@@ -69,7 +69,7 @@
       "name": "Woonkamer",
       "description": "Een beschrijving van de woonkamer",
       "temperature": "15",
-      "lighting": "14",
+      "lighting": "6",
       "music": "5",
       "curtains": true,
       "top": 280,

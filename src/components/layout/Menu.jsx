@@ -4,67 +4,67 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { FloorContext } from "./../../contexts/FloorContext";
 import DarkLogo from "./../../assets/logo/logo-dark.png";
 import LightLogo from "./../../assets/logo/logo-light.png";
-import { getFloors } from "../../api/callFloors";
 
 // Dit is een voorbeeld van een class component zonder hooks
 class Menu extends Component {
-  static contextType = ThemeContext;
-
-  state = {
-    floors: [],
-  };
-
-  componentDidMount() {
-    getFloors().then((floors) => this.setState({ floors: floors }));
-  }
-
   render() {
-    const { isLightTheme, light, dark } = this.context;
-    const theme = isLightTheme ? light : dark;
-
     return (
-      <Navbar
-        bg={theme.bg}
-        variant={theme.nav}
-        expand="lg"
-        className="p-3 mb-3  border-bottom shadow-sm"
-      >
-        <Navbar.Brand className="ml-3" href="/">
-          <img
-            id="logo"
-            src={isLightTheme ? DarkLogo : LightLogo}
-            alt="Logo"
-          ></img>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarSupportedContent" />
-        <Navbar.Collapse id="navbarSupportedContent">
-          <Nav className="mr-auto">
-            {this.state.floors &&
-              this.state.floors.map((floor) => (
-                <li className="nav-item">
-                  <Nav.Link
-                    key={floor.id}
-                    className="nav-link"
-                    href={`/rooms-list/${floor.id}`}
-                  >
-                    {floor.name}
-                  </Nav.Link>
-                </li>
-              ))}
-          </Nav>
-          <Form inline>
-            <Button
-              variant={`outline-${theme.btn}`}
-              className="mr-3 my-2 my-sm-0"
-              href="/settings/"
-            >
-              Instellingen
-            </Button>
-          </Form>
-        </Navbar.Collapse>
-      </Navbar>
+      <FloorContext.Consumer>
+        {(floorContext) => (
+          <ThemeContext.Consumer>
+            {(themeContext) => {
+              const { floors } = floorContext;
+              const { isLightTheme, light, dark } = themeContext;
+              const theme = isLightTheme ? light : dark;
+              return (
+                <Navbar
+                  bg={theme.bg}
+                  variant={theme.nav}
+                  expand="lg"
+                  className="p-3 mb-3  border-bottom shadow-sm"
+                >
+                  <Navbar.Brand className="ml-3" href="/">
+                    <img
+                      id="logo"
+                      src={isLightTheme ? DarkLogo : LightLogo}
+                      alt="Logo"
+                    ></img>
+                  </Navbar.Brand>
+                  <Navbar.Toggle aria-controls="navbarSupportedContent" />
+                  <Navbar.Collapse id="navbarSupportedContent">
+                    <Nav className="mr-auto">
+                      {floors &&
+                        floors.map((floor) => (
+                          <li className="nav-item">
+                            <Nav.Link
+                              key={floor.id}
+                              className="nav-link"
+                              href={`/rooms-list/${floor.id}`}
+                            >
+                              {floor.name}
+                            </Nav.Link>
+                          </li>
+                        ))}
+                    </Nav>
+                    <Form inline>
+                      <Button
+                        variant={`outline-${theme.btn}`}
+                        className="mr-3 my-2 my-sm-0"
+                        href="/settings/"
+                      >
+                        Instellingen
+                      </Button>
+                    </Form>
+                  </Navbar.Collapse>
+                </Navbar>
+              );
+            }}
+          </ThemeContext.Consumer>
+        )}
+      </FloorContext.Consumer>
     );
   }
 }
