@@ -42,19 +42,18 @@
   ],
   "rooms": [
     {
-      "id": 11,
       "floorId": 1,
       "name": "Wijnkelder",
       "description": "Een beschrijving van de wijnkelder.",
-      "lighting": 10,
-      "music": 10,
+      "lighting": "7",
+      "music": "1",
       "top": 440,
       "left": 240,
       "width": 200,
-      "height": 200
+      "height": 200,
+      "id": 11
     },
     {
-      "id": 12,
       "floorId": 1,
       "name": "Nutskamer",
       "description": "Een beschrijving van de ruimte met boiler, electriciteitsmeter en waterstandmeter.",
@@ -62,15 +61,16 @@
       "top": 330,
       "left": 787,
       "width": 300,
-      "height": 300
+      "height": 300,
+      "id": 12
     },
     {
       "floorId": 2,
       "name": "Woonkamer",
       "description": "Een beschrijving van de woonkamer",
-      "temperature": "7",
-      "lighting": "3",
-      "music": "11",
+      "temperature": "15",
+      "lighting": "14",
+      "music": "5",
       "curtains": true,
       "top": 280,
       "left": 390,
@@ -105,7 +105,6 @@
       "id": 23
     },
     {
-      "id": 24,
       "floorId": 2,
       "name": "Gasten toilet",
       "description": "Een beschrijving van de gasten toilet",
@@ -114,38 +113,38 @@
       "top": 800,
       "left": 200,
       "width": 180,
-      "height": 155
+      "height": 155,
+      "id": 24
     },
     {
-      "id": 31,
       "floorId": 3,
       "name": "Slaapkamer 1",
       "description": "Een beschrijving van de woonkamer",
-      "temperature": 20,
+      "temperature": "6",
       "lighting": 3,
-      "music": 10,
-      "curtains": false,
+      "music": "2",
+      "curtains": true,
       "top": 685,
       "left": 490,
       "width": 300,
-      "height": 300
+      "height": 300,
+      "id": 31
     },
     {
-      "id": 32,
       "floorId": 3,
       "name": "Slaapkamer 2",
       "description": "Een beschrijving van de keuken",
-      "temperature": 20,
-      "lighting": 6,
-      "music": 10,
+      "temperature": "4",
+      "lighting": "3",
+      "music": "0",
       "curtains": false,
       "top": 240,
       "left": 130,
       "width": 220,
-      "height": 200
+      "height": 200,
+      "id": 32
     },
     {
-      "id": 33,
       "floorId": 3,
       "name": "Badkamer",
       "description": "Een beschrijving van de gang",
@@ -156,7 +155,8 @@
       "top": 750,
       "left": 200,
       "width": 160,
-      "height": 155
+      "height": 155,
+      "id": 33
     },
     {
       "floorId": 3,
@@ -171,7 +171,6 @@
       "id": 34
     },
     {
-      "id": 41,
       "floorId": 4,
       "name": "Zolder ruimte",
       "description": "Een beschrijving van de zolder",
@@ -180,7 +179,8 @@
       "top": 323,
       "left": 353,
       "width": 400,
-      "height": 200
+      "height": 200,
+      "id": 41
     }
   ],
   "schemes": [

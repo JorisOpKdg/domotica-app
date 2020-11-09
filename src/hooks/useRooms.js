@@ -24,7 +24,6 @@ const useRooms = () => {
     putRoom(room).then((room) =>
       setRooms((previousRooms) => [...previousRooms, room])
     );
-    readAllRooms();
   };
 
   useEffect(() => {

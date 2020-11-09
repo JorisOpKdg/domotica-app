@@ -107,7 +107,7 @@ const RoomSummaryList = ({ roomId }) => {
               </div>
               <form className="col-9 mt-3">
                 <RangeSlider
-                  value={room.temperature}
+                  value={room.music}
                   min="0"
                   max="20"
                   onChange={musicHandler}
