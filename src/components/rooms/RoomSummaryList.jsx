@@ -124,10 +124,10 @@ const RoomSummaryList = ({ roomId }) => {
                   type="checkbox"
                   className="custom-control-input"
                   onClick={curtainHandler}
-                  id="curtainSwitch"
+                  id={`curtainSwitch${room.id}`}
                   checked={room.curtains}
                 />
-                <label className="custom-control-label" htmlFor="curtainSwitch">
+                <label className="custom-control-label" htmlFor={`curtainSwitch${room.id}`}>
                   Aan/Uit
                 </label>
               </div>

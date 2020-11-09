@@ -21,9 +21,14 @@ const useRooms = () => {
   };
 
   const updateRoom = async (room) => {
-    putRoom(room).then((room) =>
-      setRooms((previousRooms) => [...previousRooms, room])
+    setRooms((previousRooms) =>
+      previousRooms.map((r) => {
+        if (r.id !== room.id) return r;
+        return room;
+      })
     );
+
+    return putRoom(room);
   };
 
   useEffect(() => {

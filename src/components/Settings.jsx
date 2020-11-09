@@ -27,7 +27,7 @@ const Settings = () => {
             type="checkbox"
             className="custom-control-input"
             id="darkSwitch"
-            onClick={toggleTheme}
+            onChange={toggleTheme}
             checked={isLightTheme}
           />
           <label className="custom-control-label" htmlFor="darkSwitch">
@@ -42,7 +42,7 @@ const Settings = () => {
             type="checkbox"
             className="custom-control-input"
             id="tempSwitch"
-            onClick={toggleTemperature}
+            onChange={toggleTemperature}
             checked={showTemperature}
           />
           <label className="custom-control-label" htmlFor="tempSwitch">
@@ -56,7 +56,7 @@ const Settings = () => {
             type="checkbox"
             className="custom-control-input"
             id="musicSwitch"
-            onClick={toggleMusic}
+            onChange={toggleMusic}
             checked={showMusic}
           />
           <label className="custom-control-label" htmlFor="musicSwitch">

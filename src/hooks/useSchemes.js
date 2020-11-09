@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { getSchemes, putScheme, postScheme, deleteScheme } from "./../api/callSchemes";
+import {
+  getSchemes,
+  putScheme,
+  postScheme,
+  deleteScheme,
+} from "./../api/callSchemes";
 import { useInterval } from "./useInterval";
 
 const useSchemes = () => {
@@ -28,13 +33,20 @@ const useSchemes = () => {
   };
 
   const updateScheme = async (scheme) => {
-    putScheme(scheme).then((scheme) =>
-      setSchemes((previousSchemes) => [...previousSchemes, scheme])
+    setSchemes((previousSchemes) =>
+      previousSchemes.map((s) => {
+        if (s.id !== scheme.id) return s;
+        return scheme;
+      })
     );
+    return putScheme(scheme);
   };
 
   const removeScheme = async (schemeId) => {
-    deleteScheme(schemeId).then(() => reloadSchemes());
+    setSchemes((previousSchemes) =>
+      previousSchemes.filter(({ id }) => id !== schemeId)
+    );
+    return deleteScheme(schemeId);
   };
 
   useEffect(() => {
