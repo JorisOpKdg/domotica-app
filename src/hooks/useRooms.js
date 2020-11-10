@@ -12,7 +12,6 @@ const useRooms = () => {
   const reloadRooms = () => readAllRooms();
 
   const readRoomsOfFloor = (floorId) => {
-    console.log({ rooms, floorId });
     return rooms.filter((room) => room.floorId === floorId);
   };
 

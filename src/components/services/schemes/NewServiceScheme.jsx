@@ -22,7 +22,6 @@ const NewServiceScheme = ({ location }) => {
 
   useEffect(() => {
     const newConfig = getConfigInfo(params.service);
-    console.log("configinfo in New Service Scheme: " + newConfig)
     setConfigInfo(newConfig);
   }, [params.service]);
 

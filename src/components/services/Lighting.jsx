@@ -18,26 +18,38 @@ const Lighting = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
+  const [lightingValue, setLightingValue] = useState();
 
   useEffect(() => {
     const schemes = readSchemesOfRoomWithService(room.id.toString(), service);
     setSchemesOfRoomWithService(schemes);
-  }, [readSchemesOfRoomWithService, room.id]);
+    setLightingValue(room.lighting);
+  }, [readSchemesOfRoomWithService, room.id, room.lighting]);
 
   const lightingHandler = (e) => {
+    setLightingValue(e.target.value);
+  };
+
+  const lightingAfterHandler = (e) => {
     updateRoom({
       ...room,
       lighting: e.target.value,
     });
   };
 
-  if (!schemesOfRoomWithService) return null; 
-  
+  if (!schemesOfRoomWithService) return null;
+
   return (
     <ServiceCard>
-      <ServiceCardHeader title={title} value={room.lighting} />
+      <ServiceCardHeader title={title} value={lightingValue} />
       <ServiceCardBody>
-        <ServiceCardSlider clickHandler={lightingHandler} min={min} max={max} />
+        <ServiceCardSlider
+          afterChangeHandler={lightingAfterHandler}
+          changeHandler={lightingHandler}
+          min={min}
+          max={max}
+          value={lightingValue}
+        />
         <ServiceCardNewScheme roomId={room.id} service={service} />
         {schemesOfRoomWithService &&
           schemesOfRoomWithService.map((scheme) => (

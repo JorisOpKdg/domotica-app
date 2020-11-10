@@ -56,7 +56,6 @@ export function createTitle(service) {
 }
 
 export function getMinMax(service) {
-  console.log("service in getMinMax function: " + service);
   let minmax;
   switch (service) {
     case "temperature":

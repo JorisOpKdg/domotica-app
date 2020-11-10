@@ -18,26 +18,38 @@ const Music = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
+  const [musicValue, setMusicValue] = useState();
 
   useEffect(() => {
     const schemes = readSchemesOfRoomWithService(room.id.toString(), service);
     setSchemesOfRoomWithService(schemes);
-  }, [readSchemesOfRoomWithService, room.id]);
+    setMusicValue(room.music);
+  }, [readSchemesOfRoomWithService, room.id, room.music]);
 
   const musicHandler = (e) => {
+    setMusicValue(e.target.value);
+  };
+
+  const musicAfterHandler = (e) => {
     updateRoom({
       ...room,
       music: e.target.value,
     });
   };
 
-  if (!schemesOfRoomWithService) return null; 
-  
+  if (!schemesOfRoomWithService) return null;
+
   return (
     <ServiceCard>
-      <ServiceCardHeader title={title} value={room.music} />
+      <ServiceCardHeader title={title} value={musicValue} />
       <ServiceCardBody>
-        <ServiceCardSlider clickHandler={musicHandler} min={min} max={max} />
+        <ServiceCardSlider
+          afterChangeHandler={musicAfterHandler}
+          changeHandler={musicHandler}
+          min={min}
+          max={max}
+          value={musicValue}
+        />
         <ServiceCardNewScheme roomId={room.id} service={service} />
         {schemesOfRoomWithService &&
           schemesOfRoomWithService.map((scheme) => (

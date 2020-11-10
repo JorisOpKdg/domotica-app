@@ -1,7 +1,7 @@
 import React from "react";
 import RangeSlider from "react-bootstrap-range-slider";
 
-const RoomsListSlider = ({fontSize, title, value, changeHandler, min, max}) => {
+const RoomsListSlider = ({fontSize, title, value, changeHandler, changeAfterHandler, min, max}) => {
   return (
     <div className="row m-2">
       <h4
@@ -14,6 +14,7 @@ const RoomsListSlider = ({fontSize, title, value, changeHandler, min, max}) => {
           min={min}
           max={max}
           onChange={changeHandler}
+          onAfterChange={changeAfterHandler}
         />
       </form>
     </div>

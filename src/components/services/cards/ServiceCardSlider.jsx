@@ -1,18 +1,18 @@
 import React from "react";
+import RangeSlider from "react-bootstrap-range-slider";
 
-const ServiceCardSlider = ({min, max, clickHandler, value}) => {
+const ServiceCardSlider = ({ min, max, changeHandler, afterChangeHandler, value }) => {
   return (
     <li className="list-group-item py-2">
       <div className="row">
         <form className="m-3 col-11">
-          <input
-            type="range"
-            className="custom-range"
+          <RangeSlider
+            value={value}
             min={min}
             max={max}
-            onChange={clickHandler}
-            value={value}
-          ></input>
+            onChange={changeHandler}
+            onAfterChange={afterChangeHandler}
+          />
         </form>
       </div>
     </li>

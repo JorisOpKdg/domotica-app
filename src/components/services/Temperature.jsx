@@ -18,29 +18,37 @@ const Temperature = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
+  const [tempValue, setTempValue] = useState();
 
   useEffect(() => {
     const schemes = readSchemesOfRoomWithService(room.id.toString(), service);
     setSchemesOfRoomWithService(schemes);
-  }, [readSchemesOfRoomWithService, room.id]);
+    setTempValue(room.temperature);
+  }, [readSchemesOfRoomWithService, room.id, room.temperature]);
 
   const temperatureHandler = (e) => {
+    setTempValue(e.target.value);
+  };
+
+  const temperatureAfterHandler = (e) => {
     updateRoom({
       ...room,
       temperature: e.target.value,
     });
   };
 
-  if (!schemesOfRoomWithService) return null; 
-  
+  if (!schemesOfRoomWithService) return null;
+
   return (
     <ServiceCard>
-      <ServiceCardHeader title={title} value={room.temperature} />
+      <ServiceCardHeader title={title} value={tempValue} />
       <ServiceCardBody>
         <ServiceCardSlider
-          clickHandler={temperatureHandler}
+          afterChangeHandler={temperatureAfterHandler}
+          changeHandler={temperatureHandler}
           min={min}
           max={max}
+          value={tempValue}
         />
         <ServiceCardNewScheme roomId={room.id} service={service} />
         {schemesOfRoomWithService &&

@@ -31,7 +31,28 @@ const RoomSummaryList = ({ roomId }) => {
     setTextColor(nextTextColor);
   }, [room]);
 
+  const lightHandler = (e) => {
+    setRoom({
+      ...room,
+      lighting: e.target.value,
+    });
+  };
+
+  const lightAfterHandler = (e) => {
+    updateRoom({
+      ...room,
+      lighting: e.target.value,
+    });
+  };
+
   const tempHandler = (e) => {
+    setRoom({
+      ...room,
+      temperature: e.target.value,
+    });
+  };
+
+  const tempAfterHandler = (e) => {
     updateRoom({
       ...room,
       temperature: e.target.value,
@@ -39,6 +60,12 @@ const RoomSummaryList = ({ roomId }) => {
   };
 
   const musicHandler = (e) => {
+    setRoom({
+      ...room,
+      music: e.target.value,
+    });
+  };
+  const musicAfterHandler = (e) => {
     updateRoom({
       ...room,
       music: e.target.value,
@@ -49,13 +76,6 @@ const RoomSummaryList = ({ roomId }) => {
     updateRoom({
       ...room,
       curtains: !room.curtains,
-    });
-  };
-
-  const lightHandler = (e) => {
-    updateRoom({
-      ...room,
-      lighting: e.target.value,
     });
   };
 
@@ -81,6 +101,7 @@ const RoomSummaryList = ({ roomId }) => {
             fontSize={fontSize}
             title="Licht"
             value={room.lighting}
+            changeAfterHandler={lightAfterHandler}
             changeHandler={lightHandler}
             min="0"
             max="20"
@@ -91,6 +112,7 @@ const RoomSummaryList = ({ roomId }) => {
               fontSize={fontSize}
               title={`${room.temperature}°`}
               value={room.temperature}
+              changeAfterHandler={tempAfterHandler}
               changeHandler={tempHandler}
               min="0"
               max="30"
@@ -110,7 +132,8 @@ const RoomSummaryList = ({ roomId }) => {
                   value={room.music}
                   min="0"
                   max="20"
-                  onChange={musicHandler}
+                  onAfterChange={musicAfterHandler}
+                  changeHandler={musicHandler}
                 />
               </form>
             </div>
@@ -123,11 +146,14 @@ const RoomSummaryList = ({ roomId }) => {
                 <input
                   type="checkbox"
                   className="custom-control-input"
-                  onClick={curtainHandler}
+                  onChange={curtainHandler}
                   id={`curtainSwitch${room.id}`}
                   checked={room.curtains}
                 />
-                <label className="custom-control-label" htmlFor={`curtainSwitch${room.id}`}>
+                <label
+                  className="custom-control-label"
+                  htmlFor={`curtainSwitch${room.id}`}
+                >
                   Aan/Uit
                 </label>
               </div>
