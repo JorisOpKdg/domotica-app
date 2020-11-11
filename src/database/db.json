@@ -44,7 +44,7 @@
     {
       "floorId": 1,
       "name": "Wijnkelder",
-      "description": "Een beschrijving van de wijnkelder.",
+      "description": "Deze wijnkelder bevat een collectie van unieke wijnen, daterend van 1940 tem 2020. De eigenaar is opgegroeid in de wijngaard van zijn vader te Duitsland. Deze wijnkelder bevat unieke Riesling wijnen om van te dromen.",
       "lighting": "16",
       "music": "1",
       "top": 440,
@@ -56,7 +56,7 @@
     {
       "floorId": 1,
       "name": "Nutskamer",
-      "description": "Een beschrijving van de ruimte met boiler, electriciteitsmeter en waterstandmeter.",
+      "description": "Deze ruimte bevat de boiler, electriciteitsmeter en waterstandmeter.",
       "lighting": 10,
       "top": 330,
       "left": 787,
@@ -67,7 +67,7 @@
     {
       "floorId": 2,
       "name": "Woonkamer",
-      "description": "Een beschrijving van de woonkamer",
+      "description": "Deze woonkamer, in klassieke stijl, is speciaal ontworpen door de vrouw des huizes. Zij is afkomstig van Groot Brittanië en stond erop om deze kamer in een klassieke cottage stijl in te richten om zich thuis te kunnen voelen in Duitsland.",
       "temperature": "17",
       "lighting": "6",
       "music": "0",
@@ -81,7 +81,7 @@
     {
       "floorId": 2,
       "name": "Keuken",
-      "description": "Een beschrijving van de keuken",
+      "description": "Deze keuken is volledig ingericht met koelkast, twee ovens, microgofloven, vaatwasser en de nodige kasten.",
       "temperature": "10",
       "lighting": "13",
       "music": "10",
@@ -95,7 +95,7 @@
     {
       "floorId": 2,
       "name": "Gang",
-      "description": "Een beschrijving van de gang",
+      "description": "Dit is de gang waar de heer en vrouw des huizes hun eerste indruk kunnen maken op de gasten",
       "temperature": "5",
       "lighting": "4",
       "top": 620,
@@ -107,7 +107,7 @@
     {
       "floorId": 2,
       "name": "Gasten toilet",
-      "description": "Een beschrijving van de gasten toilet",
+      "description": "Deze toilet mag er best wezen. Steeds fris en schoon!",
       "temperature": "3",
       "lighting": "8",
       "top": 800,
@@ -119,7 +119,7 @@
     {
       "floorId": 3,
       "name": "Slaapkamer 1",
-      "description": "Een beschrijving van de woonkamer",
+      "description": "Dit is de slaapkamer van de heer en vrouw des huizes. Rustig en ruim gelegen.",
       "temperature": "14",
       "lighting": "5",
       "music": "4",
@@ -133,7 +133,7 @@
     {
       "floorId": 3,
       "name": "Slaapkamer 2",
-      "description": "Een beschrijving van de keuken",
+      "description": "Dit is de slaapkamer van de dochter. Je verveelt je hier nooit. Teveel speelgoed om op te sommen...",
       "temperature": "4",
       "lighting": "3",
       "music": "6",
@@ -147,7 +147,7 @@
     {
       "floorId": 3,
       "name": "Badkamer",
-      "description": "Een beschrijving van de gang",
+      "description": "Deze badkamer bevat een douche, bad en twee lavabo's.",
       "temperature": "4",
       "lighting": "0",
       "music": 10,
@@ -161,7 +161,7 @@
     {
       "floorId": 3,
       "name": "Toilet",
-      "description": "Een beschrijving van de gasten toilet",
+      "description": "Een toilet vol met interessante lectuur om de stoelgang te bevorderen.",
       "temperature": "10",
       "lighting": "8",
       "top": 480,
@@ -173,7 +173,7 @@
     {
       "floorId": 4,
       "name": "Zolder ruimte",
-      "description": "Een beschrijving van de zolder",
+      "description": "Deze zolder is de speelruimte voor de kinderen. Hier bouwen ze kampen en spelen ze toneel.",
       "lighting": "20",
       "music": 10,
       "top": 323,
