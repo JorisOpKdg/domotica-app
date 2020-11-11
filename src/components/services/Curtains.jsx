@@ -16,29 +16,36 @@ const Curtains = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
+  const [curtainValue, setCurtainValue] = useState();
 
   useEffect(() => {
     const schemes = readSchemesOfRoomWithService(room.id.toString(), service);
     setSchemesOfRoomWithService(schemes);
-  }, [readSchemesOfRoomWithService, room.id]);
+    setCurtainValue(room.curtains)
+  }, [readSchemesOfRoomWithService, room.curtains, room.id]);
 
   const curtainHandler = () => {
+    const newCurtainValue = !room.curtains;
+    setCurtainValue(newCurtainValue);
     updateRoom({
       ...room,
-      curtains: !room.curtains,
+      curtains: newCurtainValue,
     });
   };
 
-  if (!schemesOfRoomWithService) return null;  
-  
+  if (!schemesOfRoomWithService) return null;
+
   return (
     <ServiceCard>
       <ServiceCardHeader
         title={title}
-        value={room.curtains ? "Open" : "Dicht"}
+        value={curtainValue ? "Open" : "Dicht"}
       />
       <ServiceCardBody>
-        <ServiceCardCheckBox changeHandler={curtainHandler} checkedValue={room.curtains}/>
+        <ServiceCardCheckBox
+          changeHandler={curtainHandler}
+          checkedValue={curtainValue}
+        />
         <ServiceCardNewScheme roomId={room.id} service={service} />
         {schemesOfRoomWithService &&
           schemesOfRoomWithService.map((scheme) => (

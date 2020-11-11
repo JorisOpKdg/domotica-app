@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServiceCardCheckBox = ({clickHandler, checkedValue}) => {
+const ServiceCardCheckBox = ({changeHandler, checkedValue}) => {
   return (
     <li className="list-group-item py-4">
       <form className="form-right my-2 my-lg-0 col-12">
@@ -8,7 +8,7 @@ const ServiceCardCheckBox = ({clickHandler, checkedValue}) => {
           <input
             type="checkbox"
             className="custom-control-input"
-            onClick={clickHandler}
+            onChange={changeHandler}
             id="curtainSwitch"
             checked={checkedValue}
           />
