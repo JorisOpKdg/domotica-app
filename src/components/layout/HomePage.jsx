@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { FloorContext } from "./../../contexts/FloorContext";
+import { FloorContext } from "../../contexts/FloorContext";
 
-const StartPage = () => {
+const HomePage = () => {
   const { floors } = useContext(FloorContext);
 
   if (!floors) return null;
@@ -35,4 +35,4 @@ const StartPage = () => {
   );
 };
 
-export default StartPage;
+export default HomePage;

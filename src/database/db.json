@@ -68,8 +68,8 @@
       "floorId": 2,
       "name": "Woonkamer",
       "description": "Een beschrijving van de woonkamer",
-      "temperature": "10",
-      "lighting": "0",
+      "temperature": "17",
+      "lighting": "6",
       "music": "0",
       "curtains": false,
       "top": 280,
@@ -82,9 +82,9 @@
       "floorId": 2,
       "name": "Keuken",
       "description": "Een beschrijving van de keuken",
-      "temperature": "19",
-      "lighting": "5",
-      "music": "15",
+      "temperature": "10",
+      "lighting": "13",
+      "music": "10",
       "curtains": true,
       "top": 770,
       "left": 570,
@@ -201,38 +201,6 @@
       "id": 10
     },
     {
-      "roomId": "11",
-      "service": "lighting",
-      "amount": 0,
-      "start": "13:00",
-      "end": "17:00",
-      "id": 11
-    },
-    {
-      "roomId": "11",
-      "service": "lighting",
-      "amount": "14",
-      "start": "11:00",
-      "end": "13:00",
-      "id": 14
-    },
-    {
-      "roomId": "11",
-      "service": "lighting",
-      "amount": "13",
-      "start": "13:00",
-      "end": "14:00",
-      "id": 15
-    },
-    {
-      "roomId": "11",
-      "service": "lighting",
-      "amount": "16",
-      "start": "09:00",
-      "end": "13:00",
-      "id": 16
-    },
-    {
       "roomId": "22",
       "service": "temperature",
       "amount": "11",
@@ -247,22 +215,6 @@
       "start": "",
       "end": "",
       "id": 18
-    },
-    {
-      "roomId": "11",
-      "service": "lighting",
-      "amount": "14",
-      "start": "15:00",
-      "end": "14:00",
-      "id": 19
-    },
-    {
-      "roomId": "11",
-      "service": "lighting",
-      "amount": "17",
-      "start": "13:00",
-      "end": "17:00",
-      "id": 20
     },
     {
       "roomId": "22",
@@ -286,6 +238,14 @@
       "start": "16:00",
       "end": "17:00",
       "id": 23
+    },
+    {
+      "roomId": "33",
+      "service": "temperature",
+      "amount": "15",
+      "start": "08:00",
+      "end": "16:00",
+      "id": 24
     }
   ]
 }

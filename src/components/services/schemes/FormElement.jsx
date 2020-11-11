@@ -12,6 +12,7 @@ const FormElement = ({ title, changeHandler, optionValues, value, type }) => {
         name={type}
         onChange={changeHandler}
         value={value}
+        required
       >
         {optionValues &&
           optionValues.map((value) => <option key={value}>{value}</option>)}

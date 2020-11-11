@@ -1,4 +1,5 @@
-export const homeRoute = "/";
+export const startRoute = "/";
+export const homeRoute = "/home";
 export const settingsRoute = "/settings";
 export const roomsListRoute = "/rooms-list/:floorId";
 export const roomsMapRoute = "/rooms-map/:floorId";

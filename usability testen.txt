@@ -1,0 +1,18 @@
+Voer de volgende stappen uit:
+
+1) ‘Wat is de temperatuur in slaapkamer 1? Ga vervolgens naar de woonkamer en zie wat de temperatuur daar is.’
+--------------------------------------------------------------------------------------------------------------
+De gebruiker gaat van startpagina naar het eerste verdiep en ziet op het overzicht dat het 14° is. Vervolgens drukt de gebruiker
+in de navigatiebalk het gelijkvloers en ziet in het overzicht dat de temperatuur van de woonkamer 10° is.
+
+
+2) ‘Pas het geluidsvolume aan in de keuken’
+------------------------------------------
+Op het overzicht past de gebruiker aan de hand van de slider het geluid aan van niveau 15 naar 10.
+
+
+3) ‘Stel in dat de verwarming in de badkamertussen 8u en 16u op 15 graden moet staan’
+-------------------------------------------------------------------------------------
+De gebruiker gebruikt de navigatie om naar het eerste verdiep te gaan. Vervolgens klikt de gebruiker op de knop detail van 
+de badkamer. De gebruiker klikt op de 'nieuw' knop voor een nieuw slim schema. De gebruiker kiest de uren in de dropdowns en 
+de gewenste temperatuur. Dan klikt de gebruiker op opslaan.

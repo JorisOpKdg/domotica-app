@@ -41,7 +41,7 @@ const Temperature = ({ room }) => {
 
   return (
     <ServiceCard>
-      <ServiceCardHeader title={title} value={tempValue} />
+      <ServiceCardHeader title={title} value={`${tempValue}°`} />
       <ServiceCardBody>
         <ServiceCardSlider
           afterChangeHandler={temperatureAfterHandler}

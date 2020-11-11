@@ -133,7 +133,7 @@ const RoomSummaryList = ({ roomId }) => {
                   min="0"
                   max="20"
                   onAfterChange={musicAfterHandler}
-                  changeHandler={musicHandler}
+                  onChange={musicHandler}
                 />
               </form>
             </div>

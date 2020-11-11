@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import StartPage from "./components/layout/StartPage";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import HomePage from "./components/layout/HomePage";
 import RoomsList from "./components/rooms/RoomsList";
 import RoomsMap from "./components/rooms/RoomsMap";
 import RoomDetail from "./components/rooms/RoomDetail";
@@ -17,11 +17,12 @@ import {
   roomDetailRoute,
   newServiceSchemeRoute,
   editServiceSchemeRoute,
+  startRoute,
 } from "./routes";
 import FloorContextProvider from "./contexts/FloorContext";
 import RoomContextProvider from "./contexts/RoomContext";
 import SchemeContextProvider from "./contexts/SchemeContext";
-import Menu from './components/layout/Menu';
+import Menu from "./components/layout/Menu";
 
 class App extends Component {
   state = {};
@@ -35,7 +36,11 @@ class App extends Component {
                 <BrowserRouter>
                   <Menu />
                   <Switch>
-                    <Route exact path={homeRoute} component={StartPage} />
+                    <Route
+                      exact path={startRoute}
+                      render={() => <Redirect to="/rooms-list/2" />}
+                    />
+                    <Route path={homeRoute} component={HomePage} />
                     <Route path={roomsListRoute} component={RoomsList} />
                     <Route path={roomsMapRoute} component={RoomsMap} />
                     <Route path={roomDetailRoute} component={RoomDetail} />

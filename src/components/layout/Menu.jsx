@@ -27,7 +27,7 @@ class Menu extends Component {
                   expand="lg"
                   className="p-3 mb-3  border-bottom shadow-sm"
                 >
-                  <Navbar.Brand className="ml-3" href="/">
+                  <Navbar.Brand className="ml-3" href="/home">
                     <img
                       id="logo"
                       src={isLightTheme ? DarkLogo : LightLogo}
