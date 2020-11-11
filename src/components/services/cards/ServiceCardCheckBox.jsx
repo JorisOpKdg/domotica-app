@@ -13,7 +13,7 @@ const ServiceCardCheckBox = ({changeHandler, checkedValue}) => {
             checked={checkedValue}
           />
           <label className="custom-control-label" htmlFor="curtainSwitch">
-            Aan/Uit
+            Dicht/Open
           </label>
         </div>
       </form>

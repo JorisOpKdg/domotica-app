@@ -141,7 +141,9 @@ const RoomSummaryList = ({ roomId }) => {
 
           {room.curtains !== undefined ? (
             <div className="row m-2 ml-4 text-left">
-              <h4 className="col-4">Gordijnen</h4>
+              <h4 className="col-4" style={{ fontSize: `${fontSize}px` }}>
+                Gordijnen
+              </h4>
               <div className=" col-8 colcustom-control custom-switch">
                 <input
                   type="checkbox"
@@ -154,7 +156,7 @@ const RoomSummaryList = ({ roomId }) => {
                   className="custom-control-label"
                   htmlFor={`curtainSwitch${room.id}`}
                 >
-                  Aan/Uit
+                  Dicht/Open
                 </label>
               </div>
             </div>

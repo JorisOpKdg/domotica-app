@@ -71,7 +71,7 @@
       "temperature": "17",
       "lighting": "6",
       "music": "0",
-      "curtains": false,
+      "curtains": true,
       "top": 280,
       "left": 390,
       "width": 300,
