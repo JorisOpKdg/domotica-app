@@ -108,7 +108,7 @@
       "floorId": 2,
       "name": "Gasten toilet",
       "description": "Deze toilet mag er best wezen. Steeds fris en schoon!",
-      "temperature": "3",
+      "temperature": "12",
       "lighting": "8",
       "top": 800,
       "left": 200,
