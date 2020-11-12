@@ -4,13 +4,14 @@ import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 import { getBackgroundImage } from "./roomUtilities";
 import { RoomContext } from "./../../contexts/RoomContext";
 import { FloorContext } from "./../../contexts/FloorContext";
+import Spinner from 'react-bootstrap/Spinner'
 
 const RoomsMap = (props) => {
   const floorId = props.match.params.floorId;
   const { readRoomsOfFloor } = useContext(RoomContext);
   const { readFloor } = useContext(FloorContext);
 
-  const [RoomsOfFloor, setRoomsOfFloor] = useState([]);
+  const [roomsOfFloor, setRoomsOfFloor] = useState([]);
   const [floor, setFloor] = useState();
 
   useEffect(() => {
@@ -18,7 +19,12 @@ const RoomsMap = (props) => {
     setFloor(readFloor(+floorId));
   }, [floorId, readFloor, readRoomsOfFloor]);
 
-  if (!(RoomsOfFloor && floor)) return null;
+  if (!(roomsOfFloor && floor))
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
     <div className="container">
@@ -34,7 +40,7 @@ const RoomsMap = (props) => {
           position: "relative",
         }}
       >
-        {RoomsOfFloor.map((room) => (
+        {roomsOfFloor.map((room) => (
           <RoomSummaryMap key={room.id} room={room} />
         ))}
       </div>

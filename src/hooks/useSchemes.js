@@ -14,8 +14,6 @@ const useSchemes = () => {
     getSchemes().then((response) => setSchemes(response));
   };
 
-  const reloadSchemes = () => readAllSchemes();
-
   const readSchemesOfRoomWithService = (roomId, service) => {
     return schemes.filter(
       (scheme) => scheme.roomId === roomId && scheme.service === service
@@ -60,7 +58,6 @@ const useSchemes = () => {
   return {
     schemes,
     readAllSchemes,
-    reloadSchemes,
     readSchemesOfRoomWithService,
     readScheme,
     createScheme,

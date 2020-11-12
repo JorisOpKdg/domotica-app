@@ -4,6 +4,7 @@ import Lighting from "../services/Lighting";
 import Music from "../services/Music";
 import Curtains from "../services/Curtains";
 import { RoomContext } from "./../../contexts/RoomContext";
+import Spinner from 'react-bootstrap/Spinner'
 
 const RoomDetail = (props) => {
   const roomId  = props.match.params.roomId;
@@ -14,7 +15,12 @@ const RoomDetail = (props) => {
     setRoom(readRoom(+roomId));
   }, [readRoom, roomId]);
 
-  if (room === undefined) return null;
+  if (room === undefined)
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
     <div className="container mt-5">

@@ -7,7 +7,6 @@ const SchemeContextProvider = ({ children }) => {
   const {
     schemes,
     readAllSchemes,
-    reloadSchemes,
     readSchemesOfRoomWithService,
     readScheme,
     createScheme,
@@ -20,7 +19,6 @@ const SchemeContextProvider = ({ children }) => {
       value={{
         schemes,
         readAllSchemes,
-        reloadSchemes,
         readSchemesOfRoomWithService,
         readScheme,
         createScheme,

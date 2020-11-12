@@ -71,7 +71,7 @@
       "temperature": "17",
       "lighting": "6",
       "music": "0",
-      "curtains": true,
+      "curtains": false,
       "top": 280,
       "left": 390,
       "width": 300,
@@ -174,8 +174,8 @@
       "floorId": 4,
       "name": "Zolder ruimte",
       "description": "Deze zolder is de speelruimte voor de kinderen. Hier bouwen ze kampen en spelen ze toneel.",
-      "lighting": "20",
-      "music": 10,
+      "lighting": "26",
+      "music": "2",
       "top": 323,
       "left": 353,
       "width": 400,
@@ -242,10 +242,18 @@
     {
       "roomId": "21",
       "service": "temperature",
-      "amount": "10",
-      "start": "13:00",
-      "end": "17:00",
+      "amount": "11",
+      "start": "04:00",
+      "end": "13:00",
       "id": 25
+    },
+    {
+      "roomId": "21",
+      "service": "music",
+      "amount": "12",
+      "start": "17:00",
+      "end": "21:00",
+      "id": 26
     }
   ]
 }

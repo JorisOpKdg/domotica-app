@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FloorContext } from "../../contexts/FloorContext";
+import Spinner from "react-bootstrap/Spinner";
 
 const HomePage = () => {
   const { floors } = useContext(FloorContext);
 
-  if (!floors) return null;
+  if (!floors)
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
     <div className="container py-5 my-5">

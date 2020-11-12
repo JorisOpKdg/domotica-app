@@ -4,10 +4,10 @@ import useFloors from "../hooks/useFloors";
 export const FloorContext = createContext();
 
 const FloorContextProvider = ({ children }) => {
-  const { floors, readAllFloors, reloadFloors, readFloor } = useFloors();
+  const { floors, readAllFloors, readFloor } = useFloors();
 
   return (
-    <FloorContext.Provider value={{ floors, readAllFloors, reloadFloors, readFloor }}>
+    <FloorContext.Provider value={{ floors, readAllFloors, readFloor }}>
       {children}
     </FloorContext.Provider>
   );

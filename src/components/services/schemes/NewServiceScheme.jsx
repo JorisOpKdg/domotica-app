@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import FormElement from "./FormElement";
 import { SchemeContext } from "./../../../contexts/SchemeContext";
 import { getConfigInfo, createTitle } from "./../serviceUtilities";
+import Spinner from 'react-bootstrap/Spinner'
 
 const NewServiceScheme = ({ location }) => {
   const history = useHistory();
@@ -42,30 +43,37 @@ const NewServiceScheme = ({ location }) => {
     createScheme(scheme).then(history.push(`/room-detail/${params.roomId}`));
   };
 
+  if (!(scheme && configInfo))
+  return (
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  );
+
   return (
     <div className="container">
-      <h1 className="mt-5">{scheme && createTitle(params.service)}</h1>
+      <h1 className="mt-5">{createTitle(scheme.service)}</h1>
       <h2 className="mb-5">Maak een nieuw slim schema</h2>
       <form onSubmit={submitHandler}>
         <div className="form-row">
           <FormElement
             title="Start:"
             changeHandler={startHandler}
-            optionValues={configInfo && configInfo.hours}
+            optionValues={configInfo.hours}
             value={scheme.start}
             type="start"
           />
           <FormElement
             title="Einde:"
             changeHandler={endHandler}
-            optionValues={configInfo && configInfo.hours}
+            optionValues={configInfo.hours}
             value={scheme.end}
             type="end"
           />
           <FormElement
             title="Hoeveelheid:"
             changeHandler={valueHandler}
-            optionValues={configInfo && configInfo.values}
+            optionValues={configInfo.values}
             value={scheme.amount}
             type="amount"
           />

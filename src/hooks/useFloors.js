@@ -9,8 +9,6 @@ const useFloors = () => {
     getFloors().then((floors) => setFloors(floors));
   };
 
-  const reloadFloors = () => readAllFloors();
-
   const readFloor = (floorId) => {
     return floors.find((floor) => floor.id === floorId);
   };
@@ -23,7 +21,7 @@ const useFloors = () => {
     readAllFloors();
   });
 
-  return { floors, readAllFloors, reloadFloors, readFloor };
+  return { floors, readAllFloors, readFloor };
 };
 
 export default useFloors;

@@ -3,6 +3,7 @@ import RoomSummaryList from "./RoomSummaryList";
 import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 import { FloorContext } from "./../../contexts/FloorContext";
 import { RoomContext } from "./../../contexts/RoomContext";
+import Spinner from "react-bootstrap/Spinner";
 
 const RoomsList = (props) => {
   const floorId = props.match.params.floorId;
@@ -17,7 +18,12 @@ const RoomsList = (props) => {
     setFloor(readFloor(+floorId));
   }, [floorId, readFloor, readRoomsOfFloor]);
 
-  if (!(roomsOfFloor && floor)) return null;
+  if (!(roomsOfFloor && floor))
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
     <div className="container">
@@ -25,10 +31,7 @@ const RoomsList = (props) => {
 
       <div className="row">
         {roomsOfFloor.map((room) => (
-          <RoomSummaryList
-            key={room.id}
-            roomId={room.id}
-          />
+          <RoomSummaryList key={room.id} roomId={room.id} />
         ))}
       </div>
     </div>

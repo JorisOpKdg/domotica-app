@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import MusicOff from "./../../assets/images/music-off.png";
 import MusicOn from "./../../assets/images/music-on.png";
 import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
+import Spinner from "react-bootstrap/Spinner";
 
 const RoomSummaryMap = ({ room }) => {
   const [backgroundColor, setBackgroundColor] = useState(
@@ -22,7 +23,12 @@ const RoomSummaryMap = ({ room }) => {
     setTextColor({ color: calculateTextColor() });
   };
 
-  if (!room) return null;
+  if (!room)
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
     <Link

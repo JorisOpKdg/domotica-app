@@ -7,7 +7,6 @@ const RoomContextProvider = ({ children }) => {
   const {
     rooms,
     readAllRooms,
-    reloadRooms,
     readRoomsOfFloor,
     readRoom,
     updateRoom,
@@ -18,7 +17,6 @@ const RoomContextProvider = ({ children }) => {
       value={{
         rooms,
         readAllRooms,
-        reloadRooms,
         readRoomsOfFloor,
         readRoom,
         updateRoom,

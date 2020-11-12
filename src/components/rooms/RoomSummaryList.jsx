@@ -7,13 +7,14 @@ import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 import { ThemeContext } from "./../../contexts/ThemeContext";
 import { RoomContext } from "./../../contexts/RoomContext";
 import RoomsListSlider from "./RoomsListSlider";
+import Spinner from 'react-bootstrap/Spinner'
 
 const RoomSummaryList = ({ roomId }) => {
   const { fontSize, showTemperature, showMusic } = useContext(ThemeContext);
   const { readRoom, updateRoom } = useContext(RoomContext);
+  
   const [backgroundColor, setBackgroundColor] = useState();
   const [textColor, setTextColor] = useState();
-
   const [room, setRoom] = useState();
 
   useEffect(() => {
@@ -79,7 +80,12 @@ const RoomSummaryList = ({ roomId }) => {
     });
   };
 
-  if (!room) return null;
+  if (!room)
+  return (
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  );
 
   return (
     <div className="col-md-6">

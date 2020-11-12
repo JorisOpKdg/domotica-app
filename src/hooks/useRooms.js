@@ -9,8 +9,6 @@ const useRooms = () => {
     getRooms().then((rooms) => setRooms(rooms));
   };
 
-  const reloadRooms = () => readAllRooms();
-
   const readRoomsOfFloor = (floorId) => {
     return rooms.filter((room) => room.floorId === floorId);
   };
@@ -41,7 +39,6 @@ const useRooms = () => {
   return {
     rooms,
     readAllRooms,
-    reloadRooms,
     readRoomsOfFloor,
     readRoom,
     updateRoom,
