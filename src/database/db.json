@@ -210,14 +210,6 @@
     },
     {
       "roomId": "22",
-      "service": "curtains",
-      "amount": 0,
-      "start": "",
-      "end": "",
-      "id": 18
-    },
-    {
-      "roomId": "22",
       "amount": "Dicht",
       "start": "14:00",
       "end": "14:00",
