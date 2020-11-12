@@ -242,9 +242,9 @@
     {
       "roomId": "21",
       "service": "temperature",
-      "amount": "20",
-      "start": "08:00",
-      "end": "10:00",
+      "amount": "10",
+      "start": "13:00",
+      "end": "17:00",
       "id": 25
     }
   ]
