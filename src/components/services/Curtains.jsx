@@ -21,7 +21,7 @@ const Curtains = ({ room }) => {
   useEffect(() => {
     const schemes = readSchemesOfRoomWithService(room.id.toString(), service);
     setSchemesOfRoomWithService(schemes);
-    setCurtainValue(room.curtains)
+    setCurtainValue(room.curtains);
   }, [readSchemesOfRoomWithService, room.curtains, room.id]);
 
   const curtainHandler = () => {
@@ -47,6 +47,11 @@ const Curtains = ({ room }) => {
           checkedValue={curtainValue}
         />
         <ServiceCardNewScheme roomId={room.id} service={service} />
+        {schemesOfRoomWithService && schemesOfRoomWithService.length === 0 && (
+          <p className="ml-4" style={{ fontStyle: "italic" }}>
+            Je hebt nog geen slimschema toegevoegd.
+          </p>
+        )}
         {schemesOfRoomWithService &&
           schemesOfRoomWithService.map((scheme) => (
             <ServiceScheme key={scheme.id} roomId={room.id} scheme={scheme} />
