@@ -4,9 +4,10 @@ import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 import { FloorContext } from "./../../contexts/FloorContext";
 import { RoomContext } from "./../../contexts/RoomContext";
 import Spinner from "react-bootstrap/Spinner";
+import { useParams } from "react-router-dom";
 
-const RoomsList = (props) => {
-  const floorId = props.match.params.floorId;
+const RoomsList = () => {
+  const { floorId } = useParams();
   const { readRoomsOfFloor } = useContext(RoomContext);
   const { readFloor } = useContext(FloorContext);
 

@@ -68,10 +68,10 @@
       "floorId": 2,
       "name": "Woonkamer",
       "description": "Deze woonkamer, in klassieke stijl, is speciaal ontworpen door de vrouw des huizes. Zij is afkomstig van Groot Brittanië en stond erop om deze kamer in een klassieke cottage stijl in te richten om zich thuis te kunnen voelen in Duitsland.",
-      "temperature": "17",
-      "lighting": "6",
-      "music": "0",
-      "curtains": false,
+      "temperature": "10",
+      "lighting": "0",
+      "music": "5",
+      "curtains": true,
       "top": 280,
       "left": 390,
       "width": 300,
@@ -241,19 +241,19 @@
     },
     {
       "roomId": "21",
-      "service": "temperature",
-      "amount": "11",
-      "start": "04:00",
-      "end": "13:00",
-      "id": 25
-    },
-    {
-      "roomId": "21",
       "service": "music",
       "amount": "12",
       "start": "17:00",
       "end": "21:00",
       "id": 26
+    },
+    {
+      "roomId": "21",
+      "service": "temperature",
+      "amount": "22",
+      "start": "17:00",
+      "end": "22:00",
+      "id": 27
     }
   ]
 }

@@ -4,10 +4,11 @@ import RoomsViewNavbar from "./../layout/RoomsViewNavbar";
 import { getBackgroundImage } from "./roomUtilities";
 import { RoomContext } from "./../../contexts/RoomContext";
 import { FloorContext } from "./../../contexts/FloorContext";
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from "react-bootstrap/Spinner";
+import { useParams } from "react-router-dom";
 
-const RoomsMap = (props) => {
-  const floorId = props.match.params.floorId;
+const RoomsMap = () => {
+  const { floorId } = useParams;
   const { readRoomsOfFloor } = useContext(RoomContext);
   const { readFloor } = useContext(FloorContext);
 

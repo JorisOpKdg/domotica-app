@@ -4,10 +4,11 @@ import Lighting from "../services/Lighting";
 import Music from "../services/Music";
 import Curtains from "../services/Curtains";
 import { RoomContext } from "./../../contexts/RoomContext";
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from "react-bootstrap/Spinner";
+import { useParams } from "react-router-dom";
 
-const RoomDetail = (props) => {
-  const roomId  = props.match.params.roomId;
+const RoomDetail = () => {
+  const { roomId } = useParams();
   const { readRoom } = useContext(RoomContext);
   const [room, setRoom] = useState();
 
