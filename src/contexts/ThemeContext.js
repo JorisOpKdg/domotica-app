@@ -1,10 +1,9 @@
-import React, { createContext, Component } from "react";
+import React, { createContext, useState } from "react";
 
-// Dit is een voorbeeld van een class component zonder hooks
 export const ThemeContext = createContext();
 
-class ThemeContextProvider extends Component {
-  state = {
+const ThemeContextProvider = ({ children }) => {
+  const [state, setState] = useState({
     isLightTheme: false,
     light: {
       nav: "light",
@@ -24,39 +23,37 @@ class ThemeContextProvider extends Component {
     showMusic: true,
     fontSize: 20,
     fontSizeOptions: [12, 14, 16, 18, 20, 22, 24, 30],
+  });
+
+  const toggleTheme = () => {
+    setState({ isLightTheme: !this.state.isLightTheme });
   };
 
-  toggleTheme = () => {
-    this.setState({ isLightTheme: !this.state.isLightTheme });
+  const toggleTemperature = () => {
+    setState({ showTemperature: !this.state.showTemperature });
   };
 
-  toggleTemperature = () => {
-    this.setState({ showTemperature: !this.state.showTemperature });
+  const toggleMusic = () => {
+    setState({ showMusic: !this.state.showMusic });
   };
 
-  toggleMusic = () => {
-    this.setState({ showMusic: !this.state.showMusic });
+  const setFontSize = (newFontSize) => {
+    setState({ fontSize: newFontSize });
   };
 
-  setFontSize = (newFontSize) => {
-    this.setState({ fontSize: newFontSize });
-  };
-
-  render() {
-    return (
-      <ThemeContext.Provider
-        value={{
-          ...this.state,
-          toggleTheme: this.toggleTheme,
-          setFontSize: this.setFontSize,
-          toggleTemperature: this.toggleTemperature,
-          toggleMusic: this.toggleMusic,
-        }}
-      >
-        {this.props.children}
-      </ThemeContext.Provider>
-    );
-  }
-}
+  return (
+    <ThemeContext.Provider
+      value={{
+        state,
+        toggleTheme,
+        setFontSize,
+        toggleTemperature,
+        toggleMusic,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
+  );
+};
 
 export default ThemeContextProvider;

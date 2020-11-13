@@ -17,6 +17,7 @@ const title = createTitle(service);
 const Lighting = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
+  
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
   const [lightingValue, setLightingValue] = useState();
 

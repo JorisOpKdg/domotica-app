@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useParams } from "react";
 import { useHistory } from "react-router-dom";
 import FormElement from "./FormElement";
 import { SchemeContext } from "./../../../contexts/SchemeContext";
 import { getConfigInfo, createTitle } from "./../serviceUtilities";
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from "react-bootstrap/Spinner";
 
-const EditServiceScheme = (props) => {
-  const schemeId = props.match.params.schemeId;
+const EditServiceScheme = () => {
+  const { schemeId } = useParams();
   const history = useHistory();
   const { readScheme, updateScheme } = useContext(SchemeContext);
 
@@ -37,11 +37,11 @@ const EditServiceScheme = (props) => {
   };
 
   if (!(scheme && configInfo))
-  return (
-    <Spinner animation="border" role="status">
-      <span className="sr-only">Loading...</span>
-    </Spinner>
-  );
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
     <div className="container">

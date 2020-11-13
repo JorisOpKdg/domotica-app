@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { SchemeContext } from "./../../../contexts/SchemeContext";
-import { Confirm } from "semantic-ui-react";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const ServiceScheme = ({ roomId, scheme }) => {
   const history = useHistory();
@@ -16,15 +17,26 @@ const ServiceScheme = ({ roomId, scheme }) => {
 
   return (
     <>
-      <Confirm
-        open={showConfirmDialog}
-        header="Je gaat dit schema verwijderen!"
-        content={"Ben je zeker?"}
-        confirmButton="Ja, verwijder schema"
-        cancelButton="Annuleren"
-        onCancel={() => setShowConfirmDialog(false)}
-        onConfirm={deleteHandler}
-      />
+      <Modal
+        show={showConfirmDialog}
+        onHide={() => setShowConfirmDialog(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Slim schema verwijderen</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Je staat op het punt om je slim schema te verwijderen. Ben je zeker?</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowConfirmDialog(false)}
+          >
+            Annuleer
+          </Button>
+          <Button variant="primary" onClick={deleteHandler}>
+            Verwijderen
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <li className="list-group-item py-4">
         <div className="row">
           <div className="col-4">

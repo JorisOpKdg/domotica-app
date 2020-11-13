@@ -17,6 +17,7 @@ const max = 30;
 const Temperature = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
+  
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
   const [tempValue, setTempValue] = useState();
 

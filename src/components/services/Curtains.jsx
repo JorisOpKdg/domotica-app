@@ -15,6 +15,7 @@ const title = createTitle(service);
 const Curtains = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
+  
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
   const [curtainValue, setCurtainValue] = useState();
 

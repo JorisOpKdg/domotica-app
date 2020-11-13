@@ -17,6 +17,7 @@ const max = 20;
 const Music = ({ room }) => {
   const { readSchemesOfRoomWithService } = useContext(SchemeContext);
   const { updateRoom } = useContext(RoomContext);
+  
   const [schemesOfRoomWithService, setSchemesOfRoomWithService] = useState();
   const [musicValue, setMusicValue] = useState();
 
