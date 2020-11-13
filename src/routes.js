@@ -8,3 +8,7 @@ export const roomsMapRoute = "/rooms-map/:floorId";
 export const roomDetailRoute = "/room-detail/:roomId";
 export const newServiceSchemeRoute = "/new-service-scheme";
 export const editServiceSchemeRoute = "/edit-service-scheme/:schemeId";
+
+export const loginRoute = "/login"
+export const registerRoute = "/register"
+export const resetPasswordRoute = "/reset-password"

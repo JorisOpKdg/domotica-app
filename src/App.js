@@ -18,6 +18,9 @@ import {
   newServiceSchemeRoute,
   editServiceSchemeRoute,
   startRoute,
+  loginRoute,
+  registerRoute,
+  resetPasswordRoute,
 } from "./routes";
 import FloorContextProvider from "./contexts/FloorContext";
 import RoomContextProvider from "./contexts/RoomContext";
@@ -37,7 +40,8 @@ class App extends Component {
                   <Menu />
                   <Switch>
                     <Route
-                      exact path={startRoute}
+                      exact
+                      path={startRoute}
                       render={() => <Redirect to="/rooms-list/2" />}
                     />
                     <Route path={homeRoute} component={HomePage} />
