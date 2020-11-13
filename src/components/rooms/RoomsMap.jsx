@@ -6,6 +6,7 @@ import { RoomContext } from "./../../contexts/RoomContext";
 import { FloorContext } from "./../../contexts/FloorContext";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 const RoomsMap = () => {
   const { floorId } = useParams;
@@ -28,7 +29,7 @@ const RoomsMap = () => {
     );
 
   return (
-    <div className="container">
+    <Container>
       <RoomsViewNavbar floorId={floor.id} floorName={floor.name} />
 
       <div
@@ -45,7 +46,7 @@ const RoomsMap = () => {
           <RoomSummaryMap key={room.id} room={room} />
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

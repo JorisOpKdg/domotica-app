@@ -4,6 +4,9 @@ import FormElement from "./FormElement";
 import { SchemeContext } from "./../../../contexts/SchemeContext";
 import { getConfigInfo, createTitle } from "./../serviceUtilities";
 import Spinner from "react-bootstrap/Spinner";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const EditServiceScheme = () => {
   const { schemeId } = useParams();
@@ -44,11 +47,11 @@ const EditServiceScheme = () => {
     );
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5">{createTitle(scheme.service)}</h1>
       <h2 className="mb-5">Pas je slim schema aan</h2>
-      <form onSubmit={submitHandler}>
-        <div className="form-row">
+      <Form onSubmit={submitHandler}>
+        <Form.Row>
           <FormElement
             title="Start:"
             changeHandler={startHandler}
@@ -70,16 +73,16 @@ const EditServiceScheme = () => {
             value={scheme.amount}
             type="amount"
           />
-        </div>
-        <div className="form-row">
-          <div className="form-group ml-1">
-            <button type="submit" className="btn btn-dark">
+        </Form.Row>
+        <Form.Row>
+          <Form.Group className="ml-1">
+            <Button variant="dark" type="submit">
               Opslaan
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+            </Button>
+          </Form.Group>
+        </Form.Row>
+      </Form>
+    </Container>
   );
 };
 

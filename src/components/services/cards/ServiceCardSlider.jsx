@@ -1,11 +1,13 @@
 import React from "react";
 import RangeSlider from "react-bootstrap-range-slider";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const ServiceCardSlider = ({ min, max, changeHandler, afterChangeHandler, value }) => {
   return (
     <li className="list-group-item py-2">
-      <div className="row">
-        <form className="m-3 col-11">
+      <Row>
+        <Col xs={11} className="m-3">
           <RangeSlider
             value={value}
             min={min}
@@ -13,8 +15,8 @@ const ServiceCardSlider = ({ min, max, changeHandler, afterChangeHandler, value 
             onChange={changeHandler}
             onAfterChange={afterChangeHandler}
           />
-        </form>
-      </div>
+        </Col>
+      </Row>
     </li>
   );
 };

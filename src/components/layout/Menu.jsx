@@ -33,12 +33,8 @@ const Menu = () => {
         <Nav className="mr-auto">
           {floors &&
             floors.map((floor) => (
-              <li className="nav-item">
-                <Link
-                  key={floor.id}
-                  className="nav-link"
-                  to={`/rooms-list/${floor.id}`}
-                >
+              <li key={floor.id} className="nav-item">
+                <Link className="nav-link" to={`/rooms-list/${floor.id}`}>
                   {floor.name}
                 </Link>
               </li>
@@ -60,4 +56,3 @@ const Menu = () => {
 };
 
 export default Menu;
-

@@ -6,6 +6,8 @@ import Curtains from "../services/Curtains";
 import { RoomContext } from "./../../contexts/RoomContext";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 const RoomDetail = () => {
   const { roomId } = useParams();
@@ -24,11 +26,11 @@ const RoomDetail = () => {
     );
 
   return (
-    <div className="container mt-5">
-      <h1 className="display-4">{room && room.name}</h1>
-      <p className="mb-5">{room && room.description}</p>
+    <Container className="mt-5">
+      <h1 className="display-4">{room.name}</h1>
+      <p className="mb-5">{room.description}</p>
 
-      <div className="row mb-5">
+      <Row className="mb-5">
         {room.temperature !== undefined ? <Temperature room={room} /> : null}
 
         {room.lighting !== undefined ? <Lighting room={room} /> : null}
@@ -36,8 +38,8 @@ const RoomDetail = () => {
         {room.music !== undefined ? <Music room={room} /> : null}
 
         {room.curtains !== undefined ? <Curtains room={room} /> : null}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 

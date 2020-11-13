@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom";
 import FormElement from "./FormElement";
 import { SchemeContext } from "./../../../contexts/SchemeContext";
 import { getConfigInfo, createTitle } from "./../serviceUtilities";
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from "react-bootstrap/Spinner";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const NewServiceScheme = ({ location }) => {
   const history = useHistory();
@@ -44,18 +47,18 @@ const NewServiceScheme = ({ location }) => {
   };
 
   if (!(scheme && configInfo))
-  return (
-    <Spinner animation="border" role="status">
-      <span className="sr-only">Loading...</span>
-    </Spinner>
-  );
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
-    <div className="container">
+    <Container>
       <h1 className="mt-5">{createTitle(scheme.service)}</h1>
       <h2 className="mb-5">Maak een nieuw slim schema</h2>
-      <form onSubmit={submitHandler}>
-        <div className="form-row">
+      <Form onSubmit={submitHandler}>
+        <Form.Row>
           <FormElement
             title="Start:"
             changeHandler={startHandler}
@@ -77,16 +80,16 @@ const NewServiceScheme = ({ location }) => {
             value={scheme.amount}
             type="amount"
           />
-        </div>
-        <div className="form-row">
-          <div className="form-group ml-1">
-            <button type="submit" className="btn btn-dark">
+        </Form.Row>
+        <Form.Row>
+          <Form.Group className="ml-1">
+            <Button variant="dark" type="submit">
               Opslaan
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+            </Button>
+          </Form.Group>
+        </Form.Row>
+      </Form>
+    </Container>
   );
 };
 

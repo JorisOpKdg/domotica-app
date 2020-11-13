@@ -2,6 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FloorContext } from "../../contexts/FloorContext";
 import Spinner from "react-bootstrap/Spinner";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 
 const HomePage = () => {
   const { floors } = useContext(FloorContext);
@@ -14,30 +18,25 @@ const HomePage = () => {
     );
 
   return (
-    <div className="container py-5 my-5">
-      <div className="row">
+    <Container className="py-5 my-5">
+      <Row>
         {floors.map((floor) => (
-          <div className="col-md-6 col-lg-3">
-            <div className="card mb-3 shadow-sm">
-              <img
-                className="card-img-top"
-                src={floor.image}
-                alt="Card cap"
-              ></img>
-              <div className="card-body ">
+          <Col key={`homepageCard${floor.id}`} md={6} lg={3}>
+            <Card className="mb-3 shadow-sm">
+              <Card.Img variant="top" src={floor.image} alt="Card cap" />
+              <Card.Body>
                 <Link
-                  key={floor.id}
                   className="btn btn-lg btn-block btn-outline-dark mt-3"
                   to={`/rooms-list/${floor.id}`}
                 >
                   {floor.name}
                 </Link>
-              </div>
-            </div>
-          </div>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 

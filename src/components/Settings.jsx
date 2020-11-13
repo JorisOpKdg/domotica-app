@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "./../contexts/ThemeContext";
 import FormElement from "./services/schemes/FormElement";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 const Settings = () => {
   const {
@@ -20,50 +23,36 @@ const Settings = () => {
   };
 
   return (
-    <div className="container">
-      <form className="form-right my-5 ml-3">
-        <div className="custom-control custom-switch">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="darkSwitch"
-            onChange={toggleTheme}
-            checked={isLightTheme}
-          />
-          <label className="custom-control-label" htmlFor="darkSwitch">
-            Light Mode
-          </label>
-        </div>
-      </form>
+    <Container>
+      <Row className="my-5 ml-3">
+        <Form.Check
+          type="switch"
+          id="darkSwitch"
+          onChange={toggleTheme}
+          checked={isLightTheme}
+          label="Light Mode"
+        />
+      </Row>
 
-      <form className="form-right my-5 ml-3">
-        <div className="custom-control custom-switch">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="tempSwitch"
-            onChange={toggleTemperature}
-            checked={showTemperature}
-          />
-          <label className="custom-control-label" htmlFor="tempSwitch">
-            Toon temperatuur
-          </label>
-        </div>
-      </form>
-      <form className="form-right my-5 ml-3">
-        <div className="custom-control custom-switch">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="musicSwitch"
-            onChange={toggleMusic}
-            checked={showMusic}
-          />
-          <label className="custom-control-label" htmlFor="musicSwitch">
-            Toon muziek
-          </label>
-        </div>
-      </form>
+      <Row className="my-5 ml-3">
+        <Form.Check
+          type="switch"
+          id="tempSwitch"
+          onChange={toggleTemperature}
+          checked={showTemperature}
+          label="Toon temperatuur"
+        />
+      </Row>
+
+      <Row className="my-5 ml-3">
+        <Form.Check
+          type="switch"
+          id="musicSwitch"
+          onChange={toggleMusic}
+          checked={showMusic}
+          label="Toon muziek"
+        />
+      </Row>
 
       <FormElement
         title="Verander lettertype grootte"
@@ -72,7 +61,7 @@ const Settings = () => {
         type="fontsizeSettings"
         value={fontSize}
       />
-    </div>
+    </Container>
   );
 };
 

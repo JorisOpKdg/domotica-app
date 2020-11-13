@@ -7,12 +7,16 @@ import { calculateBackgroundColor, calculateTextColor } from "./roomUtilities";
 import { ThemeContext } from "./../../contexts/ThemeContext";
 import { RoomContext } from "./../../contexts/RoomContext";
 import RoomsListSlider from "./RoomsListSlider";
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from "react-bootstrap/Spinner";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
 
 const RoomSummaryList = ({ roomId }) => {
   const { fontSize, showTemperature, showMusic } = useContext(ThemeContext);
   const { readRoom, updateRoom } = useContext(RoomContext);
-  
+
   const [backgroundColor, setBackgroundColor] = useState();
   const [textColor, setTextColor] = useState();
   const [room, setRoom] = useState();
@@ -81,28 +85,25 @@ const RoomSummaryList = ({ roomId }) => {
   };
 
   if (!room)
-  return (
-    <Spinner animation="border" role="status">
-      <span className="sr-only">Loading...</span>
-    </Spinner>
-  );
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
 
   return (
-    <div className="col-md-6">
-      <div
-        className="card mb-5 shadow-sm text-center"
+    <Col md={6}>
+      <Card
+        className="mb-5 shadow-sm text-center"
         style={{ minHeight: "20rem" }}
       >
-        <div
-          className="card-header"
-          style={{ backgroundColor: `${backgroundColor}` }}
-        >
+        <Card.Header style={{ backgroundColor: `${backgroundColor}` }}>
           <h4 style={{ color: `${textColor}`, fontSize: `${fontSize}px` }}>
             {room.name}
           </h4>
-        </div>
+        </Card.Header>
 
-        <div className="card-body">
+        <Card.Body>
           <RoomsListSlider
             fontSize={fontSize}
             title="Licht"
@@ -126,14 +127,14 @@ const RoomSummaryList = ({ roomId }) => {
           ) : null}
 
           {room.music !== undefined && showMusic ? (
-            <div className="row m-2">
-              <div className="col-3 py-3">
+            <Row className="m-2">
+              <Col xs={3} className="py-3">
                 <img
                   src={room.music < 1 ? MusicOff : MusicOn}
                   alt="Music icon"
-                ></img>
-              </div>
-              <form className="col-9 mt-3">
+                />
+              </Col>
+              <Col xs={9} className="mt-3">
                 <RangeSlider
                   value={room.music}
                   min="0"
@@ -141,35 +142,31 @@ const RoomSummaryList = ({ roomId }) => {
                   onAfterChange={musicAfterHandler}
                   onChange={musicHandler}
                 />
-              </form>
-            </div>
+              </Col>
+            </Row>
           ) : null}
 
           {room.curtains !== undefined ? (
-            <div className="row m-2 ml-4 text-left">
-              <h4 className="col-4" style={{ fontSize: `${fontSize}px` }}>
-                Gordijnen
-              </h4>
-              <div className=" col-8 colcustom-control custom-switch">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  onChange={curtainHandler}
-                  id={`curtainSwitch${room.id}`}
-                  checked={room.curtains}
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor={`curtainSwitch${room.id}`}
-                >
-                  Dicht/Open
-                </label>
-              </div>
-            </div>
+            <Row className="rm-2 ml-4 text-left">
+              <Col xs={4}>
+                <h4 style={{ fontSize: `${fontSize}px` }}>Gordijnen</h4>
+              </Col>
+              <Col xs={8}>
+                <Form className="mt-2">
+                  <Form.Check
+                    type="switch"
+                    id={`curtainSwitch${room.id}`}
+                    onChange={curtainHandler}
+                    checked={room.curtains}
+                    label="Dicht/Open"
+                  />
+                </Form>
+              </Col>
+            </Row>
           ) : null}
-        </div>
+        </Card.Body>
 
-        <div className="card-footer">
+        <Card.Footer>
           <Link
             id={room.id}
             className="btn btn-lg btn-block btn-outline-dark mt-3"
@@ -177,9 +174,9 @@ const RoomSummaryList = ({ roomId }) => {
           >
             Details
           </Link>
-        </div>
-      </div>
-    </div>
+        </Card.Footer>
+      </Card>
+    </Col>
   );
 };
 

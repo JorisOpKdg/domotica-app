@@ -69,9 +69,9 @@
       "name": "Woonkamer",
       "description": "Deze woonkamer, in klassieke stijl, is speciaal ontworpen door de vrouw des huizes. Zij is afkomstig van Groot Brittanië en stond erop om deze kamer in een klassieke cottage stijl in te richten om zich thuis te kunnen voelen in Duitsland.",
       "temperature": "10",
-      "lighting": "0",
+      "lighting": "12",
       "music": "5",
-      "curtains": true,
+      "curtains": false,
       "top": 280,
       "left": 390,
       "width": 300,
@@ -121,8 +121,8 @@
       "name": "Slaapkamer 1",
       "description": "Dit is de slaapkamer van de heer en vrouw des huizes. Rustig en ruim gelegen.",
       "temperature": "14",
-      "lighting": "5",
-      "music": "4",
+      "lighting": "13",
+      "music": "9",
       "curtains": true,
       "top": 685,
       "left": 490,
@@ -151,7 +151,7 @@
       "temperature": "4",
       "lighting": "0",
       "music": 10,
-      "curtains": false,
+      "curtains": true,
       "top": 750,
       "left": 200,
       "width": 160,
@@ -174,7 +174,7 @@
       "floorId": 4,
       "name": "Zolder ruimte",
       "description": "Deze zolder is de speelruimte voor de kinderen. Hier bouwen ze kampen en spelen ze toneel.",
-      "lighting": "26",
+      "lighting": "5",
       "music": "2",
       "top": 323,
       "left": 353,
@@ -254,6 +254,14 @@
       "start": "07:00",
       "end": "09:00",
       "id": 27
+    },
+    {
+      "roomId": "31",
+      "service": "temperature",
+      "amount": "14",
+      "start": "03:00",
+      "end": "12:00",
+      "id": 28
     }
   ]
 }

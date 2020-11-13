@@ -1,22 +1,20 @@
 import React from "react";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 
-const ServiceCardCheckBox = ({changeHandler, checkedValue}) => {
+const ServiceCardCheckBox = ({ changeHandler, checkedValue }) => {
   return (
     <li className="list-group-item py-4">
-      <form className="form-right my-2 my-lg-0 col-12">
-        <div className="custom-control custom-switch">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            onChange={changeHandler}
-            id="curtainSwitch"
-            checked={checkedValue}
-          />
-          <label className="custom-control-label" htmlFor="curtainSwitch">
-            Dicht/Open
-          </label>
-        </div>
-      </form>
+      <Col className="my-2 my-lg-0">
+        <Form.Check
+          className="mt-2"
+          type="switch"
+          id="curtainSwitch"
+          onChange={changeHandler}
+          checked={checkedValue}
+          label="Dicht/Open"
+        />
+      </Col>
     </li>
   );
 };

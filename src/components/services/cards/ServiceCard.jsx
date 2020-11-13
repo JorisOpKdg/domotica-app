@@ -1,10 +1,12 @@
 import React from "react";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 
 const ServiceCard = ({ children }) => {
   return (
-    <div className="col-lg-6">
-      <div className="card mb-3 shadow-sm">{children}</div>
-    </div>
+    <Col lg={6}>
+      <Card className="mb-3 shadow-sm">{children}</Card>
+    </Col>
   );
 };
 

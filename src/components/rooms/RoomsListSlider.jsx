@@ -1,23 +1,32 @@
 import React from "react";
 import RangeSlider from "react-bootstrap-range-slider";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-const RoomsListSlider = ({fontSize, title, value, changeHandler, changeAfterHandler, min, max}) => {
+const RoomsListSlider = ({
+  fontSize,
+  title,
+  value,
+  changeHandler,
+  changeAfterHandler,
+  min,
+  max,
+}) => {
   return (
-    <div className="row m-2">
-      <h4
-        className="col-3"
-        style={{ fontSize: `${fontSize}px` }}
-      >{title}</h4>
-      <form className="col-9">
+    <Row className="m-2">
+      <Col xs={3}>
+        <h4 style={{ fontSize: `${fontSize}px` }}>{title}</h4>
+      </Col>
+      <Col xs={9}>
         <RangeSlider
           value={value}
-          min={min}
-          max={max}
+          min={+min}
+          max={+max}
           onChange={changeHandler}
           onAfterChange={changeAfterHandler}
         />
-      </form>
-    </div>
+      </Col>
+    </Row>
   );
 };
 

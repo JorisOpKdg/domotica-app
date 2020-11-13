@@ -3,50 +3,55 @@ import React, { createContext, useState } from "react";
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = ({ children }) => {
-  const [state, setState] = useState({
-    isLightTheme: false,
-    light: {
-      nav: "light",
-      bg: "white",
-      logo: "light",
-      btn: "dark",
-      text: "black",
-    },
-    dark: {
-      nav: "dark",
-      bg: "dark",
-      logo: "dark",
-      btn: "light",
-      text: "white",
-    },
-    showTemperature: true,
-    showMusic: true,
-    fontSize: 20,
-    fontSizeOptions: [12, 14, 16, 18, 20, 22, 24, 30],
-  });
+  const [isLightTheme, setIsLightTheme] = useState(false);
+  const [showTemperature, setShowTemperature] = useState(true);
+  const [showMusic, setShowMusic] = useState(true);
+  const [fontSize, setFontSize] = useState(20);
+
+  const light = {
+    nav: "light",
+    bg: "white",
+    logo: "light",
+    btn: "dark",
+    text: "black",
+  };
+
+  const dark = {
+    nav: "dark",
+    bg: "dark",
+    logo: "dark",
+    btn: "light",
+    text: "white",
+  };
+  
+  const fontSizeOptions = [12, 14, 16, 18, 20, 22, 24, 30];
 
   const toggleTheme = () => {
-    setState({ isLightTheme: !this.state.isLightTheme });
+    setIsLightTheme(!isLightTheme);
   };
 
   const toggleTemperature = () => {
-    setState({ showTemperature: !this.state.showTemperature });
+    setShowTemperature(!showTemperature);
   };
 
   const toggleMusic = () => {
-    setState({ showMusic: !this.state.showMusic });
+    setShowMusic(!showMusic);
   };
 
-  const setFontSize = (newFontSize) => {
-    setState({ fontSize: newFontSize });
+  const setNewFontSize = (newFontSize) => {
+    setFontSize(newFontSize);
   };
 
   return (
     <ThemeContext.Provider
       value={{
-        state,
+        isLightTheme,
+        light,
+        dark,
+        fontSize,
+        fontSizeOptions,
         toggleTheme,
-        setFontSize,
+        setNewFontSize,
         toggleTemperature,
         toggleMusic,
       }}

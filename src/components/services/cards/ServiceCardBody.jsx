@@ -1,10 +1,11 @@
 import React from "react";
+import Card from "react-bootstrap/Card";
 
 const ServiceCardBody = ({ children }) => {
   return (
-    <div className="card-body">
+    <Card.Body>
       <ul className="list-group list-group-flush">{children}</ul>
-    </div>
+    </Card.Body>
   );
 };
 
