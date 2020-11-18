@@ -16,6 +16,3 @@ export function useInterval(functionToInterval) {
     };
   }, [functionToInterval]);
 }
-
-// Deze code is geïnspireerd op basis van deze website:
-// https://blog.bitsrc.io/polling-in-react-using-the-useinterval-custom-hook-e2bcefda4197

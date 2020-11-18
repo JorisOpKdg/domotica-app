@@ -8,6 +8,7 @@ import { FloorContext } from "./../../contexts/FloorContext";
 import DarkLogo from "./../../assets/logo/logo-dark.png";
 import LightLogo from "./../../assets/logo/logo-light.png";
 import { Link } from "react-router-dom";
+import { loginRoute, settingsRoute } from './../../routes';
 
 const Menu = () => {
   const { floors } = useContext(FloorContext);
@@ -41,7 +42,16 @@ const Menu = () => {
             ))}
         </Nav>
         <Form inline>
-          <Link to="/settings/">
+        <Link to={loginRoute}>
+            <Button
+              variant={`outline-${theme.btn}`}
+              className="mr-3 my-2 my-sm-0"
+            >
+              Inloggen
+            </Button>
+          </Link>
+
+          <Link to={settingsRoute}>
             <Button
               variant={`outline-${theme.btn}`}
               className="mr-3 my-2 my-sm-0"

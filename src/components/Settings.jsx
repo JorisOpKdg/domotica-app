@@ -12,14 +12,14 @@ const Settings = () => {
     toggleTemperature,
     toggleMusic,
     fontSizeOptions,
-    setFontSize,
+    setNewFontSize,
     showTemperature,
     showMusic,
     fontSize,
   } = useContext(ThemeContext);
 
   const fontSizeHandler = (e) => {
-    setFontSize(e.target.value);
+    setNewFontSize(e.target.value);
   };
 
   return (

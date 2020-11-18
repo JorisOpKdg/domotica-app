@@ -46,6 +46,8 @@ const ThemeContextProvider = ({ children }) => {
     <ThemeContext.Provider
       value={{
         isLightTheme,
+        showMusic,
+        showTemperature,
         light,
         dark,
         fontSize,

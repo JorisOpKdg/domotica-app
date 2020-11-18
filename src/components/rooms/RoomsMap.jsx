@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 const RoomsMap = () => {
-  const { floorId } = useParams;
+  const { floorId } = useParams();
   const { readRoomsOfFloor } = useContext(RoomContext);
   const { readFloor } = useContext(FloorContext);
 
